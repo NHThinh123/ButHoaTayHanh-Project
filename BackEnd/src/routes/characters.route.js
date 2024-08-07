@@ -12,5 +12,7 @@ const router = express.Router();
 // router.post("/characters", postCreateUser);
 // router.put("/characters", putUpdateCharacter);
 // router.delete("/characters", deleteCharacter);
-
+router.get("/", (req, res) => {
+  return res.status(200).json("Hello api");
+});
 module.exports = router;
