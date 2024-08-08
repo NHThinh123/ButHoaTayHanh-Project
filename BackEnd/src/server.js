@@ -1,9 +1,10 @@
 require("dotenv").config();
 const express = require("express");
 const configViewEngine = require("./config/viewEngine");
-const characterRoutes = require("./routes/characters.route");
+const characterRoutes = require("./routes/character.route");
+const userRoutes = require("./routes/user.route");
 const connection = require("./config/database");
-const { getHomepage } = require("./controllers/characters.controller");
+const { getHomepage } = require("./controllers/character.controller");
 
 const cors = require("cors");
 const app = express();
@@ -20,8 +21,8 @@ const webAPI = express.Router();
 webAPI.get("/", getHomepage);
 
 app.use("/", webAPI);
-app.use("/api", characterRoutes);
-
+app.use("/api/characters/", characterRoutes);
+app.use("/api/user/", userRoutes);
 (async () => {
   try {
     await connection();
