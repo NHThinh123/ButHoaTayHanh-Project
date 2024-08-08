@@ -1,4 +1,4 @@
-const Character = require("../models/character");
+const Character = require("../models/character.model");
 const createCharacterService = async (name, story, image, skills) => {
   try {
     let result = await Character.create({
