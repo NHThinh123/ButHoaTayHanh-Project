@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
+
   const onFinish = async (values) => {
     const { email, password } = values;
     const res = await createUserApi(email, password);
@@ -49,6 +50,7 @@ const RegisterPage = () => {
         rules={[
           {
             required: true,
+            type: "email",
             message: "Please input your email!",
           },
         ]}

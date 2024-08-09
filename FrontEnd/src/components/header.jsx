@@ -20,27 +20,27 @@ const Header = () => {
       icon: <TeamOutlined />,
       children: [
         {
-          key: "1",
+          key: "allCharacter",
           label: "All",
         },
         {
-          key: "2",
+          key: "tien",
           label: "Tiên giới",
         },
         {
-          key: "3",
+          key: "nhan",
           label: "Nhân giới",
         },
         {
-          key: "4",
+          key: "yeu",
           label: "Yêu giới",
         },
         {
-          key: "5",
+          key: "thanh",
           label: "Thánh giới",
         },
         {
-          key: "6",
+          key: "ma",
           label: "Ma Giới",
         },
       ],
@@ -54,19 +54,19 @@ const Header = () => {
       icon: <CommentOutlined />,
       children: [
         {
-          key: "1",
+          key: "Guide1",
           label: "Bước chuẩn bị",
         },
         {
-          key: "2",
+          key: "Guide2",
           label: "Quản lý tài nguyên",
         },
         {
-          key: "3",
+          key: "Guide3",
           label: "Bảy ngày tân thủ",
         },
         {
-          key: "4",
+          key: "Guide4",
           label: "Đội hình đề cử",
         },
       ],
