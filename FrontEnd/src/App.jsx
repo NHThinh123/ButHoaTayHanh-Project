@@ -12,10 +12,10 @@ function App() {
     fetchHelloWorld();
   }, []);
   return (
-    <>
+    <div style={{ display: "-webkit-inline-flex" }}>
       <Header />
       <Outlet />
-    </>
+    </div>
   );
 }
 

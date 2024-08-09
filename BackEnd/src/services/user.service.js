@@ -2,12 +2,12 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
 const User = require("../models/user.model");
-const createUserService = async (userName, password, role) => {
+const createUserService = async (email, password, role) => {
   try {
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
     let result = await User.create({
-      userName: userName,
+      email: email,
       password: hashedPassword,
       role: role,
     });
@@ -18,9 +18,9 @@ const createUserService = async (userName, password, role) => {
   }
 };
 
-const loginService = async (userName, password) => {
+const loginService = async (email, password) => {
   try {
-    const user = await User.findOne({ userName: userName });
+    const user = await User.findOne({ email: email });
     if (user) {
       const isValidPassword = await bcrypt.compare(password, user.password);
       if (isValidPassword) {

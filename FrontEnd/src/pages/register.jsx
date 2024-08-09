@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 const RegisterPage = () => {
   const navigate = useNavigate();
   const onFinish = async (values) => {
-    const { userName, password } = values;
-    const res = await createUserApi(userName, password);
+    const { email, password } = values;
+    const res = await createUserApi(email, password);
 
     if (res) {
       notification.success({
@@ -44,12 +44,12 @@ const RegisterPage = () => {
       autoComplete="off"
     >
       <Form.Item
-        label="UserName"
-        name="userName"
+        label="Email"
+        name="email"
         rules={[
           {
             required: true,
-            message: "Please input your username!",
+            message: "Please input your email!",
           },
         ]}
       >
