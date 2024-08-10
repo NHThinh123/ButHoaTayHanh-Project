@@ -46,6 +46,7 @@ const loginService = async (email, password) => {
           access_token,
           user: {
             email: user.email,
+            role: user.role,
           },
         };
       } else {

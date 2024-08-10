@@ -6,8 +6,15 @@ import {
   MenuOutlined,
 } from "@ant-design/icons";
 import { Menu } from "antd";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "./context/auth.context";
 const Header = () => {
+  const navigate = useNavigate();
+  const { auth, setAuth } = useContext(AuthContext);
+  console.log(auth);
+
   const items = [
     {
       key: "home",
@@ -77,19 +84,53 @@ const Header = () => {
       type: "group",
       children: [
         {
-          key: "1",
+          key: "setting",
           icon: <SettingOutlined />,
           label: "Setting",
         },
         {
-          key: "register",
-          icon: <MenuOutlined />,
-          label: "Register",
-        },
-        {
           key: "user",
           icon: <MenuOutlined />,
-          label: <Link to={"/user"}>User</Link>,
+          label: "User",
+          children: [
+            ...(auth.isAuthentication
+              ? [
+                  {
+                    key: "listUser",
+                    label: <Link to={"/user"}>Danh sách user</Link>,
+                  },
+                  {
+                    key: "logout",
+                    label: (
+                      <span
+                        onClick={() => {
+                          localStorage.clear("access_token");
+                          navigate("/");
+                          setAuth({
+                            isAuthentication: false,
+                            user: {
+                              email: "",
+                              role: "",
+                            },
+                          });
+                        }}
+                      >
+                        Đăng Xuất
+                      </span>
+                    ),
+                  },
+                ]
+              : [
+                  {
+                    key: "login",
+                    label: <Link to={"/login"}>Đăng nhập</Link>,
+                  },
+                  {
+                    key: "register",
+                    label: <Link to={"/register"}>Đăng Ký</Link>,
+                  },
+                ]),
+          ],
         },
       ],
     },
@@ -103,8 +144,8 @@ const Header = () => {
       style={{
         width: 320,
       }}
-      defaultSelectedKeys={["1"]}
-      defaultOpenKeys={["sub1"]}
+      defaultSelectedKeys={["home"]}
+      defaultOpenKeys={["sub2"]}
       mode="inline"
       items={items}
     />
