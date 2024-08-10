@@ -19,6 +19,16 @@ const createUserService = async (email, password, role) => {
   }
 };
 
+const getUserService = async () => {
+  try {
+    let result = await User.find({}).select("-password");
+    return result;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
 const loginService = async (email, password) => {
   try {
     const user = await User.findOne({ email: email });
@@ -59,4 +69,5 @@ const loginService = async (email, password) => {
 module.exports = {
   createUserService,
   loginService,
+  getUserService,
 };
