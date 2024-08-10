@@ -10,8 +10,8 @@ function App() {
   useEffect(() => {
     const fetchAccount = async () => {
       setLoading(true);
-      const res = await axios.get(`/api/account`);
-      if (res) {
+      const res = await axios.get(`/api/user/account`);
+      if (res && !res.message) {
         setAuth({
           isAuthentication: true,
           user: {
@@ -32,7 +32,7 @@ function App() {
             position: "fixed",
             top: "50%",
             left: "50%",
-            transform: "translate(-50%,-50%)",
+            transform: "translate(-50%, -50%)",
           }}
         >
           <Spin size="large" />
