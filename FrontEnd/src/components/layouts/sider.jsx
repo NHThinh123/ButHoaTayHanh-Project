@@ -9,8 +9,8 @@ import { Menu } from "antd";
 import { useContext } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "./context/auth.context";
-const Header = () => {
+import { AuthContext } from "../context/auth.context";
+const Sider = () => {
   const navigate = useNavigate();
   const { auth, setAuth } = useContext(AuthContext);
   console.log(auth);
@@ -142,13 +142,14 @@ const Header = () => {
     <Menu
       onClick={onClick}
       style={{
-        width: 320,
+        width: "100%",
       }}
       defaultSelectedKeys={["home"]}
       defaultOpenKeys={["sub2"]}
       mode="inline"
       items={items}
+      theme="dark"
     />
   );
 };
-export default Header;
+export default Sider;

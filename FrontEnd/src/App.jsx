@@ -1,9 +1,10 @@
 import { useContext, useEffect } from "react";
-import Header from "./components/header";
+import Sider from "./components/layouts/sider";
 import { Outlet } from "react-router-dom";
 import axios from "./util/axios.customize";
 import { AuthContext } from "./components/context/auth.context";
-import { Spin } from "antd";
+import { Col, Layout, Row, Spin } from "antd";
+import Header from "./components/layouts/header";
 
 function App() {
   const { setAuth, loading, setLoading } = useContext(AuthContext);
@@ -38,12 +39,20 @@ function App() {
           <Spin size="large" />
         </div>
       ) : (
-        <div style={{ display: "flex" }}>
+        <Layout style={{ backgroundColor: "#202020" }}>
           <Header />
-          <div style={{ flex: 1 }}>
-            <Outlet />
-          </div>
-        </div>
+
+          <Row>
+            <Col span={6}>
+              <Sider />
+            </Col>
+            <Col span={18}>
+              <div style={{ flex: 1 }}>
+                <Outlet />
+              </div>
+            </Col>
+          </Row>
+        </Layout>
       )}
     </div>
   );
