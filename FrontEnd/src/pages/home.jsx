@@ -1,5 +1,7 @@
-import { Carousel, Col, Image, Row } from "antd";
+import { Carousel, Col, Row } from "antd";
 import bannerImg from "../assets/images/banner.webp";
+import Banner from "../components/ui/banner";
+import Topic from "../components/layouts/topic";
 
 const HomePage = () => {
   const bannerData = [
@@ -40,6 +42,7 @@ const HomePage = () => {
       <Col span={16} style={{ padding: "0px 10px" }}>
         <Carousel
           arrows
+          autoplay
           infinite={true}
           style={{
             display: "flex",
@@ -48,55 +51,17 @@ const HomePage = () => {
           }}
         >
           {bannerData.map((banner, index) => (
-            <div key={index}>
-              <Image
-                src={banner.image}
-                preview={false}
-                alt={banner.title || "Hình ảnh banner"}
-                style={{
-                  objectFit: "contain",
-                  width: "100%",
-                  position: "relative",
-                  marginLeft: -1,
-                }}
-              ></Image>
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: 0,
-                  background: "rgba(0,0,0,0.5)",
-                  color: "white",
-                  padding: "10px",
-                  width: "100%",
-                  paddingBottom: "20px",
-                }}
-              >
-                <h2
-                  style={{
-                    fontSize: 18,
-                    color: "white",
-                    width: "9%",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                  }}
-                >
-                  {banner.title}
-                </h2>
-                <p
-                  style={{
-                    fontSize: 12,
-                    overflow: "hidden",
-                    width: "8%",
-                    whiteSpace: "nowrap",
-                    textOverflow: "ellipsis",
-                  }}
-                >
-                  {banner.description}
-                </p>
-              </div>
-            </div>
+            <Banner
+              key={index}
+              imgUrl={banner.image}
+              title={banner.title}
+              content={banner.description}
+            />
           ))}
         </Carousel>
+      </Col>
+      <Col span={8} style={{ padding: "0px 10px" }}>
+        <Topic />
       </Col>
     </Row>
   );
