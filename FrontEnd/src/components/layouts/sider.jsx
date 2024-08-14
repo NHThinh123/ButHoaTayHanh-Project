@@ -141,14 +141,20 @@ const Sider = () => {
   return (
     <Menu
       onClick={onClick}
-      style={{
-        width: "100%",
-      }}
       defaultSelectedKeys={["home"]}
       defaultOpenKeys={["sub2"]}
       mode="inline"
       items={items}
-      theme="dark"
+      // style={{
+      //   width: "20%",
+      //   overflow: "auto",
+      //   height: "100vh",
+      //   position: "fixed",
+      //   insetInlineStart: 0,
+      //   top: 0,
+      //   bottom: 0,
+      //   scrollbarWidth: "thin",
+      // }}
     />
   );
 };

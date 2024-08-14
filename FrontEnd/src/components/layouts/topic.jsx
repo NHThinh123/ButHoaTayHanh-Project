@@ -1,5 +1,6 @@
 import { Segmented } from "antd";
 import { useState } from "react";
+import Guide from "../ui/guide";
 
 const Topic = () => {
   const [value, setValue] = useState("Mới nhất");
@@ -11,8 +12,6 @@ const Topic = () => {
         onChange={setValue}
         block
         style={{
-          backgroundColor: "black",
-          color: "white",
           borderRadius: "0px",
         }}
         defaultValue={value}
@@ -20,11 +19,14 @@ const Topic = () => {
       <div
         style={{
           width: "100%",
-          backgroundColor: "black",
-          height: "600px",
+          backgroundColor: "grey",
+          height: "390px",
           marginBottom: "10px",
+          padding: "5px",
         }}
-      ></div>
+      >
+        <Guide height={100} imgSpan={8} />
+      </div>
     </div>
   );
 };

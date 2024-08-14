@@ -39,10 +39,9 @@ function App() {
           <Spin size="large" />
         </div>
       ) : (
-        <Layout style={{ backgroundColor: "#202020" }}>
+        <Layout style={{}}>
           <Header />
-
-          <Row>
+          <Row style={{ marginTop: "80px" }}>
             <Col span={6}>
               <Sider />
             </Col>

@@ -2,6 +2,7 @@ import { Carousel, Col, Row } from "antd";
 import bannerImg from "../assets/images/banner.webp";
 import Banner from "../components/ui/banner";
 import Topic from "../components/layouts/topic";
+import Guide from "../components/ui/guide";
 
 const HomePage = () => {
   const bannerData = [
@@ -59,8 +60,13 @@ const HomePage = () => {
             />
           ))}
         </Carousel>
+        <Guide height={200} imgSpan={10}></Guide>
+        <Guide height={200} imgSpan={10}></Guide>
+        <Guide height={200} imgSpan={10}></Guide>
+        <Guide height={200} imgSpan={10}></Guide>
+        <Guide height={200} imgSpan={10}></Guide>
       </Col>
-      <Col span={8} style={{ padding: "0px 10px" }}>
+      <Col span={8} style={{ padding: "0px" }}>
         <Topic />
       </Col>
     </Row>

@@ -11,7 +11,7 @@ const UserInfo = () => {
       justify="flex-end"
       style={{ height: "100%" }}
     >
-      <p style={{ color: "white", fontSize: "16px", fontWeight: "bold" }}>
+      <p style={{ color: "black", fontSize: "16px", fontWeight: "bold" }}>
         {" "}
         {auth.user.email}
       </p>

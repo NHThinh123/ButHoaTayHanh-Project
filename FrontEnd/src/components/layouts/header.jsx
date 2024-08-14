@@ -9,7 +9,15 @@ const Header = () => {
   const { auth } = useContext(AuthContext);
   return (
     <div>
-      <Row>
+      <Row
+        style={{
+          width: "100%",
+          backgroundColor: "white",
+          overflow: "auto",
+          position: "fixed",
+          zIndex: 1,
+        }}
+      >
         <Col
           span={6}
           style={{
