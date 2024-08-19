@@ -28,7 +28,7 @@ const Sider = () => {
       children: [
         {
           key: "allCharacter",
-          label: "All",
+          label: <Link to={"/character"}>All</Link>,
         },
         {
           key: "tien",
@@ -145,16 +145,17 @@ const Sider = () => {
       defaultOpenKeys={["sub2"]}
       mode="inline"
       items={items}
-      // style={{
-      //   width: "20%",
-      //   overflow: "auto",
-      //   height: "100vh",
-      //   position: "fixed",
-      //   insetInlineStart: 0,
-      //   top: 0,
-      //   bottom: 0,
-      //   scrollbarWidth: "thin",
-      // }}
+      style={{
+        width: "25%",
+        overflow: "auto",
+        height: "100vh",
+        position: "fixed",
+        insetInlineStart: 0,
+        // top: 0,
+        //bottom: 0,
+        scrollbarWidth: "thin",
+        paddingBottom: 100,
+      }}
     />
   );
 };

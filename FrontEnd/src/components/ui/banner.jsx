@@ -1,4 +1,5 @@
 import { Image } from "antd";
+
 //import Img from "../../assets/images/banner.webp";
 const Banner = (props) => {
   const { imgUrl, title, content } = props;
@@ -13,7 +14,6 @@ const Banner = (props) => {
       <Image
         src={imgUrl}
         preview={false}
-        alt={"Hình ảnh banner"}
         style={{
           objectFit: "cover", // Thay đổi thành cover
           width: "100%",
