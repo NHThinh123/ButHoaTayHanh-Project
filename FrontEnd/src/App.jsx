@@ -46,7 +46,7 @@ function App() {
               <Sider />
             </Col>
             <Col span={18}>
-              <div style={{ flex: 1, margin: "16px" }}>
+              <div style={{ flex: 1 }}>
                 <Outlet />
               </div>
             </Col>

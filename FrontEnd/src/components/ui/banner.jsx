@@ -6,8 +6,8 @@ const Banner = (props) => {
   return (
     <div
       style={{
-        width: "100%",
-
+        minWidth: "200px",
+        maxWidth: "800px",
         position: "relative",
       }}
     >

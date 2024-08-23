@@ -5,7 +5,7 @@ const Guide = (props) => {
   const textSpan = 24 - imgSpan;
   return (
     <>
-      <Card style={{ width: "100%" }} hoverable>
+      <Card style={{ width: "100%", marginBottom: "10px" }} hoverable>
         <Row>
           <Col
             span={imgSpan}

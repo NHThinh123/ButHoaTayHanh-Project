@@ -9,6 +9,8 @@ import HomePage from "./pages/home.jsx";
 import LoginPage from "./pages/login.jsx";
 import { AuthWrapper } from "./components/context/auth.context.jsx";
 import Character from "./pages/character.jsx";
+import PaymentPage from "./pages/payment.jsx";
+import ResultPage from "./pages/result.jsx";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +38,14 @@ const router = createBrowserRouter([
   {
     path: "login",
     element: <LoginPage />,
+  },
+  {
+    path: "payment",
+    element: <PaymentPage />,
+  },
+  {
+    path: "result",
+    element: <ResultPage />,
   },
 ]);
 

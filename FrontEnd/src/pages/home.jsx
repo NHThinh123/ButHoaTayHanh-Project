@@ -68,8 +68,18 @@ const HomePage = () => {
         <Guide height={200} imgSpan={10}></Guide>
       </Col>
       <Col span={8} style={{ padding: "0px" }}>
-        <Topic />
-        <Footer />
+        <div
+          style={{
+            position: "fixed",
+            overflow: "auto",
+            scrollbarWidth: "thin",
+            height: "100vh",
+            paddingBottom: 100,
+          }}
+        >
+          <Topic />
+          <Footer />
+        </div>
       </Col>
     </Row>
   );

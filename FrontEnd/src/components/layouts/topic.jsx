@@ -19,12 +19,14 @@ const Topic = () => {
       <div
         style={{
           width: "100%",
-          backgroundColor: "grey",
 
           marginBottom: "10px",
           padding: "5px",
         }}
       >
+        <Guide height={100} imgSpan={8} />
+        <Guide height={100} imgSpan={8} />
+        <Guide height={100} imgSpan={8} />
         <Guide height={100} imgSpan={8} />
         <Guide height={100} imgSpan={8} />
         <Guide height={100} imgSpan={8} />

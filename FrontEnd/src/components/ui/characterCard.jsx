@@ -16,25 +16,31 @@ const CharacterCard = () => {
             padding: "5px",
           }}
         >
-          <Flex justify="center" align="center" vertical>
+          <Flex vertical>
             <div
               style={{
                 fontSize: 20,
                 fontWeight: "700",
                 overflow: "hidden",
-                width: "90%",
+                width: "100%",
                 whiteSpace: "nowrap",
                 textOverflow: "ellipsis",
-                display: "flex",
-                justifyContent: "center",
+                textAlign: "center",
+                padding: "10px",
               }}
             >
-              Natra
+              Natraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
             </div>
 
-            <Flex justify="center" align="center" gap={"small"}>
-              <Avatar src={celestialIcon} />
-              <p>Tiên giới</p>
+            <Flex align="center" justify="space-around">
+              <Flex align="center" gap={"small"}>
+                <Avatar src={celestialIcon} />
+                <p>Tiên giới</p>
+              </Flex>
+              {/* <Flex align="center" gap={"small"}>
+                <Avatar src={celestialIcon} />
+                <p>Trợ thủ</p>
+              </Flex> */}
             </Flex>
           </Flex>
         </div>

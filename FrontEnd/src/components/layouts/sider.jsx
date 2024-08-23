@@ -129,6 +129,10 @@ const Sider = () => {
                     key: "register",
                     label: <Link to={"/register"}>Đăng Ký</Link>,
                   },
+                  {
+                    key: "payment",
+                    label: <Link to={"/payment"}>Thanh toán</Link>,
+                  },
                 ]),
           ],
         },

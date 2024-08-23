@@ -22,9 +22,14 @@ const getUser = async (req, res) => {
 const getAccount = async (req, res) => {
   return res.status(200).json(req.user);
 };
+const createPayment = async (req, res) => {
+  const data = await createPaymentService();
+  return res.status(200).json(data);
+};
 module.exports = {
   getUser,
   createUser,
   handleLogin,
   getAccount,
+  createPayment,
 };
