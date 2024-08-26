@@ -9,7 +9,7 @@ import { Menu } from "antd";
 import { useContext } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/auth.context";
+import { AuthContext } from "../../contexts/auth.context";
 const Sider = () => {
   const navigate = useNavigate();
   const { auth, setAuth } = useContext(AuthContext);

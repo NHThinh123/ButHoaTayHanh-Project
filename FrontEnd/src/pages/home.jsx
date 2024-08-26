@@ -1,9 +1,9 @@
 import { Carousel, Col, Row } from "antd";
 import bannerImg from "../assets/images/banner.webp";
-import Banner from "../components/ui/banner";
-import Topic from "../components/layouts/topic";
-import Guide from "../components/ui/guide";
-import Footer from "../components/layouts/footer";
+import Banner from "../components/molecules/banner";
+import Guide from "../components/molecules/guide";
+import Topic from "../components/organisms/topic";
+import Footer from "../components/templates/footer";
 
 const bannerData = [
   {

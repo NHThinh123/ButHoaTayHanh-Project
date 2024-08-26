@@ -1,10 +1,10 @@
 import { useContext, useEffect } from "react";
-import Sider from "./components/layouts/sider";
+
 import { Outlet } from "react-router-dom";
-import axios from "./util/axios.customize";
-import { AuthContext } from "./components/context/auth.context";
-import { Col, Layout, Row, Spin } from "antd";
-import Header from "./components/layouts/header";
+import axios from "./services/axios.customize";
+import { AuthContext } from "./contexts/auth.context";
+import DefaultLayout from "./layouts/default-layout";
+import SpinLoading from "./components/atoms/spin-loading";
 
 function App() {
   const { setAuth, loading, setLoading } = useContext(AuthContext);
@@ -28,30 +28,11 @@ function App() {
   return (
     <div>
       {loading === true ? (
-        <div
-          style={{
-            position: "fixed",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          <Spin size="large" />
-        </div>
+        <SpinLoading />
       ) : (
-        <Layout style={{}}>
-          <Header />
-          <Row style={{ marginTop: "80px" }}>
-            <Col span={6}>
-              <Sider />
-            </Col>
-            <Col span={18}>
-              <div style={{ flex: 1 }}>
-                <Outlet />
-              </div>
-            </Col>
-          </Row>
-        </Layout>
+        <DefaultLayout>
+          <Outlet />
+        </DefaultLayout>
       )}
     </div>
   );

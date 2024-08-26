@@ -1,9 +1,10 @@
 import { Avatar, Flex } from "antd";
 import { useContext } from "react";
-import { AuthContext } from "../context/auth.context";
+import { AuthContext } from "../../contexts/auth.context";
 
 const UserInfo = () => {
   const { auth } = useContext(AuthContext);
+
   return (
     <Flex
       gap="middle"
@@ -23,7 +24,7 @@ const UserInfo = () => {
           color: "#f56a00",
         }}
       >
-        {auth?.user?.email.charAt(0).toUpperCase() ?? "U"}
+        {auth?.user?.email?.charAt(0).toUpperCase() ?? "U"}
       </Avatar>
     </Flex>
   );

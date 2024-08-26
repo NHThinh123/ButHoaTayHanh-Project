@@ -1,9 +1,10 @@
 import { Button, Col, Flex, Row } from "antd";
-import Logo from "../ui/logo";
-import SearchBar from "../ui/search";
+
 import { useContext } from "react";
-import { AuthContext } from "../context/auth.context";
-import UserInfo from "../ui/userInfo";
+import { AuthContext } from "../../contexts/auth.context";
+import Logo from "../atoms/logo";
+import SearchBar from "../molecules/search";
+import UserInfo from "../molecules/userInfo";
 
 const Header = () => {
   const { auth } = useContext(AuthContext);

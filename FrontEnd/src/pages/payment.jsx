@@ -1,4 +1,4 @@
-import { paymentApi } from "../util/api";
+import { paymentApi } from "../services/api";
 import { Button, Form, Input } from "antd";
 
 const PaymentPage = () => {

@@ -1,6 +1,6 @@
 import { Segmented } from "antd";
 import { useState } from "react";
-import Guide from "../ui/guide";
+import Guide from "../molecules/guide";
 
 const Topic = () => {
   const [value, setValue] = useState("Mới Nhất");

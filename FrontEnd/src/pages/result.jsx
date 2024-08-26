@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import PaymentResult from "../components/layouts/paymentResult";
+import PaymentResult from "../components/templates/payment-result";
 
 const ResultPage = () => {
   const [paymentStatus, setPaymentStatus] = useState(null);

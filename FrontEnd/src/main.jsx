@@ -7,7 +7,7 @@ import RegisterPage from "./pages/register.jsx";
 import UserPage from "./pages/user.jsx";
 import HomePage from "./pages/home.jsx";
 import LoginPage from "./pages/login.jsx";
-import { AuthWrapper } from "./components/context/auth.context.jsx";
+import { AuthWrapper } from "./contexts/auth.context.jsx";
 import Character from "./pages/character.jsx";
 import PaymentPage from "./pages/payment.jsx";
 import ResultPage from "./pages/result.jsx";

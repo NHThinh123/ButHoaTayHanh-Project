@@ -1,8 +1,9 @@
 import { Flex, Image } from "antd";
-import CharacterList from "../components/layouts/characterList";
+
 import iconSSR from "../assets/images/icon/ssr-icon.png";
 import iconSR from "../assets/images/icon/sr-icon.png";
 import iconR from "../assets/images/icon/r-icon.png";
+import CharacterList from "../components/organisms/characterList";
 const Character = () => {
   return (
     <div>

@@ -1,8 +1,8 @@
 import { Button, Form, Input, notification } from "antd";
-import { loginApi } from "../util/api";
+import { loginApi } from "../services/api";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from "../components/context/auth.context";
+import { AuthContext } from "../contexts/auth.context";
 
 const LoginPage = () => {
   const navigate = useNavigate();

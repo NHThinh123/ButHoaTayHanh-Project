@@ -1,6 +1,5 @@
 import { Col, Row } from "antd";
-import CharacterCard from "../ui/characterCard";
-
+import CharacterCard from "../molecules/characterCard";
 const CharacterList = () => {
   return (
     <div>
