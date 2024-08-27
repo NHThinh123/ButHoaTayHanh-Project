@@ -33,9 +33,8 @@ const Guide = (props) => {
                 fontSize: 16,
                 marginLeft: "5px",
                 display: "-webkit-box",
-                WebkitLineClamp: 3,
+                WebkitLineClamp: 2,
                 WebkitBoxOrient: "vertical",
-                "-webkit-box-orient": "vertical",
                 overflow: "hidden",
               }}
             >

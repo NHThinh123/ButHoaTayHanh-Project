@@ -1,12 +1,12 @@
 import { notification, Table } from "antd";
 import { useEffect, useState } from "react";
-import { getUserApi } from "../services/api";
+import { getUsersApi } from "../services/api";
 const UserPage = () => {
   const [dataSource, setDataSource] = useState([]);
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await getUserApi();
+      const res = await getUsersApi();
       if (!res?.message) {
         setDataSource(res);
       } else {

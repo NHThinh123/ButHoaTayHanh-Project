@@ -1,7 +1,9 @@
 const {
   createUserService,
   loginService,
-  getUserService,
+  getUsersService,
+  getUserByIdService,
+  updateUserService,
 } = require("../services/user.service");
 
 const createUser = async (req, res) => {
@@ -14,11 +16,21 @@ const handleLogin = async (req, res) => {
   const data = await loginService(email, password);
   return res.status(200).json(data);
 };
-const getUser = async (req, res) => {
-  const data = await getUserService();
+const getUsers = async (req, res) => {
+  const data = await getUsersService();
   return res.status(200).json(data);
 };
-
+const getUserById = async (req, res) => {
+  const { id } = req.params.id;
+  const data = await getUserByIdService(id);
+  return res.status(200).json(data);
+};
+const updateUser = async (req, res) => {
+  const { id } = req.params.id;
+  const updateData = req.body;
+  const data = await updateUserService(id, updateData);
+  return res.status(200).json(data);
+};
 const getAccount = async (req, res) => {
   return res.status(200).json(req.user);
 };
@@ -27,9 +39,11 @@ const createPayment = async (req, res) => {
   return res.status(200).json(data);
 };
 module.exports = {
-  getUser,
+  getUsers,
+  getUserById,
   createUser,
   handleLogin,
   getAccount,
   createPayment,
+  updateUser,
 };

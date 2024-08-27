@@ -22,9 +22,33 @@ const createUserService = async (email, password, role) => {
   }
 };
 
-const getUserService = async () => {
+const getUsersService = async () => {
   try {
     let result = await User.find({}).select("-password");
+
+    return result;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+const getUserByIdService = async (id) => {
+  try {
+    let result = await User.findById(id).select("-password");
+    return result;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+const updateUserService = async (id, updateData) => {
+  try {
+    if (updateData.password) {
+      updateData.password = await bcrypt.hash(updateData.password, 10);
+    }
+    let result = await User.findByIdAndUpdate(id, updateData, {
+      new: true,
+    }).select("-password");
     return result;
   } catch (error) {
     console.error(error);
@@ -139,6 +163,8 @@ const createPaymentService = async () => {
 module.exports = {
   createUserService,
   loginService,
-  getUserService,
+  getUsersService,
   createPaymentService,
+  getUserByIdService,
+  updateUserService,
 };

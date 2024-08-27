@@ -19,9 +19,7 @@ const Topic = () => {
       <div
         style={{
           width: "100%",
-
-          marginBottom: "10px",
-          padding: "5px",
+          marginTop: "10px",
         }}
       >
         <Guide height={100} imgSpan={8} />

@@ -13,6 +13,7 @@ function App() {
       setLoading(true);
       const res = await axios.get(`/api/user/account`);
       if (res && !res.message) {
+        console.log(res);
         setAuth({
           isAuthentication: true,
           user: {
