@@ -3,9 +3,14 @@ import BannerList from "../features/home/components/banner-list";
 import GuideList from "../features/home/components/guide-list";
 import SidebarContent from "../features/home/components/sidebar-content";
 import useBannerData from "../features/home/hooks/useBannerData";
+import SpinLoading from "../components/atoms/spin-loading";
 
 const HomePage = () => {
-  const bannerData = useBannerData();
+  const { bannerData, loading } = useBannerData();
+  if (loading) {
+    return <SpinLoading size="large" />;
+  }
+
   return (
     <Row>
       <Col span={16} style={{ paddingRight: "16px" }}>
