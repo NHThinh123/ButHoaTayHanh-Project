@@ -3,6 +3,7 @@ import { Image } from "antd";
 //import Img from "../../assets/images/banner.webp";
 const Banner = (props) => {
   const { imgUrl, title, content } = props;
+
   return (
     <div
       style={{
@@ -42,6 +43,7 @@ const Banner = (props) => {
         >
           {title}
         </h2>
+        <h1></h1>
         <p
           style={{
             fontSize: 14,

@@ -8,10 +8,17 @@ const {
   deleteTopic,
 } = require("../controllers/topic.controller");
 
+// Admin routes
+
+// Protected routes
+
 router.put("/:id", updateTopic);
 router.delete("/:id", deleteTopic);
+router.post("/", createTopic);
+
+// Public routes
+
 router.get("/:id", getTopicById);
 router.get("/", getTopics);
-router.post("/", createTopic);
 
 module.exports = router;

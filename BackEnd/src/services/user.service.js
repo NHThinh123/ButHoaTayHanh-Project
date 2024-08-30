@@ -6,12 +6,13 @@ const crypto = require("crypto");
 const https = require("https");
 const User = require("../models/user.model");
 const { hostname } = require("os");
-const createUserService = async (email, password, role) => {
+const createUserService = async (email, username, password, role) => {
   try {
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
     let result = await User.create({
       email: email,
+      username: username,
       password: hashedPassword,
       role: role,
     });

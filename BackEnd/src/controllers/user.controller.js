@@ -7,8 +7,8 @@ const {
 } = require("../services/user.service");
 
 const createUser = async (req, res) => {
-  const { email, password, role } = req.body;
-  const data = await createUserService(email, password, role);
+  const { email, username, password, role } = req.body;
+  const data = await createUserService(email, username, password, role);
   return res.status(200).json(data);
 };
 const handleLogin = async (req, res) => {

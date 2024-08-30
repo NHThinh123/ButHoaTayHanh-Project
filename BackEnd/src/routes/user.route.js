@@ -7,11 +7,20 @@ const {
   getAccount,
   createPayment,
 } = require("../controllers/user.controller");
+const isAdmin = require("../middleware/isAdmin");
+
+// Public routes
 
 router.post("/register", createUser);
 router.post("/login", handleLogin);
 router.get("/account", getAccount);
-router.get("/create_payment", createPayment);
+
+// Admin routes
+router.use(isAdmin);
 router.get("/", getUsers);
+
+// Protected routes
+
+router.get("/create_payment", createPayment);
 
 module.exports = router;

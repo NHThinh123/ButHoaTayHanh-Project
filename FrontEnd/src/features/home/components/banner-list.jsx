@@ -1,5 +1,5 @@
 import { Carousel } from "antd";
-import Banner from "../../../components/molecules/banner";
+import Banner from "./banner";
 
 const BannerList = ({ bannerData }) => {
   return (

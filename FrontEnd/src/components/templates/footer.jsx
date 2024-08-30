@@ -10,7 +10,7 @@ import { Space } from "antd";
 const Footer = () => {
   return (
     <div style={{ width: "90%" }}>
-      <h2>Về chúng tôi</h2>
+      <h2>Về chúng tôi </h2>
       <br />
       <p>
         Chúng tôi là một cộng đồng game thủ nhiệt huyết, luôn sẵn sàng chia sẻ

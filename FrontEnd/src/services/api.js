@@ -1,9 +1,10 @@
 import axios from "./axios.customize";
 
-const createUserApi = (email, password) => {
+const createUserApi = (email, username, password) => {
   const URL_API = "/api/user/register";
   const data = {
     email: email,
+    username: username,
     password: password,
     role: "user",
   };

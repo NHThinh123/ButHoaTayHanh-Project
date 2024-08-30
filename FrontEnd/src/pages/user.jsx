@@ -24,8 +24,8 @@ const UserPage = () => {
       dataIndex: "_id",
     },
     {
-      title: "Email",
-      dataIndex: "userName",
+      title: "Username",
+      dataIndex: "username",
     },
     {
       title: "Role",

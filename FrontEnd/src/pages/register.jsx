@@ -6,8 +6,8 @@ const RegisterPage = () => {
   const navigate = useNavigate();
 
   const onFinish = async (values) => {
-    const { email, password } = values;
-    const res = await createUserApi(email, password);
+    const { email, username, password } = values;
+    const res = await createUserApi(email, username, password);
 
     if (res) {
       notification.success({
@@ -52,6 +52,20 @@ const RegisterPage = () => {
             required: true,
             type: "email",
             message: "Please input your email!",
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item
+        label="Username"
+        name="username"
+        rules={[
+          {
+            required: true,
+            type: "string",
+            message: "Please input your username!",
           },
         ]}
       >
