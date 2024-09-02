@@ -8,8 +8,12 @@ const Banner = (props) => {
     <div
       style={{
         minWidth: "200px",
-        maxWidth: "800px",
+        maxWidth: "1200px",
         position: "relative",
+        display: "flex",
+        justifyContent: "center",
+        borderRadius: 10,
+        overflow: "hidden",
       }}
     >
       <Image
@@ -18,7 +22,7 @@ const Banner = (props) => {
         style={{
           objectFit: "cover", // Thay đổi thành cover
           width: "100%",
-          height: "420px",
+          minHeight: "420px",
         }}
       />
       <div

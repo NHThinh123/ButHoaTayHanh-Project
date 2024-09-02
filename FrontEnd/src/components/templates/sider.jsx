@@ -10,6 +10,7 @@ import { useContext } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/auth.context";
+
 const Sider = () => {
   const navigate = useNavigate();
   const { auth, setAuth } = useContext(AuthContext);
@@ -156,7 +157,7 @@ const Sider = () => {
         position: "fixed",
         insetInlineStart: 0,
 
-        scrollbarWidth: "thin",
+        scrollbarWidth: "none",
         paddingBottom: 100,
       }}
     />

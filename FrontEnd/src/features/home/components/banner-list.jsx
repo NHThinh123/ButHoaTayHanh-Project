@@ -11,6 +11,8 @@ const BannerList = ({ bannerData }) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        borderRadius: 10,
+        overflow: "hidden",
       }}
     >
       {bannerData.map((banner, index) => (

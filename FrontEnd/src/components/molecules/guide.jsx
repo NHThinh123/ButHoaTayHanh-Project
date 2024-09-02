@@ -1,11 +1,12 @@
 import { Card, Col, Image, Row } from "antd";
+import BentoBox from "../atoms/bento-box";
 
 const Guide = (props) => {
   const { height, imgSpan } = props;
   const textSpan = 24 - imgSpan;
   return (
-    <>
-      <Card style={{ width: "100%", marginBottom: "10px" }} hoverable>
+    <BentoBox>
+      <Card style={{ width: "100%" }} hoverable>
         <Row>
           <Col
             span={imgSpan}
@@ -44,7 +45,7 @@ const Guide = (props) => {
           </Col>
         </Row>
       </Card>
-    </>
+    </BentoBox>
   );
 };
 

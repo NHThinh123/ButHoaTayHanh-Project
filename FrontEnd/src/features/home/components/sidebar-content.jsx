@@ -7,7 +7,7 @@ const SidebarContent = () => {
       style={{
         position: "fixed",
         overflow: "auto",
-        scrollbarWidth: "thin",
+        scrollbarWidth: "none",
         height: "100vh",
         paddingBottom: 100,
       }}

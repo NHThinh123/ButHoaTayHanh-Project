@@ -6,10 +6,11 @@ import {
   YoutubeOutlined,
 } from "@ant-design/icons";
 import { Space } from "antd";
+import BentoBox from "../atoms/bento-box";
 
 const Footer = () => {
   return (
-    <div style={{ width: "90%" }}>
+    <BentoBox style={{ width: "95%" }}>
       <h2>Về chúng tôi </h2>
       <br />
       <p>
@@ -52,7 +53,7 @@ const Footer = () => {
       <div style={{ color: "grey" }}>
         <CopyrightOutlined /> 2024 Copyright: KAFF Gaming
       </div>
-    </div>
+    </BentoBox>
   );
 };
 export default Footer;

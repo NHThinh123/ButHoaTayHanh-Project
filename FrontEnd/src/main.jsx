@@ -11,6 +11,7 @@ import { AuthWrapper } from "./contexts/auth.context.jsx";
 import Character from "./pages/character.jsx";
 import PaymentPage from "./pages/payment.jsx";
 import ResultPage from "./pages/result.jsx";
+import TestPage from "./pages/test.jsx";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
   {
     path: "result",
     element: <ResultPage />,
+  },
+  {
+    path: "test",
+    element: <TestPage />,
   },
 ]);
 
