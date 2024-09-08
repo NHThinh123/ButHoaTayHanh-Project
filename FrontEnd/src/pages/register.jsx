@@ -1,30 +1,11 @@
-import { Col, Image, Layout, notification, Row } from "antd";
-import { createUserApi } from "../services/api";
-import { useNavigate } from "react-router-dom";
+import { Col, Image, Layout, Row } from "antd";
 import BentoBox from "../components/atoms/bento-box";
 import RegisterImg from "../assets/images/banner-register.png";
 import RegisterForm from "../features/auth/components/register-form";
+import { useRegister } from "../features/auth/hooks/useRegister";
 
 const RegisterPage = () => {
-  const navigate = useNavigate();
-
-  const onFinish = async (values) => {
-    const { email, username, password } = values;
-    const res = await createUserApi(email, username, password);
-
-    if (res) {
-      notification.success({
-        message: "CREATE USER",
-        description: "success",
-      });
-      navigate("/login");
-    } else {
-      notification.error({
-        message: "CREATE USER",
-        description: "error",
-      });
-    }
-  };
+  const { onFinish } = useRegister();
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
