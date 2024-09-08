@@ -7,7 +7,6 @@ import {
 } from "@ant-design/icons";
 import { Menu } from "antd";
 import { useContext } from "react";
-
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/auth.context";
 
@@ -19,12 +18,12 @@ const Sider = () => {
   const items = [
     {
       key: "home",
-      label: <Link to={"/"}>Home</Link>,
+      label: <Link to={"/"}>Trang Chủ</Link>,
       icon: <HomeOutlined />,
     },
     {
       key: "sub2",
-      label: "Character",
+      label: "Thông Tin Tướng",
       icon: <TeamOutlined />,
       children: [
         {
@@ -58,7 +57,7 @@ const Sider = () => {
     },
     {
       key: "sub4",
-      label: "Guide",
+      label: "Hướng Dẫn",
       icon: <CommentOutlined />,
       children: [
         {
@@ -81,7 +80,7 @@ const Sider = () => {
     },
     {
       key: "grp",
-      label: "Group",
+      label: "Nhóm",
       type: "group",
       children: [
         {
@@ -92,7 +91,7 @@ const Sider = () => {
         {
           key: "user",
           icon: <MenuOutlined />,
-          label: "User",
+          label: "Người Dùng",
           children: [
             ...(auth.isAuthentication
               ? [

@@ -23,8 +23,10 @@ const HomePage = () => {
 
         <GuideList />
       </Col>
-      <Col span={8} style={{ padding: "0px" }}>
-        <SidebarContent />
+      <Col span={8}>
+        <BentoBox>
+          <SidebarContent />
+        </BentoBox>
       </Col>
     </Row>
   );

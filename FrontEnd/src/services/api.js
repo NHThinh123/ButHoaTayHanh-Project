@@ -11,15 +11,6 @@ const createUserApi = (email, username, password) => {
   return axios.post(URL_API, data);
 };
 
-const loginApi = (email, password) => {
-  const URL_API = "/api/user/login";
-  const data = {
-    email: email,
-    password: password,
-  };
-  return axios.post(URL_API, data);
-};
-
 const getUsersApi = () => {
   const URL_API = "/api/user";
   return axios.get(URL_API);
@@ -29,4 +20,4 @@ const paymentApi = () => {
   return axios.post(URL_API);
 };
 
-export { createUserApi, loginApi, getUsersApi, paymentApi };
+export { createUserApi, getUsersApi, paymentApi };

@@ -4,8 +4,10 @@ const BentoBox = ({ children, height, backgroundColor, style }) => (
       backgroundColor: backgroundColor,
       height: height,
       // padding: 8,
-      margin: 8,
+      margin: "8px 4px",
       borderRadius: 10,
+      overflow: "hidden",
+      boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)",
       ...style,
     }}
   >
@@ -14,7 +16,7 @@ const BentoBox = ({ children, height, backgroundColor, style }) => (
 );
 
 BentoBox.defaultProps = {
-  //backgroundColor: "red",
+  // backgroundColor: "red",
 };
 
 export default BentoBox;
