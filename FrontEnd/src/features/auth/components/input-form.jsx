@@ -1,8 +1,15 @@
 import { Form, Input } from "antd";
 
-const InputForm = ({ label, name, rules, style, inputType }) => {
+const InputForm = ({ label, name, dependencies, rules, style, inputType }) => {
   return (
-    <Form.Item label={label} name={name} rules={rules} style={style}>
+    <Form.Item
+      label={label}
+      name={name}
+      rules={rules}
+      dependencies={dependencies}
+      style={style}
+      validateTrigger={["onBlur"]}
+    >
       {inputType === "password" ? (
         <Input.Password
           allowClear

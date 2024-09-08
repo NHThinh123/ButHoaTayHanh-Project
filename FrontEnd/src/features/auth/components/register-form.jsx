@@ -4,8 +4,10 @@ import BentoBox from "../../../components/atoms/bento-box";
 import ButtonForm from "./button-form";
 import CheckInputForm from "./check-input-form";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
-export const LoginForm = ({ onFinish, onFinishFailed, style }) => {
+export const RegisterForm = ({ onFinish, onFinishFailed, style }) => {
+  const [policyAccepted, setPolicyAccepted] = useState(true);
   return (
     <div
       style={{
@@ -16,7 +18,7 @@ export const LoginForm = ({ onFinish, onFinishFailed, style }) => {
         gap: 20,
       }}
     >
-      <h1 style={{ fontSize: 36 }}> Đăng nhập</h1>
+      <h1 style={{ fontSize: 36 }}> Đăng Ký</h1>
       <BentoBox style={{ padding: 30, margin: 8 }}>
         <Form
           name="basic"
@@ -43,6 +45,17 @@ export const LoginForm = ({ onFinish, onFinishFailed, style }) => {
             ]}
           />
           <InputForm
+            label="Tên người dùng"
+            name="username"
+            rules={[
+              {
+                required: true,
+                type: "string",
+                message: "Vui lòng nhập tên của bạn",
+              },
+            ]}
+          />
+          <InputForm
             label="Mật khẩu"
             name="password"
             rules={[
@@ -57,13 +70,39 @@ export const LoginForm = ({ onFinish, onFinishFailed, style }) => {
             ]}
             inputType="password"
           />
+          <InputForm
+            label="Xác nhận mật khẩu"
+            name="confirmPassword"
+            dependencies={["password"]}
+            rules={[
+              {
+                required: true,
+                message: "Vui lòng xác nhận lại mật khẩu",
+              },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue("password") === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(new Error("Mật khẩu không khớp!"));
+                },
+              }),
+            ]}
+            inputType="password"
+          />
 
-          <CheckInputForm name={"policy"} valuePropName={"checked"}>
+          <CheckInputForm
+            name={"policy"}
+            valuePropName={"checked"}
+            onChange={(e) => {
+              setPolicyAccepted(e.target.checked);
+            }}
+          >
             Tôi đồng ý và chấp nhận với
             <Link> Điều khoản dịch vụ</Link> và
             <Link> Chính sách bảo mật</Link>
           </CheckInputForm>
-          <ButtonForm>Đăng Nhập</ButtonForm>
+          <ButtonForm disable={!policyAccepted}>Đăng Ký</ButtonForm>
           <Divider />
           <div
             style={{
@@ -73,7 +112,8 @@ export const LoginForm = ({ onFinish, onFinishFailed, style }) => {
             }}
           >
             <p>
-              Bạn chưa có tài khoản? <Link> Đăng Ký Ngay!!!!</Link>
+              Bạn đã có tài khoản?{" "}
+              <Link to={"/login"}> Đăng Nhập Ngay!!!!</Link>
             </p>
           </div>
         </Form>
@@ -82,4 +122,4 @@ export const LoginForm = ({ onFinish, onFinishFailed, style }) => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;
