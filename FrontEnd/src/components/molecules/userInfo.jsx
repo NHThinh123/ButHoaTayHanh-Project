@@ -14,7 +14,7 @@ const UserInfo = () => {
     >
       <p style={{ color: "black", fontSize: "16px", fontWeight: "bold" }}>
         {" "}
-        {auth.user.email}
+        {auth.user.username}
       </p>
 
       <Avatar
@@ -24,7 +24,7 @@ const UserInfo = () => {
           color: "#f56a00",
         }}
       >
-        {auth?.user?.email?.charAt(0).toUpperCase() ?? "U"}
+        {auth?.user?.username?.charAt(0).toUpperCase() ?? "U"}
       </Avatar>
     </Flex>
   );

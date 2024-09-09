@@ -13,6 +13,7 @@ const authentication = (req, res, next) => {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         req.user = {
           email: decoded.email,
+          username: decoded.username,
           role: decoded.role,
         };
         console.log(decoded);

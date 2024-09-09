@@ -19,6 +19,7 @@ function App() {
           user: {
             email: res.email,
             role: res.name,
+            username: res.username,
           },
         });
       }
