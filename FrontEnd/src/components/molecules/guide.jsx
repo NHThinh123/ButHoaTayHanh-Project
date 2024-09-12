@@ -11,7 +11,6 @@ const Guide = (props) => {
           <Col
             span={imgSpan}
             style={{
-              backgroundColor: "green",
               width: "100%",
               height: height,
               padding: "0px",

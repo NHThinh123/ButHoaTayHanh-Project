@@ -20,7 +20,7 @@ const Banner = (props) => {
         src={imgUrl}
         preview={false}
         style={{
-          objectFit: "cover", // Thay đổi thành cover
+          objectFit: "cover",
           width: "100%",
           minHeight: "420px",
         }}

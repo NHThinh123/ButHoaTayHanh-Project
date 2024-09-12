@@ -1,26 +1,21 @@
-import BentoBox from "../components/atoms/bento-box";
-import BentoGrid from "../components/atoms/bento-grid";
+import { Col, Row } from "antd";
+import Header from "../components/templates/header";
+import Sider from "../components/templates/sider";
+import CharacterDetail from "../features/characters/components/character-detail";
 
 const TestPage = () => {
   return (
-    <BentoGrid lg={12}>
-      <BentoBox>
-        <BentoBox
-          height={100}
-          backgroundColor={"blue"}
-          style={{ backgroundColor: "green" }}
-        />
-      </BentoBox>
-      <BentoBox>
-        <BentoBox height={100} backgroundColor={"blue"} />
-      </BentoBox>
-      <BentoBox>
-        <BentoBox height={100} backgroundColor={"blue"} />
-      </BentoBox>
-      <BentoBox>
-        <BentoBox height={100} backgroundColor={"blue"} />
-      </BentoBox>
-    </BentoGrid>
+    <div>
+      <Header />
+      <Row>
+        <Col span={6} style={{ marginTop: "80px" }}>
+          <Sider />
+        </Col>
+        <Col span={18} style={{ marginTop: "80px" }}>
+          <CharacterDetail />
+        </Col>
+      </Row>
+    </div>
   );
 };
 export default TestPage;
