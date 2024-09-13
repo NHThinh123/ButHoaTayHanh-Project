@@ -1,13 +1,36 @@
-const { createCharacterService } = require("../services/character.service");
+const {
+  createCharacterService,
+  getAllCharactersService,
+  getCharacterByIdService,
+  updateCharacterService,
+  deleteCharacterService,
+} = require("../services/character.service");
 
-const getCharacter = async (req, res) => {
-  return res.status(200).json("Get characters");
-};
 const createCharacter = async (req, res) => {
   const data = await createCharacterService(req.body);
   return res.status(200).json(data);
 };
+const getAllCharacters = async (req, res) => {
+  const data = await getAllCharactersService(req.query);
+  return res.status(200).json(data);
+};
+const getCharacterById = async (req, res) => {
+  const data = await getCharacterByIdService(req.params.id);
+  return res.status(200).json(data);
+};
+const updateCharacter = async (req, res) => {
+  const data = await updateCharacterService(req.params.id, req.body);
+  return res.status(200).json(data);
+};
+const deleteCharacter = async (req, res) => {
+  const data = await deleteCharacterService(req.params.id);
+  return res.status(200).json(data);
+};
+
 module.exports = {
-  getCharacter,
   createCharacter,
+  getAllCharacters,
+  getCharacterById,
+  updateCharacter,
+  deleteCharacter,
 };

@@ -1,16 +1,16 @@
 const mongoose = require("mongoose");
 
-const effectSchema = new mongoose.Schema({
-  nameEffect: { type: String },
-  descriptionEffect: { type: String },
-});
-
 const skillSchema = new mongoose.Schema({
   title: { type: String, required: true },
   mainSkill: { type: String, required: true },
   subSkill: [{ type: String }],
   cooldown: { type: Number, default: 0 },
-  effectSkill: [effectSchema],
+  effectSkill: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Effect",
+    },
+  ],
 });
 
 const characterSchema = new mongoose.Schema({

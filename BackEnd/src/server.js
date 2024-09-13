@@ -4,6 +4,7 @@ const configViewEngine = require("./config/viewEngine");
 const characterRoutes = require("./routes/character.route");
 const userRoutes = require("./routes/user.route");
 const topicRoutes = require("./routes/topic.route");
+const effectRoutes = require("./routes/effect.route");
 const commentRoutes = require("./routes/comment.route");
 const connection = require("./config/database");
 
@@ -23,6 +24,7 @@ app.all("*", authentication);
 app.use("/api/characters/", characterRoutes);
 app.use("/api/user/", userRoutes);
 app.use("/api/topic/", topicRoutes);
+app.use("/api/effect/", effectRoutes);
 app.use("/api/comment/", commentRoutes);
 
 (async () => {
