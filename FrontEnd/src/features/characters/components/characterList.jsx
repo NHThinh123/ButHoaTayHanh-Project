@@ -1,5 +1,5 @@
 import { Col, Row } from "antd";
-import CharacterCard from "../../../components/molecules/characterCard";
+import CharacterCard from "./characterCard";
 const CharacterList = () => {
   return (
     <div>
