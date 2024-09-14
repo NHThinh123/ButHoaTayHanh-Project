@@ -5,6 +5,7 @@ const DefaultText = ({ children, style }) => {
     <Typography.Text
       style={{
         display: "-webkit-box",
+        fontSize: 16,
         WebkitLineClamp: 2,
         WebkitBoxOrient: "vertical",
         overflow: "hidden",

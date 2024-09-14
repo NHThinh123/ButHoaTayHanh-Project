@@ -16,7 +16,7 @@ const Header = () => {
           backgroundColor: "white",
           overflow: "auto",
           position: "fixed",
-          zIndex: 1,
+          zIndex: 3,
         }}
       >
         <Col
@@ -49,8 +49,10 @@ const Header = () => {
           >
             {!auth.isAuthentication ? (
               <>
-                <Button type="primary">Đăng Nhập</Button>
-                <Button>Đăng Ký</Button>
+                <Button type="primary" href="/login">
+                  Đăng Nhập
+                </Button>
+                <Button href="/register">Đăng Ký</Button>
               </>
             ) : (
               <UserInfo />

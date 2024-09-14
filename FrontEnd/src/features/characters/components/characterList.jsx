@@ -1,9 +1,9 @@
 import { Col, Row } from "antd";
-import CharacterCard from "../molecules/characterCard";
+import CharacterCard from "../../../components/molecules/characterCard";
 const CharacterList = () => {
   return (
     <div>
-      <Row gutter={[20, 20]} wrap>
+      <Row gutter={[5, 5]} wrap>
         <Col span={6}>
           <CharacterCard />
         </Col>

@@ -1,10 +1,11 @@
 import { Typography } from "antd";
 
-const DefaultTitle = ({ children, style }) => {
+const DefaultTitle = ({ children, color, style }) => {
   return (
     <Typography.Text
       style={{
-        fontSize: 16,
+        color: color || "#000",
+        fontSize: 18,
         display: "-webkit-box",
         WebkitLineClamp: 2,
         WebkitBoxOrient: "vertical",

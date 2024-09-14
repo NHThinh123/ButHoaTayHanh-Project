@@ -1,51 +1,61 @@
-import { Avatar, Flex, Image } from "antd";
+import { Avatar, Col, Flex, Image, Row } from "antd";
 import natraImg from "../../assets/images/character/natra.jpg";
 import celestialIcon from "../../assets/images/icon/celestial-icon.png";
+import BentoBox from "../atoms/bento-box";
+
+import DiamondIcon from "../atoms/diamond-icon";
+import CardText from "../atoms/card-text";
 const CharacterCard = () => {
   return (
-    <div>
+    <BentoBox>
       <div style={{ position: "relative" }}>
         <Image alt="character" src={natraImg} preview={false} />
         <div
           style={{
-            backgroundColor: "rgba(0,0,0,0.5)",
             position: "absolute",
-            bottom: 0,
+            top: 0,
+            left: 0,
             width: "100%",
+            height: "100%",
+            background:
+              "radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 100%)",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
             color: "white",
-            padding: "5px",
           }}
         >
-          <Flex vertical>
-            <div
+          <Row style={{ padding: 5 }}>
+            <Col span={6} style={{ padding: 5 }}>
+              <DiamondIcon colorBg={"#DD761C"} colorText={"#FFD700"}>
+                SSR
+              </DiamondIcon>
+            </Col>
+            <Col span={18}>
+              <Row>
+                <Col span={24} style={{}}>
+                  <Flex justify="right" align="flex-end" vertical gap={"small"}>
+                    <Avatar src={celestialIcon} size={"large"} />
+                    <Avatar src={celestialIcon} size={"large"} />
+                  </Flex>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+          <Row>
+            <Col
+              span={24}
               style={{
-                fontSize: 20,
-                fontWeight: "700",
-                overflow: "hidden",
-                width: "100%",
-                whiteSpace: "nowrap",
-                textOverflow: "ellipsis",
-                textAlign: "center",
-                padding: "10px",
+                background: "rgba(16, 26, 30, 0.3)",
+                marginBottom: "30px",
               }}
             >
-              Natraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            </div>
-
-            <Flex align="center" justify="space-around">
-              <Flex align="center" gap={"small"}>
-                <Avatar src={celestialIcon} />
-                <p>Tiên giới</p>
-              </Flex>
-              {/* <Flex align="center" gap={"small"}>
-                <Avatar src={celestialIcon} />
-                <p>Trợ thủ</p>
-              </Flex> */}
-            </Flex>
-          </Flex>
+              <CardText fontSize={24}> Na Tra</CardText>
+            </Col>
+          </Row>
         </div>
       </div>
-    </div>
+    </BentoBox>
   );
 };
 
