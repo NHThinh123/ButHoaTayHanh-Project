@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 
 configViewEngine(app);
 app.all("*", authentication);
-app.use("/api/characters/", characterRoutes);
+app.use("/api/character/", characterRoutes);
 app.use("/api/user/", userRoutes);
 app.use("/api/topic/", topicRoutes);
 app.use("/api/effect/", effectRoutes);

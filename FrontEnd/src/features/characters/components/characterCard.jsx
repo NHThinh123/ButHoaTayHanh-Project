@@ -1,20 +1,19 @@
 import { Avatar, Col, Flex, Image, Row } from "antd";
-import natraImg from "../../../assets/images/character/natra.jpg";
 import celestialIcon from "../../../assets/images/icon/celestial-icon.png";
 import BentoBox from "../../../components/atoms/bento-box";
 import DiamondIcon from "../../../components/atoms/diamond-icon";
 import CardText from "../../../components/atoms/card-text";
 import styles from "../styles/styles.module.css";
-const CharacterCard = () => {
+const CharacterCard = ({ character }) => {
   return (
-    <BentoBox>
+    <BentoBox minHeight={200}>
       <div
         style={{ position: "relative", overflow: "hidden" }}
         className={styles.cardBentoBox}
       >
         <Image
           alt="character"
-          src={natraImg}
+          src={character.image}
           preview={false}
           className={styles.cardImage}
         />
@@ -22,7 +21,7 @@ const CharacterCard = () => {
           <Row style={{ padding: 5 }}>
             <Col span={6} style={{ padding: 5 }}>
               <DiamondIcon colorBg={"#DD761C"} colorText={"#FFD700"}>
-                SSR
+                {character.rarity}
               </DiamondIcon>
             </Col>
             <Col span={18}>
@@ -38,7 +37,7 @@ const CharacterCard = () => {
           </Row>
           <Row>
             <Col span={24} className={styles.cardNameWrapper}>
-              <CardText fontSize={24}> Na Tra</CardText>
+              <CardText fontSize={24}> {character.name}</CardText>
             </Col>
           </Row>
         </div>

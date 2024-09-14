@@ -1,32 +1,24 @@
-import { Col, Row } from "antd";
+import { List } from "antd";
 import CharacterCard from "./characterCard";
-const CharacterList = () => {
+const CharacterList = ({ characterData }) => {
   return (
-    <div>
-      <Row gutter={[5, 5]} wrap>
-        <Col span={6}>
-          <CharacterCard />
-        </Col>
-        <Col span={6}>
-          <CharacterCard />
-        </Col>
-        <Col span={6}>
-          <CharacterCard />
-        </Col>
-        <Col span={6}>
-          <CharacterCard />
-        </Col>
-        <Col span={6}>
-          <CharacterCard />
-        </Col>
-        <Col span={6}>
-          <CharacterCard />
-        </Col>
-        <Col span={6}>
-          <CharacterCard />
-        </Col>
-      </Row>
-    </div>
+    <List
+      grid={{
+        gutter: 16,
+        xs: 1,
+        sm: 2,
+        md: 2,
+        lg: 3,
+        xl: 4,
+        xxl: 6,
+      }}
+      dataSource={characterData}
+      renderItem={(item) => (
+        <List.Item>
+          <CharacterCard character={item} />
+        </List.Item>
+      )}
+    />
   );
 };
 export default CharacterList;
