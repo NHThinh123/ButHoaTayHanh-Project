@@ -12,7 +12,7 @@ import Character from "./pages/character.jsx";
 import PaymentPage from "./pages/payment.jsx";
 import ResultPage from "./pages/result.jsx";
 import TestPage from "./pages/test.jsx";
-import CharacterDetail from "./features/characters/components/character-detail.jsx";
+import CharacterInfoPage from "./pages/characterInfo.jsx";
 
 const router = createBrowserRouter([
   {
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
       },
       {
         path: "character/:id",
-        element: <CharacterDetail />,
+        element: <CharacterInfoPage />,
       },
     ],
   },

@@ -10,9 +10,10 @@ const createCharacterService = async (characterData) => {
 };
 
 const getAllCharactersService = async (query) => {
-  const { role, rarity, sort, limit = 10, page = 1, search } = query;
+  const { role, rarity, faction, sort, limit = 10, page = 1, search } = query;
   const filter = {};
   if (search) filter.name = { $regex: search, $options: "i" };
+  if (faction) filter.faction = faction;
   if (role) filter.role = role;
   if (rarity) filter.rarity = rarity;
 

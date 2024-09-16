@@ -16,7 +16,7 @@ const CharacterList = ({ characterData }) => {
       dataSource={characterData}
       renderItem={(item) => (
         <List.Item>
-          <Link to={`/character/${item.id}`}>
+          <Link to={`/character/${item._id}`}>
             <CharacterCard character={item} />
           </Link>
         </List.Item>

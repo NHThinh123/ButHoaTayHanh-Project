@@ -10,4 +10,8 @@ const getCharacterApi = (filters, page, pageSize) => {
     },
   });
 };
-export { getCharacterApi };
+const getCharacterInfoApi = (id) => {
+  const URL_API = `api/character/${id}`;
+  return axios.get(URL_API);
+};
+export { getCharacterApi, getCharacterInfoApi };

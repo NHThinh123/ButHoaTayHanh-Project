@@ -51,6 +51,21 @@ const CharacterFilter = ({ handleFilterChange }) => {
           <Col span={8}>
             <Select
               style={{ width: "100%" }}
+              placeholder="Phe phái"
+              defaultValue={""}
+              onChange={(value) => handleFilterChange(value, "faction")}
+            >
+              <Option value="">Tất cả</Option>
+              <Option value="Tiên giới">Tiên giới</Option>
+              <Option value="Nhân giới">Nhân giới</Option>
+              <Option value="Yêu giới">Yêu giới</Option>
+              <Option value="Thánh giới">Thánh giới</Option>
+              <Option value="Ma giới">Ma giới</Option>
+            </Select>
+          </Col>
+          <Col span={8}>
+            <Select
+              style={{ width: "100%" }}
               placeholder="Độ hiếm"
               defaultValue={""}
               onChange={(value) => handleFilterChange(value, "rarity")}

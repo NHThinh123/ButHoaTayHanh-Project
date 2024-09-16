@@ -20,6 +20,11 @@ const characterSchema = new mongoose.Schema({
     required: true,
     enum: ["R", "SR", "SSR"],
   },
+  faction: {
+    type: String,
+    required: true,
+    enum: ["Tiên giới", "Nhân giới", "Yêu giới", "Thánh giới", "Ma giới"],
+  },
   role: {
     type: String,
     required: true,

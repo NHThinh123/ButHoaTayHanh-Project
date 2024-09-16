@@ -13,7 +13,6 @@ import { AuthContext } from "../../contexts/auth.context";
 const Sider = () => {
   const navigate = useNavigate();
   const { auth, setAuth } = useContext(AuthContext);
-  console.log(auth);
 
   const items = [
     {

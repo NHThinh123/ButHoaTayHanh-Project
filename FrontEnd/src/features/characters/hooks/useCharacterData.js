@@ -6,6 +6,7 @@ const useCharacterData = () => {
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({
     search: "",
+    faction: "",
     role: "",
     rarity: "",
     sort: "",
