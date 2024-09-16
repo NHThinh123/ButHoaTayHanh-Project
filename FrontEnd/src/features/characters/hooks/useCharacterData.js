@@ -1,25 +1,42 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { getCharacterApi } from "../services/characterApi";
 
 const useCharacterData = () => {
   const [characterData, setCharacterData] = useState([]);
   const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const fetchCharacter = async () => {
+  const [filters, setFilters] = useState({
+    search: "",
+    role: "",
+    rarity: "",
+    sort: "",
+  });
+
+  const fetchCharacters = useCallback(
+    async (page = 1, pageSize = 10) => {
       try {
-        const res = await getCharacterApi();
+        setLoading(true);
+        const res = await getCharacterApi(filters, page, pageSize);
         if (res && !res.message) {
           setCharacterData(res.result);
         }
       } catch (error) {
-        console.error("Error fetching character:", error);
+        console.error("Error fetching characters:", error);
       } finally {
         setLoading(false);
       }
-    };
-    fetchCharacter();
+    },
+    [filters]
+  );
+
+  const handleFilterChange = useCallback((value, name) => {
+    setFilters((prevFilters) => ({ ...prevFilters, [name]: value }));
   }, []);
 
-  return { characterData, loading };
+  useEffect(() => {
+    fetchCharacters();
+  }, [fetchCharacters]);
+
+  return { characterData, loading, handleFilterChange };
 };
+
 export default useCharacterData;
