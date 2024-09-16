@@ -17,7 +17,11 @@ const CharacterFilter = ({ handleFilterChange }) => {
   return (
     <Row
       gutter={[8, 8]}
-      style={{ marginBottom: 16, justifyContent: "space-between" }}
+      style={{
+        marginBottom: 16,
+        justifyContent: "space-between",
+        padding: "0px 8px",
+      }}
     >
       <Col xs={24} sm={24} md={12} lg={8}>
         <Search

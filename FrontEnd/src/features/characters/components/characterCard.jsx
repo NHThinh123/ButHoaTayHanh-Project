@@ -37,7 +37,7 @@ const CharacterCard = ({ character }) => {
           </Row>
           <Row>
             <Col span={24} className={styles.cardNameWrapper}>
-              <CardText fontSize={24}> {character.name}</CardText>
+              <CardText fontSize={18}> {character.name}</CardText>
             </Col>
           </Row>
         </div>

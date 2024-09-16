@@ -1,5 +1,6 @@
 import { List } from "antd";
 import CharacterCard from "./characterCard";
+import { Link } from "react-router-dom";
 const CharacterList = ({ characterData }) => {
   return (
     <List
@@ -15,7 +16,9 @@ const CharacterList = ({ characterData }) => {
       dataSource={characterData}
       renderItem={(item) => (
         <List.Item>
-          <CharacterCard character={item} />
+          <Link to={`/character/${item.id}`}>
+            <CharacterCard character={item} />
+          </Link>
         </List.Item>
       )}
     />
