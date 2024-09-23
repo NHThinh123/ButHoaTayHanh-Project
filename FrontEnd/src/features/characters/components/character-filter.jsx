@@ -32,7 +32,7 @@ const CharacterFilter = ({ handleFilterChange }) => {
       </Col>
       <Col xs={24} sm={24} md={12} lg={12}>
         <Row gutter={8}>
-          <Col span={8}>
+          <Col span={6}>
             <Select
               style={{ width: "100%" }}
               placeholder="Vai trò"
@@ -48,7 +48,7 @@ const CharacterFilter = ({ handleFilterChange }) => {
               <Option value="Hỗ trợ">Hỗ trợ</Option>
             </Select>
           </Col>
-          <Col span={8}>
+          <Col span={6}>
             <Select
               style={{ width: "100%" }}
               placeholder="Phe phái"
@@ -63,7 +63,7 @@ const CharacterFilter = ({ handleFilterChange }) => {
               <Option value="Ma giới">Ma giới</Option>
             </Select>
           </Col>
-          <Col span={8}>
+          <Col span={6}>
             <Select
               style={{ width: "100%" }}
               placeholder="Độ hiếm"
@@ -76,7 +76,7 @@ const CharacterFilter = ({ handleFilterChange }) => {
               <Option value="R">R</Option>
             </Select>
           </Col>
-          <Col span={8}>
+          <Col span={6}>
             <Select
               style={{ width: "100%" }}
               placeholder="Sắp xếp theo"

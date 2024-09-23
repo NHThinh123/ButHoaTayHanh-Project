@@ -1,5 +1,6 @@
 import { Avatar, Col, Flex, Image, Row } from "antd";
 import celestialIcon from "../../../assets/images/icon/celestial-icon.png";
+import underworldIcon from "../../../assets/images/icon/underworld-icon.png";
 import humanIcon from "../../../assets/images/icon/human-icon.png";
 import demonIcon from "../../../assets/images/icon/demon-icon.png";
 import holyIcon from "../../../assets/images/icon/holy-icon.png";
@@ -45,7 +46,9 @@ const CharacterCard = ({ character }) => {
                           ? humanIcon
                           : character.faction === "Yêu giới"
                           ? demonIcon
-                          : holyIcon
+                          : character.faction === "Thánh giới"
+                          ? holyIcon
+                          : underworldIcon
                       }
                     />
                     <Avatar

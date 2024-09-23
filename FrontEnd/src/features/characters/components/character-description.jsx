@@ -4,43 +4,71 @@ import DefaultTitle from "../../../components/atoms/default-title";
 import DefaultText from "../../../components/atoms/default-text";
 import CharacterAnalysis from "./character-analysis";
 
-const CharacterDescription = () => {
+const CharacterDescription = ({ descriptionData }) => {
   return (
-    <BentoBox
-      padding={16}
-      height={450}
-      style={{ overflow: "auto", scrollbarWidth: "none" }}
-    >
-      <Flex vertical gap={"small"}>
-        <Typography.Title style={{ fontWeight: 700 }}>Natra</Typography.Title>
-        <Space>
-          <DefaultTitle>Phẩm chất: </DefaultTitle>
-          <Tag color="gold" style={{ fontSize: 16 }}>
-            SSR
-          </Tag>
-        </Space>
+    <BentoBox padding={16} height={450}>
+      <div
+        style={{
+          height: "100%",
+          overflow: "auto",
+          scrollbarWidth: "none",
+        }}
+      >
+        <Flex vertical gap={"small"}>
+          <Typography.Title style={{ padding: 0, fontWeight: 700 }}>
+            {descriptionData.name}
+          </Typography.Title>
+          <Space>
+            <DefaultTitle>Phẩm chất: </DefaultTitle>
+            <Tag
+              color={
+                descriptionData.rarity === "SSR"
+                  ? "gold"
+                  : descriptionData.rarity === "SR"
+                  ? "purple"
+                  : "blue"
+              }
+              style={{ fontSize: 16 }}
+            >
+              {descriptionData.rarity}
+            </Tag>
+          </Space>
 
-        <Space>
-          <DefaultTitle>Vai trò: </DefaultTitle>
-          <Tag style={{ fontSize: 16 }}>Trợ thủ</Tag>
-        </Space>
+          <Space>
+            <DefaultTitle>Vai trò: </DefaultTitle>
+            <Tag style={{ fontSize: 16 }}>{descriptionData.role}</Tag>
+          </Space>
 
-        <Space>
-          <DefaultTitle>Phe: </DefaultTitle>
-          <Tag color="blue" style={{ fontSize: 16 }}>
-            Tiên giới
-          </Tag>
-        </Space>
+          <Space>
+            <DefaultTitle>Phe: </DefaultTitle>
+            <Tag
+              color={
+                descriptionData.faction === "Tiên giới"
+                  ? "blue"
+                  : descriptionData.faction === "Nhân giới"
+                  ? "green"
+                  : descriptionData.faction === "Yêu giới"
+                  ? "red"
+                  : descriptionData.faction === "Thánh giới"
+                  ? "gold"
+                  : "purple"
+              }
+              style={{ fontSize: 16 }}
+            >
+              {descriptionData.faction}
+            </Tag>
+          </Space>
 
-        <DefaultTitle>Cốt truyện: </DefaultTitle>
-        <DefaultText>
-          Là con của Lý Tịnh và có 2 người anh em là Kim tra và Mộc Tra, bản
-          thân sở hữu nhiều thần khí nên có sức mạnh vô cùng to lớn
-        </DefaultText>
+          <DefaultTitle>Cốt truyện: </DefaultTitle>
+          <DefaultText>{descriptionData.story}</DefaultText>
 
-        <DefaultTitle>Đánh giá sức mạnh:</DefaultTitle>
-        <CharacterAnalysis PvpScore={5} PveScore={3.5} />
-      </Flex>
+          <DefaultTitle>Đánh giá sức mạnh:</DefaultTitle>
+          <CharacterAnalysis
+            PvpScore={descriptionData.PvpScore}
+            PveScore={descriptionData.PveScore}
+          />
+        </Flex>
+      </div>
     </BentoBox>
   );
 };
