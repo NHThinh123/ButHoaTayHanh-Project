@@ -1,19 +1,20 @@
 import { Avatar, Col, Flex, Image, Row } from "antd";
-import celestialIcon from "../../../assets/images/icon/celestial-icon.png";
-import underworldIcon from "../../../assets/images/icon/underworld-icon.png";
-import humanIcon from "../../../assets/images/icon/human-icon.png";
-import demonIcon from "../../../assets/images/icon/demon-icon.png";
-import holyIcon from "../../../assets/images/icon/holy-icon.png";
-import assassinIcon from "../../../assets/images/icon/assassin-icon.png";
-import warriorIcon from "../../../assets/images/icon/warrior-icon.png";
-import mageIcon from "../../../assets/images/icon/mage-icon.png";
-import tankerIcon from "../../../assets/images/icon/tanker-icon.png";
-import supporterIcon from "../../../assets/images/icon/supporter-icon.png";
-import healerIcon from "../../../assets/images/icon/healer-icon.png";
-import BentoBox from "../../../components/atoms/bento-box";
-import DiamondIcon from "../../../components/atoms/diamond-icon";
-import CardText from "../../../components/atoms/card-text";
-import styles from "../styles/styles.module.css";
+import celestialIcon from "../../../../assets/images/icon/celestial-icon.png";
+import underworldIcon from "../../../../assets/images/icon/underworld-icon.png";
+import humanIcon from "../../../../assets/images/icon/human-icon.png";
+import demonIcon from "../../../../assets/images/icon/demon-icon.png";
+import holyIcon from "../../../../assets/images/icon/holy-icon.png";
+import assassinIcon from "../../../../assets/images/icon/assassin-icon.png";
+import warriorIcon from "../../../../assets/images/icon/warrior-icon.png";
+import mageIcon from "../../../../assets/images/icon/mage-icon.png";
+import tankerIcon from "../../../../assets/images/icon/tanker-icon.png";
+import supporterIcon from "../../../../assets/images/icon/supporter-icon.png";
+import healerIcon from "../../../../assets/images/icon/healer-icon.png";
+
+import DiamondIcon from "../../../../components/atoms/diamond-icon";
+import CardText from "../../../../components/atoms/card-text";
+import styles from "../../styles/styles.module.css";
+import BentoBox from "../../../../components/atoms/bento-box";
 const CharacterCard = ({ character }) => {
   return (
     <BentoBox minHeight={200}>

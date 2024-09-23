@@ -1,6 +1,7 @@
 import { List } from "antd";
-import CharacterCard from "./characterCard";
+
 import { Link } from "react-router-dom";
+import CharacterCard from "../organisms/characterCard";
 const CharacterList = ({ characterData }) => {
   return (
     <List

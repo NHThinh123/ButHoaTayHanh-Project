@@ -1,6 +1,5 @@
-import BentoBox from "../../../components/atoms/bento-box";
-
 import { Image } from "antd";
+import BentoBox from "../../../../components/atoms/bento-box";
 const CharacterImg = ({ img }) => {
   return (
     <BentoBox height={450} style={{ overflow: "hidden" }}>

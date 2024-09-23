@@ -1,6 +1,6 @@
 import { Tag } from "antd";
 import { useMemo } from "react";
-import DefaultText from "../../../components/atoms/default-text";
+import DefaultText from "../../../../components/atoms/default-text";
 
 const SkillDescription = ({ skillData, effectData }) => {
   const processedDescription = useMemo(() => {

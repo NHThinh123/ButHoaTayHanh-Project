@@ -1,7 +1,7 @@
 import BentoBox from "../components/atoms/bento-box";
+import CharacterFilter from "../features/characters/components/molecules/character-filter";
+import CharacterList from "../features/characters/components/templates/characterList";
 
-import CharacterFilter from "../features/characters/components/character-filter";
-import CharacterList from "../features/characters/components/characterList";
 import useCharacterData from "../features/characters/hooks/useCharacterData";
 const Character = () => {
   const { characterData, handleFilterChange } = useCharacterData();

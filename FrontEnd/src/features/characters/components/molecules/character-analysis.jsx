@@ -1,5 +1,5 @@
 import { Flex, Rate } from "antd";
-import DefaultTitle from "../../../components/atoms/default-title";
+import DefaultTitle from "../../../../components/atoms/default-title";
 
 const CharacterAnalysis = ({ PvpScore, PveScore }) => {
   return (

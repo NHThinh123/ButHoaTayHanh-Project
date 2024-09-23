@@ -1,8 +1,10 @@
 import { List, Tag } from "antd";
-import BentoBox from "../../../components/atoms/bento-box";
-import DefaultText from "../../../components/atoms/default-text";
-import DefaultTitle from "../../../components/atoms/default-title";
-import SkillDescription from "./skill-description";
+
+import DefaultText from "../../../../components/atoms/default-text";
+import DefaultTitle from "../../../../components/atoms/default-title";
+
+import BentoBox from "../../../../components/atoms/bento-box";
+import SkillDescription from "../molecules/skill-description";
 
 const CharacterSkill = ({ skillData }) => {
   return (

@@ -1,8 +1,8 @@
 import { Col, Layout, List, Row } from "antd";
 
-import CharacterSkill from "./character-skill";
-import CharacterImg from "./character-img";
-import CharacterDescription from "./character-description";
+import CharacterSkill from "../organisms/character-skill";
+import CharacterImg from "../atoms/character-img";
+import CharacterDescription from "../organisms/character-description";
 
 const CharacterDetail = ({ characterInfoData }) => {
   return (

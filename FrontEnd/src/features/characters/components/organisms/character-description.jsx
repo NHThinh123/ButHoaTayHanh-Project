@@ -1,8 +1,10 @@
 import { Flex, Space, Tag, Typography } from "antd";
-import BentoBox from "../../../components/atoms/bento-box";
-import DefaultTitle from "../../../components/atoms/default-title";
-import DefaultText from "../../../components/atoms/default-text";
-import CharacterAnalysis from "./character-analysis";
+
+import DefaultTitle from "../../../../components/atoms/default-title";
+import DefaultText from "../../../../components/atoms/default-text";
+
+import BentoBox from "../../../../components/atoms/bento-box";
+import CharacterAnalysis from "../molecules/character-analysis";
 
 const CharacterDescription = ({ descriptionData }) => {
   return (
