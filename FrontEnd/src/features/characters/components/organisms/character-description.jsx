@@ -1,14 +1,15 @@
-import { Flex, Space, Tag, Typography } from "antd";
+import { Flex, Space, Typography } from "antd";
 
 import DefaultTitle from "../../../../components/atoms/default-title";
 import DefaultText from "../../../../components/atoms/default-text";
 
 import BentoBox from "../../../../components/atoms/bento-box";
 import CharacterAnalysis from "../molecules/character-analysis";
+import TagCustom from "../../../auth/components/tag-custom";
 
 const CharacterDescription = ({ descriptionData }) => {
   return (
-    <BentoBox padding={16} height={450}>
+    <BentoBox padding={28} height={450} backgroundColor="#fff">
       <div
         style={{
           height: "100%",
@@ -17,12 +18,12 @@ const CharacterDescription = ({ descriptionData }) => {
         }}
       >
         <Flex vertical gap={"small"}>
-          <Typography.Title style={{ padding: 0, fontWeight: 700 }}>
+          <Typography.Title level={2} style={{ padding: 0, fontWeight: 700 }}>
             {descriptionData.name}
           </Typography.Title>
           <Space>
             <DefaultTitle>Phẩm chất: </DefaultTitle>
-            <Tag
+            <TagCustom
               color={
                 descriptionData.rarity === "SSR"
                   ? "gold"
@@ -30,20 +31,19 @@ const CharacterDescription = ({ descriptionData }) => {
                   ? "purple"
                   : "blue"
               }
-              style={{ fontSize: 16 }}
             >
               {descriptionData.rarity}
-            </Tag>
+            </TagCustom>
           </Space>
 
           <Space>
             <DefaultTitle>Vai trò: </DefaultTitle>
-            <Tag style={{ fontSize: 16 }}>{descriptionData.role}</Tag>
+            <TagCustom>{descriptionData.role}</TagCustom>
           </Space>
 
           <Space>
             <DefaultTitle>Phe: </DefaultTitle>
-            <Tag
+            <TagCustom
               color={
                 descriptionData.faction === "Tiên giới"
                   ? "blue"
@@ -58,7 +58,7 @@ const CharacterDescription = ({ descriptionData }) => {
               style={{ fontSize: 16 }}
             >
               {descriptionData.faction}
-            </Tag>
+            </TagCustom>
           </Space>
 
           <DefaultTitle>Cốt truyện: </DefaultTitle>

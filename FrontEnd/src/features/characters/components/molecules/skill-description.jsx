@@ -1,6 +1,6 @@
-import { Tag } from "antd";
 import { useMemo } from "react";
 import DefaultText from "../../../../components/atoms/default-text";
+import TagCustom from "../../../auth/components/tag-custom";
 
 const SkillDescription = ({ skillData, effectData }) => {
   const processedDescription = useMemo(() => {
@@ -27,13 +27,9 @@ const SkillDescription = ({ skillData, effectData }) => {
 
       if (matchingEffect) {
         return (
-          <Tag
-            key={index}
-            color={matchingEffect.colorEffect}
-            style={{ padding: 5, fontWeight: "700" }}
-          >
+          <TagCustom key={index} color={matchingEffect.colorEffect} padding={5}>
             {part}
-          </Tag>
+          </TagCustom>
         );
       }
       return part;

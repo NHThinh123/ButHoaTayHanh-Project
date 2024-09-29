@@ -1,14 +1,15 @@
-import { List, Tag } from "antd";
+import { List } from "antd";
 
 import DefaultText from "../../../../components/atoms/default-text";
 import DefaultTitle from "../../../../components/atoms/default-title";
 
 import BentoBox from "../../../../components/atoms/bento-box";
 import SkillDescription from "../molecules/skill-description";
+import TagCustom from "../../../auth/components/tag-custom";
 
 const CharacterSkill = ({ skillData }) => {
   return (
-    <BentoBox padding={16} minHeight={200}>
+    <BentoBox padding={16} minHeight={200} backgroundColor="#fff">
       <DefaultTitle style={{ fontWeight: 700, fontSize: 18, margin: 12 }}>
         {`${skillData.title} (Hồi chiêu: ${skillData.cooldown} lượt):`}
       </DefaultTitle>
@@ -47,12 +48,9 @@ const CharacterSkill = ({ skillData }) => {
           dataSource={skillData.effectSkill}
           renderItem={(item) => (
             <List.Item style={{ display: "inline-flex" }}>
-              <Tag
-                color={item.colorEffect}
-                style={{ padding: 5, fontWeight: "700" }}
-              >
+              <TagCustom color={item.colorEffect} padding={5}>
                 {`${item.nameEffect} :`}
-              </Tag>
+              </TagCustom>
               <DefaultText>{item.descriptionEffect}</DefaultText>
             </List.Item>
           )}

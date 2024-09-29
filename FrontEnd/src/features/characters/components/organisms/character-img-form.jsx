@@ -38,10 +38,11 @@ const CharacterImageForm = () => {
       style={{
         overflow: "hidden",
         display: "flex",
-        padding: "16px",
+        padding: "28px",
         justifyContent: "center",
         alignItems: "center",
       }}
+      backgroundColor="#fff"
     >
       <ImgCrop aspect={3 / 4}>
         <Upload
@@ -88,7 +89,7 @@ const CharacterImageForm = () => {
                 alignItems: "center",
               }}
               description={
-                <DefaultText>
+                <DefaultText style={{ margin: 12 }}>
                   Nhấn vào đây hoặc kéo thả ảnh vào khu vực này để tải lên
                 </DefaultText>
               }
