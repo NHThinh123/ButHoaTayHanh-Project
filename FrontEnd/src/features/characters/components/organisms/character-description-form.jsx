@@ -1,8 +1,9 @@
 import BentoBox from "../../../../components/atoms/bento-box";
-import { Flex, Form, Input, Rate, Select, Space } from "antd";
+import { Flex, Form, Input, Rate, Select } from "antd";
 import DefaultTitle from "../../../../components/atoms/default-title";
-import TagCustom from "../../../auth/components/tag-custom";
+
 import TextArea from "antd/es/input/TextArea";
+import TagCustom from "../../../../components/atoms/tag-custom";
 
 const { Option } = Select;
 
@@ -25,6 +26,12 @@ const CharacterDescriptionForm = () => {
                 Tên nhân vật:
               </DefaultTitle>
             }
+            rules={[
+              {
+                required: true,
+                message: "Vui lòng nhập tên nhân vật",
+              },
+            ]}
           >
             <Input
               placeholder="Nhập tên nhân vật"
@@ -35,48 +42,59 @@ const CharacterDescriptionForm = () => {
             name="rarity"
             label={<DefaultTitle>Phẩm chất: </DefaultTitle>}
             layout="horizontal"
+            rules={[
+              {
+                required: true,
+                message: "Vui lòng nhập chọn phẩm chất nhân vật",
+              },
+            ]}
           >
-            <Space>
-              <Select
-                placeholder="--Chọn Phẩm Chất--"
-                style={{ minWidth: 100 }}
-              >
-                <Option value="SSR">
-                  <TagCustom color={"gold"}>SSR</TagCustom>
-                </Option>
-                <Option value="SR">
-                  <TagCustom color={"purple"}>SR</TagCustom>
-                </Option>
-                <Option value="R">
-                  <TagCustom color={"blue"}>R</TagCustom>
-                </Option>
-              </Select>
-            </Space>
+            <Select
+              placeholder="Chọn Phẩm Chất"
+              style={{ minWidth: 100, maxWidth: 200 }}
+            >
+              <Option key="SSR" value="SSR">
+                <TagCustom color={"gold"}>SSR</TagCustom>
+              </Option>
+              <Option key="SR" value="SR">
+                <TagCustom color={"purple"}>SR</TagCustom>
+              </Option>
+              <Option key="R" value="R">
+                <TagCustom color={"blue"}>R</TagCustom>
+              </Option>
+            </Select>
           </Form.Item>
           <Form.Item
             name="role"
             label={<DefaultTitle>Vai trò: </DefaultTitle>}
             layout="horizontal"
+            rules={[
+              {
+                required: true,
+                message: "Vui lòng chọn vai trò của nhân vật",
+              },
+            ]}
           >
-            <Space>
-              <Select placeholder="--Chọn Vai Trò--" style={{ minWidth: 100 }}>
-                <Option value="Tiên giới">
-                  <TagCustom color={"blue"}>Tiên giới</TagCustom>
-                </Option>
-                <Option value="Nhân giới">
-                  <TagCustom color={"green"}>Nhân giới</TagCustom>
-                </Option>
-                <Option value="Yêu giới">
-                  <TagCustom color={"red"}>Yêu giới</TagCustom>
-                </Option>
-                <Option value="Thánh giới">
-                  <TagCustom color={"gold"}>Thánh giới</TagCustom>
-                </Option>
-                <Option value="Ma giới">
-                  <TagCustom color={"purple"}>Ma giới</TagCustom>
-                </Option>
-              </Select>
-            </Space>
+            <Select
+              placeholder="Chọn Vai Trò"
+              style={{ minWidth: 100, maxWidth: 200 }}
+            >
+              <Option key="Tiên giới" value="Tiên giới">
+                <TagCustom color={"blue"}>Tiên giới</TagCustom>
+              </Option>
+              <Option key="Nhân giới" value="Nhân giới">
+                <TagCustom color={"green"}>Nhân giới</TagCustom>
+              </Option>
+              <Option key="Yêu giới" value="Yêu giới">
+                <TagCustom color={"red"}>Yêu giới</TagCustom>
+              </Option>
+              <Option key="Thánh giới" value="Thánh giới">
+                <TagCustom color={"gold"}>Thánh giới</TagCustom>
+              </Option>
+              <Option key="Ma giới" value="Ma giới">
+                <TagCustom color={"purple"}>Ma giới</TagCustom>
+              </Option>
+            </Select>
           </Form.Item>
           <Form.Item
             name="story"
@@ -85,6 +103,12 @@ const CharacterDescriptionForm = () => {
                 Cốt truyện:
               </DefaultTitle>
             }
+            rules={[
+              {
+                required: true,
+                message: "Vui lòng nhập cốt truyện của nhân vật",
+              },
+            ]}
           >
             <TextArea
               autoSize={{
@@ -103,6 +127,12 @@ const CharacterDescriptionForm = () => {
             name="pvpScore"
             label={<DefaultTitle>PVP: </DefaultTitle>}
             layout="horizontal"
+            rules={[
+              {
+                required: true,
+                message: "Vui lòng đánh giá khả năng PVP của nhân vật",
+              },
+            ]}
           >
             <Rate allowHalf />
           </Form.Item>
@@ -110,6 +140,12 @@ const CharacterDescriptionForm = () => {
             name="pveScore"
             label={<DefaultTitle>PVE: </DefaultTitle>}
             layout="horizontal"
+            rules={[
+              {
+                required: true,
+                message: "Vui lòng đánh giá khả năng PVE của nhân vật",
+              },
+            ]}
           >
             <Rate allowHalf />
           </Form.Item>

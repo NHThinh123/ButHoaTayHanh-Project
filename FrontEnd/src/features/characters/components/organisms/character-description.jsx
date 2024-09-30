@@ -5,7 +5,7 @@ import DefaultText from "../../../../components/atoms/default-text";
 
 import BentoBox from "../../../../components/atoms/bento-box";
 import CharacterAnalysis from "../molecules/character-analysis";
-import TagCustom from "../../../auth/components/tag-custom";
+import TagCustom from "../../../../components/atoms/tag-custom";
 
 const CharacterDescription = ({ descriptionData }) => {
   return (

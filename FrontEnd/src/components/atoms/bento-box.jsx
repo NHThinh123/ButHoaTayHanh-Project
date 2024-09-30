@@ -9,7 +9,7 @@ const BentoBox = ({
 }) => (
   <div
     style={{
-      backgroundColor: backgroundColor,
+      backgroundColor: "#fff" || backgroundColor,
       height: height,
       minWidth: 200,
       minHeight: minHeight,

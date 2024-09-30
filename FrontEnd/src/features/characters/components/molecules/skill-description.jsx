@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import DefaultText from "../../../../components/atoms/default-text";
-import TagCustom from "../../../auth/components/tag-custom";
+import TagCustom from "../../../../components/atoms/tag-custom";
 
 const SkillDescription = ({ skillData, effectData }) => {
   const processedDescription = useMemo(() => {

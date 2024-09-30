@@ -5,14 +5,20 @@ import DefaultTitle from "../../../../components/atoms/default-title";
 
 import BentoBox from "../../../../components/atoms/bento-box";
 import SkillDescription from "../molecules/skill-description";
-import TagCustom from "../../../auth/components/tag-custom";
+import TagCustom from "../../../../components/atoms/tag-custom";
 
 const CharacterSkill = ({ skillData }) => {
   return (
     <BentoBox padding={16} minHeight={200} backgroundColor="#fff">
-      <DefaultTitle style={{ fontWeight: 700, fontSize: 18, margin: 12 }}>
-        {`${skillData.title} (Hồi chiêu: ${skillData.cooldown} lượt):`}
-      </DefaultTitle>
+      {skillData.cooldown !== 0 ? (
+        <DefaultTitle style={{ fontWeight: 700, fontSize: 18, margin: 12 }}>
+          {`${skillData.title} (Hồi chiêu: ${skillData.cooldown} lượt):`}
+        </DefaultTitle>
+      ) : (
+        <DefaultTitle style={{ fontWeight: 700, fontSize: 18, margin: 12 }}>
+          {`${skillData.title} (Nội tại):`}
+        </DefaultTitle>
+      )}
 
       <div style={{ margin: 12 }}>
         <SkillDescription

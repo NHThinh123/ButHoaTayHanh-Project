@@ -1,6 +1,6 @@
 import { Button, Form } from "antd";
 
-const ButtonForm = ({ disable, children }) => {
+const ButtonForm = ({ disable, children, style }) => {
   return (
     <Form.Item>
       <Button
@@ -8,7 +8,7 @@ const ButtonForm = ({ disable, children }) => {
         block
         type="primary"
         htmlType="submit"
-        style={{ margin: "10px 0px" }}
+        style={{ margin: "10px 0px", ...style }}
         disabled={disable}
       >
         {children}
