@@ -3,7 +3,7 @@ import { Button, Col, Flex, Row } from "antd";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/auth.context";
 import Logo from "../atoms/logo";
-import SearchBar from "../molecules/search";
+
 import UserInfo from "../molecules/userInfo";
 
 const Header = () => {
@@ -27,16 +27,20 @@ const Header = () => {
         >
           <Logo />
         </Col>
-        <Col
-          span={12}
+        {/* <Col
+          md={12}
+          sm={0}
+          xs={0}
           style={{
             padding: "8px",
           }}
         >
           <SearchBar />
-        </Col>
+        </Col> */}
         <Col
-          span={6}
+          md={18}
+          sm={18}
+          xs={18}
           style={{
             padding: "8px",
           }}

@@ -14,8 +14,9 @@ const beforeUpload = (file) => {
     message.error("Vui lòng chỉ tải ảnh có định dạng là .JPEG hoặc .PNG!");
   }
   const isLt5M = file.size / 1024 / 1024 < 5;
-  if (!isLt5M) {
-    message.error("Hình ảnh phải có kích thước dưới 5mb!");
+  const isSt100K = file.size > 100 * 1024;
+  if (!isLt5M && !isSt100K) {
+    message.error("Hình ảnh phải có kích thước từ 100kb đến 5mb!");
   }
   return isJpgOrPng && isLt5M;
 };

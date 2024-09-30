@@ -21,7 +21,7 @@ const useCharacterInfoData = () => {
       }
     };
     fetchCharacterInfoData();
-  }, []);
+  }, [id]);
 
   return { loading, characterInfoData };
 };

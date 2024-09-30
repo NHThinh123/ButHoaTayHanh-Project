@@ -91,7 +91,9 @@ const CharacterSkillForm = ({ existingEffects }) => {
                         addonAfter="(lượt)"
                         max={10}
                         min={0}
-                        formatter={(value) => (value === 0 ? "nội tại" : value)}
+                        formatter={(value) =>
+                          value == 0 && value ? "nội tại" : value
+                        }
                         parser={(value) => (value === "nội tại" ? 0 : value)}
                       />
                     </Form.Item>
@@ -206,7 +208,7 @@ const CharacterSkillForm = ({ existingEffects }) => {
             </BentoBox>
           ))}
 
-          <Form.Item style={{ marginTop: 16 }}>
+          <Form.Item style={{ margin: "16px 8px" }}>
             <Button
               type="dashed"
               onClick={() => add()}
