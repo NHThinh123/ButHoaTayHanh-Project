@@ -1,9 +1,18 @@
 const Character = require("../models/character.model");
-const createCharacterService = async (characterData) => {
+const cloudinary = require("../config/cloudinary");
+
+const createCharacterService = async (characterData, fileData) => {
   try {
-    let result = await Character.create(characterData);
+    const imageUrl = fileData?.path;
+    const updatedCharacterData = {
+      ...characterData,
+      image: imageUrl,
+    };
+
+    let result = await Character.create(updatedCharacterData);
     return result;
   } catch (error) {
+    if (fileData) cloudinary.uploader.destroy(fileData.filename);
     console.error(error);
     return null;
   }

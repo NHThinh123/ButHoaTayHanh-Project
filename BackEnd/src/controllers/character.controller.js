@@ -7,8 +7,9 @@ const {
 } = require("../services/character.service");
 
 const createCharacter = async (req, res) => {
-  const data = await createCharacterService(req.body);
+  const data = await createCharacterService(req.body, req.file);
   return res.status(200).json(data);
+  // return res.status(200).json(fileData);
 };
 const getAllCharacters = async (req, res) => {
   const data = await getAllCharactersService(req.query);

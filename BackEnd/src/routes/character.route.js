@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const uploadCloud = require("../middleware/uploadCloud");
 const {
   createCharacter,
   getAllCharacters,
@@ -11,7 +12,7 @@ const {
 router.get("/", getAllCharacters);
 router.get("/:id", getCharacterById);
 
-router.post("/", createCharacter);
+router.post("/", uploadCloud.single("image"), createCharacter);
 router.put("/:id", updateCharacter);
 router.delete("/:id", deleteCharacter);
 module.exports = router;
