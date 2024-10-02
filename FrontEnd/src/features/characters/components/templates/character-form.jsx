@@ -1,46 +1,21 @@
-import { Button, Col, Form, Layout, message, Row } from "antd";
+import { Button, Col, Form, Layout, Row } from "antd";
 
 import CharacterDescriptionForm from "../organisms/character-description-form";
 import CharacterSkillForm from "../organisms/character-skill-form";
 import CharacterImageForm from "../organisms/character-img-form";
 import BentoBox from "../../../../components/atoms/bento-box";
-import { useState } from "react";
-import axios from "../../../../services/axios.customize";
+import useCharacterForm from "../../hooks/useCharacterForm";
+
 const CharacterForm = () => {
-  const [form] = Form.useForm();
-  const [fileList, setFileList] = useState([]);
-
-  const onFinish = async (values) => {
-    try {
-      console.log(values);
-
-      const data = {
-        name: values.name,
-        rarity: values.rarity,
-        role: values.role,
-        faction: values.faction,
-        story: values.story,
-        pveScore: values.pveScore,
-        pvpScore: values.pvpScore,
-        skills: values.skills,
-      };
-      if (fileList[0]) {
-        const imageFile = fileList[0].originFileObj;
-        data.image = imageFile; // Hoặc xử lý theo cách khác nếu cần
-      }
-      const res = await axios.post("/api/character", data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      if (res) {
-        message.success("Character created successfully");
-        form.resetFields();
-
-        setFileList([]);
-      }
-    } catch (error) {
-      message.error("Failed to create character");
-    }
-  };
+  const {
+    onFinish,
+    setFileList,
+    form,
+    modalData,
+    setModalData,
+    handleDeleteSkill,
+    confirmDelete,
+  } = useCharacterForm();
   return (
     <Layout style={{ padding: 8, minHeight: "100vh" }}>
       <Form form={form} layout="vertical" onFinish={onFinish}>
@@ -55,7 +30,12 @@ const CharacterForm = () => {
 
         <Row>
           <Col span={24} style={{ marginBottom: 40 }}>
-            <CharacterSkillForm />
+            <CharacterSkillForm
+              modalData={modalData}
+              setModalData={setModalData}
+              handleDeleteSkill={handleDeleteSkill}
+              confirmDelete={confirmDelete}
+            />
           </Col>
         </Row>
         <Row>

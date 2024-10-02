@@ -81,22 +81,22 @@ const CharacterDescriptionForm = () => {
               style={{ minWidth: 100, maxWidth: 200 }}
             >
               <Option key="Sát thủ" value="Sát thủ">
-                <TagCustom color={"grey"}>Sát thủ</TagCustom>
+                <TagCustom>Sát thủ</TagCustom>
               </Option>
               <Option key="Đấu sĩ" value="Đấu sĩ">
-                <TagCustom color={"grey"}>Đấu sĩ</TagCustom>
+                <TagCustom>Đấu sĩ</TagCustom>
               </Option>
               <Option key="Hỗ trợ" value="Hỗ trợ">
-                <TagCustom color={"grey"}>Hỗ trợ</TagCustom>
+                <TagCustom>Hỗ trợ</TagCustom>
               </Option>
               <Option key="Hồi máu" value="Hồi máu">
-                <TagCustom color={"grey"}>Hồi máu</TagCustom>
+                <TagCustom>Hồi máu</TagCustom>
               </Option>
               <Option key="Mưu sĩ" value="Mưu sĩ">
-                <TagCustom color={"grey"}>Mưu sĩ</TagCustom>
+                <TagCustom>Mưu sĩ</TagCustom>
               </Option>
               <Option key="Đỡ đòn" value="Đỡ đòn">
-                <TagCustom color={"grey"}>Đỡ đòn</TagCustom>
+                <TagCustom>Đỡ đòn</TagCustom>
               </Option>
             </Select>
           </Form.Item>
