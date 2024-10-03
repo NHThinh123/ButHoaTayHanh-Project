@@ -1,7 +1,6 @@
 import { Button, Col, Form, Row, Space } from "antd";
 import BentoBox from "../../../../components/atoms/bento-box";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import DefaultTitle from "../../../../components/atoms/default-title";
 import EffectSkillForm from "../molecules/effect-skill-form";
 import SubSkillForm from "../molecules/sub-skill-form";
 import NameSkillInput from "../atoms/name-skill-input";
@@ -10,11 +9,11 @@ import ModalConfirm from "../atoms/modal-confirm";
 import MainSkillDescription from "../atoms/main-skill-description";
 
 const CharacterSkillForm = ({
-  existingEffects,
   modalData,
   setModalData,
   handleDeleteSkill,
   confirmDelete,
+  effectData,
 }) => {
   return (
     <Form.List name="skills" initialValue={[{}]}>
@@ -46,13 +45,12 @@ const CharacterSkillForm = ({
                 <SubSkillForm name={name} />
 
                 {/* Effects */}
-                <Form.Item
-                  {...restField}
-                  name={[name, "effectSkill"]}
-                  label={<DefaultTitle>Hiệu ứng kỹ năng:</DefaultTitle>}
-                >
-                  <EffectSkillForm existingEffects={existingEffects} />
-                </Form.Item>
+
+                <EffectSkillForm
+                  existingEffects={effectData}
+                  restField={restField}
+                  name={name}
+                />
               </Space>
               <Button
                 danger

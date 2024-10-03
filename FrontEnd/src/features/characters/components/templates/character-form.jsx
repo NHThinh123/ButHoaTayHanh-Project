@@ -15,6 +15,7 @@ const CharacterForm = () => {
     setModalData,
     handleDeleteSkill,
     confirmDelete,
+    effectData,
   } = useCharacterForm();
   return (
     <Layout style={{ padding: 8, minHeight: "100vh" }}>
@@ -35,6 +36,7 @@ const CharacterForm = () => {
               setModalData={setModalData}
               handleDeleteSkill={handleDeleteSkill}
               confirmDelete={confirmDelete}
+              effectData={effectData}
             />
           </Col>
         </Row>

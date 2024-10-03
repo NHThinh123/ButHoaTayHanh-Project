@@ -14,4 +14,10 @@ const getCharacterInfoApi = (id) => {
   const URL_API = `api/character/${id}`;
   return axios.get(URL_API);
 };
-export { getCharacterApi, getCharacterInfoApi };
+const createCharacterApi = (data) => {
+  const URL_API = "api/character";
+  return axios.post(URL_API, data, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+};
+export { getCharacterApi, getCharacterInfoApi, createCharacterApi };

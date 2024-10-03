@@ -1,117 +1,78 @@
 import { useState } from "react";
-import { Select, Tag, Button, Modal, Form, Input, ColorPicker } from "antd";
+import { Select, Button, Form, List } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
+import DefaultTitle from "../../../../components/atoms/default-title";
+import ModalAddSkillForm from "./modal-add-skill-form";
+import TagCustom from "../../../../components/atoms/tag-custom";
+import DefaultText from "../../../../components/atoms/default-text";
 
 const { Option } = Select;
 
-const EffectSkillForm = ({ existingEffects = [] }) => {
+const EffectSkillForm = ({ existingEffects = [], restField, name }) => {
   const [selectedEffects, setSelectedEffects] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [form] = Form.useForm();
 
-  const handleEffectSelect = (effectId) => {
-    const newEffect = existingEffects.find((effect) => effect._id === effectId);
-    if (newEffect && !selectedEffects.some((e) => e._id === effectId)) {
-      const updatedEffects = [...selectedEffects, newEffect];
-      setSelectedEffects(updatedEffects);
-    }
-  };
-
-  const handleEffectRemove = (effectId) => {
-    const updatedEffects = selectedEffects.filter(
-      (effect) => effect._id !== effectId
-    );
-    setSelectedEffects(updatedEffects);
+  const handleEffectSelect = (dataEffectForm) => {
+    setSelectedEffects(dataEffectForm);
   };
 
   const showModal = () => {
     setIsModalVisible(true);
   };
 
-  const handleModalOk = () => {
-    form.validateFields().then((values) => {
-      const newEffect = {
-        _id: Date.now().toString(), // Temporary ID
-        nameEffect: values.nameEffect,
-        descriptionEffect: values.descriptionEffect,
-        colorEffect: values.colorEffect.toHexString(),
-      };
-      const updatedEffects = [...selectedEffects, newEffect];
-      setSelectedEffects(updatedEffects);
-      setIsModalVisible(false);
-      form.resetFields();
-    });
-  };
-
-  const handleModalCancel = () => {
-    setIsModalVisible(false);
-    form.resetFields();
-  };
-
   return (
     <div>
-      <Select
-        style={{ width: "100%", marginBottom: 16 }}
-        placeholder="Chọn hiệu ứng"
-        onChange={handleEffectSelect}
+      <Form.Item
+        {...restField}
+        name={[name, "effectSkill"]}
+        label={<DefaultTitle>Hiệu ứng kỹ năng:</DefaultTitle>}
+        rules={[
+          {
+            required: true,
+            message: "Vui lòng nhập kỹ năng phụ hoặc xóa trường này.",
+          },
+        ]}
       >
-        {existingEffects.map((effect) => (
-          <Option key={effect._id} value={effect._id}>
-            {effect.nameEffect}
-          </Option>
-        ))}
-      </Select>
+        <Select
+          style={{ width: "100%", marginBottom: 16 }}
+          mode="multiple"
+          placeholder="Chọn hiệu ứng"
+          onChange={handleEffectSelect}
+        >
+          {existingEffects.map((effect) => (
+            <Option key={effect._id} value={effect}>
+              <TagCustom color={effect.colorEffect}>
+                {effect.nameEffect}
+              </TagCustom>
+            </Option>
+          ))}
+        </Select>
+      </Form.Item>
 
       <div style={{ marginBottom: 16 }}>
-        {selectedEffects.map((effect) => (
-          <Tag
-            key={effect._id}
-            closable
-            onClose={() => handleEffectRemove(effect._id)}
-            color={effect.colorEffect}
-            style={{ marginBottom: 8 }}
-          >
-            {effect.nameEffect}
-          </Tag>
-        ))}
+        <List
+          grid={{
+            gutter: 16,
+            column: 1,
+          }}
+          dataSource={selectedEffects}
+          renderItem={(item) => (
+            <List.Item style={{ display: "inline-flex" }}>
+              <TagCustom color={item.colorEffect} padding={5}>
+                {`${item.nameEffect} :`}
+              </TagCustom>
+              <DefaultText>{item.descriptionEffect}</DefaultText>
+            </List.Item>
+          )}
+        />
       </div>
-
       <Button icon={<PlusOutlined />} onClick={showModal}>
         Thêm hiệu ứng mới
       </Button>
-
-      <Modal
-        title="Thêm hiệu ứng mới"
-        open={isModalVisible}
-        onOk={handleModalOk}
-        onCancel={handleModalCancel}
-      >
-        <Form form={form} layout="vertical">
-          <Form.Item
-            name="nameEffect"
-            label="Tên hiệu ứng"
-            rules={[{ required: true, message: "Vui lòng nhập tên hiệu ứng" }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            name="descriptionEffect"
-            label="Mô tả hiệu ứng"
-            rules={[
-              { required: true, message: "Vui lòng nhập mô tả hiệu ứng" },
-            ]}
-          >
-            <Input.TextArea />
-          </Form.Item>
-          <Form.Item
-            name="colorEffect"
-            label="Màu hiệu ứng"
-            rules={[{ required: true, message: "Vui lòng chọn màu hiệu ứng" }]}
-          >
-            <ColorPicker />
-          </Form.Item>
-        </Form>
-      </Modal>
+      <ModalAddSkillForm
+        setIsModalVisible={setIsModalVisible}
+        isModalVisible={isModalVisible}
+      />
     </div>
   );
 };

@@ -1,15 +1,17 @@
 import { Form, message } from "antd";
-import { useState } from "react";
-import axios from "../../../services/axios.customize";
+import { useEffect, useState } from "react";
+
+import { createCharacterApi } from "../services/characterApi";
+import { getEffectApi } from "../services/effectApi";
 
 const useCharacterForm = () => {
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState([]);
   const [modalData, setModalData] = useState({ visible: false, index: null });
+  const [effectData, setEffectData] = useState([]);
+
   const onFinish = async (values) => {
     try {
-      console.log(values);
-
       const data = {
         name: values.name,
         rarity: values.rarity,
@@ -22,11 +24,10 @@ const useCharacterForm = () => {
       };
       if (fileList[0]) {
         const imageFile = fileList[0].originFileObj;
-        data.image = imageFile; // Hoặc xử lý theo cách khác nếu cần
+        data.image = imageFile;
       }
-      const res = await axios.post("/api/character", data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const res = await createCharacterApi(data);
+
       if (res) {
         message.success("Character created successfully");
         form.resetFields();
@@ -51,6 +52,21 @@ const useCharacterForm = () => {
     setModalData({ visible: false, index: null });
   };
 
+  useEffect(() => {
+    const fetchEffect = async () => {
+      try {
+        const res = await getEffectApi();
+
+        if (res) {
+          setEffectData(res);
+          console.log(effectData);
+        }
+      } catch (error) {
+        console.error("Error fetching effect:", error);
+      }
+    };
+    fetchEffect();
+  }, []);
   return {
     onFinish,
     fileList,
@@ -60,6 +76,7 @@ const useCharacterForm = () => {
     setModalData,
     handleDeleteSkill,
     confirmDelete,
+    effectData,
   };
 };
 
