@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Select, Button, Form, List } from "antd";
+import { Select, Button, Form, List, Space, Row, Col } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import DefaultTitle from "../../../../components/atoms/default-title";
 import ModalAddSkillForm from "./modal-add-skill-form";
@@ -13,7 +13,10 @@ const EffectSkillForm = ({ existingEffects = [], restField, name }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleEffectSelect = (dataEffectForm) => {
-    setSelectedEffects(dataEffectForm);
+    const selected = existingEffects.filter((effect) =>
+      dataEffectForm.includes(effect._id)
+    );
+    setSelectedEffects(selected);
   };
 
   const showModal = () => {
@@ -40,7 +43,7 @@ const EffectSkillForm = ({ existingEffects = [], restField, name }) => {
           onChange={handleEffectSelect}
         >
           {existingEffects.map((effect) => (
-            <Option key={effect._id} value={effect}>
+            <Option key={effect._id} value={effect._id}>
               <TagCustom color={effect.colorEffect}>
                 {effect.nameEffect}
               </TagCustom>
@@ -53,15 +56,20 @@ const EffectSkillForm = ({ existingEffects = [], restField, name }) => {
         <List
           grid={{
             gutter: 16,
-            column: 1,
           }}
           dataSource={selectedEffects}
           renderItem={(item) => (
-            <List.Item style={{ display: "inline-flex" }}>
-              <TagCustom color={item.colorEffect} padding={5}>
-                {`${item.nameEffect} :`}
-              </TagCustom>
-              <DefaultText>{item.descriptionEffect}</DefaultText>
+            <List.Item>
+              <Row>
+                <Col span={24}>
+                  <Space style={{ display: "flex", alignItems: "flex-start" }}>
+                    <TagCustom color={item.colorEffect} padding={5}>
+                      {`${item.nameEffect} :`}
+                    </TagCustom>
+                    <DefaultText>{item.descriptionEffect}</DefaultText>
+                  </Space>
+                </Col>
+              </Row>
             </List.Item>
           )}
         />

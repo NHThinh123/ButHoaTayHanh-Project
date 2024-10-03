@@ -1,4 +1,4 @@
-import { List } from "antd";
+import { Col, List, Row, Space } from "antd";
 
 import DefaultText from "../../../../components/atoms/default-text";
 import DefaultTitle from "../../../../components/atoms/default-title";
@@ -53,11 +53,17 @@ const CharacterSkill = ({ skillData }) => {
           }}
           dataSource={skillData.effectSkill}
           renderItem={(item) => (
-            <List.Item style={{ display: "inline-flex" }}>
-              <TagCustom color={item.colorEffect} padding={5}>
-                {`${item.nameEffect} :`}
-              </TagCustom>
-              <DefaultText>{item.descriptionEffect}</DefaultText>
+            <List.Item>
+              <Row>
+                <Col span={24}>
+                  <Space style={{ display: "flex", alignItems: "flex-start" }}>
+                    <TagCustom color={item.colorEffect} padding={5}>
+                      {`${item.nameEffect} :`}
+                    </TagCustom>
+                    <DefaultText>{item.descriptionEffect}</DefaultText>
+                  </Space>
+                </Col>
+              </Row>
             </List.Item>
           )}
         />
