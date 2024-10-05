@@ -1,5 +1,5 @@
 import { Form, message } from "antd";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { createCharacterApi } from "../services/characterApi";
 import { getEffectApi } from "../services/effectApi";
@@ -52,21 +52,20 @@ const useCharacterForm = () => {
     setModalData({ visible: false, index: null });
   };
 
-  useEffect(() => {
-    const fetchEffect = async () => {
-      try {
-        const res = await getEffectApi();
-
-        if (res) {
-          setEffectData(res);
-          console.log(effectData);
-        }
-      } catch (error) {
-        console.error("Error fetching effect:", error);
+  const fetchEffect = useCallback(async () => {
+    try {
+      const res = await getEffectApi();
+      if (res) {
+        setEffectData(res);
       }
-    };
-    fetchEffect();
+    } catch (error) {
+      console.error("Error fetching effect:", error);
+    }
   }, []);
+
+  useEffect(() => {
+    fetchEffect();
+  }, [fetchEffect]);
   return {
     onFinish,
     fileList,

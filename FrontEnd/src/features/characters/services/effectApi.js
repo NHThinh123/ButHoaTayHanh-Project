@@ -5,4 +5,8 @@ const getEffectApi = () => {
   return axios.get(URL_API);
 };
 
-export { getEffectApi };
+const createEffectApi = (data) => {
+  const URL_API = "api/effect";
+  return axios.post(URL_API, data);
+};
+export { getEffectApi, createEffectApi };
