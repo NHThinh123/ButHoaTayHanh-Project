@@ -1,53 +1,18 @@
 import { PlusOutlined } from "@ant-design/icons";
-import { Button, ColorPicker, Form, Input, Modal, notification } from "antd";
-import { useState } from "react";
-import { createEffectApi } from "../../services/effectApi";
+import { Button, ColorPicker, Form, Input, Modal } from "antd";
 
-const ModalAddSkillForm = ({ onEffectAdded }) => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [form] = Form.useForm();
-  const handleModalOk = async () => {
-    try {
-      const values = await form.validateFields();
-      const data = {
-        nameEffect: values.nameEffect,
-        descriptionEffect: values.descriptionEffect,
-        colorEffect: values.colorEffect.toHexString(),
-      };
-      const res = await createEffectApi(data);
-
-      if (res) {
-        notification.success({
-          message: "Thêm hiệu ứng",
-          description: "Thành công",
-        });
-        onEffectAdded();
-      } else {
-        notification.error({
-          message: "Thêm hiệu ứng",
-          description: "Thất bại",
-        });
-      }
-      console.log(data);
-      setIsModalVisible(false);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleModalCancel = () => {
-    setIsModalVisible(false);
-    form.resetFields();
-  };
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
+const ModalAddSkillForm = ({
+  showAddEffectModal,
+  handleAddEffectModalCancel,
+  handleAddEffectModalOk,
+  isModalAddEffectVisible,
+  formEffect,
+}) => {
   return (
     <div>
       <Button
         icon={<PlusOutlined />}
-        onClick={showModal}
+        onClick={showAddEffectModal}
         style={{ marginBottom: 16 }}
         type="primary"
       >
@@ -55,11 +20,11 @@ const ModalAddSkillForm = ({ onEffectAdded }) => {
       </Button>
       <Modal
         title="Thêm hiệu ứng mới"
-        open={isModalVisible}
-        onOk={handleModalOk}
-        onCancel={handleModalCancel}
+        open={isModalAddEffectVisible}
+        onOk={handleAddEffectModalOk}
+        onCancel={handleAddEffectModalCancel}
       >
-        <Form form={form} layout="vertical">
+        <Form form={formEffect} layout="vertical">
           <Form.Item
             name="nameEffect"
             label="Tên hiệu ứng"

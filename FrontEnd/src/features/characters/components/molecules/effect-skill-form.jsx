@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Select, Form, List, Col, Typography } from "antd";
 import DefaultTitle from "../../../../components/atoms/default-title";
 import ModalAddSkillForm from "./modal-add-skill-form";
@@ -6,16 +5,18 @@ import TagCustom from "../../../../components/atoms/tag-custom";
 
 const { Option } = Select;
 
-const EffectSkillForm = ({ existingEffects = [], restField, name }) => {
-  const [selectedEffects, setSelectedEffects] = useState([]);
-
-  const handleEffectSelect = (dataEffectForm) => {
-    const selected = existingEffects.filter((effect) =>
-      dataEffectForm.includes(effect._id)
-    );
-    setSelectedEffects(selected);
-  };
-
+const EffectSkillForm = ({
+  effectData,
+  restField,
+  name,
+  handleEffectSelect,
+  selectedEffects,
+  showAddEffectModal,
+  handleAddEffectModalCancel,
+  handleAddEffectModalOk,
+  isModalAddEffectVisible,
+  formEffect,
+}) => {
   return (
     <div>
       <Form.Item
@@ -35,7 +36,7 @@ const EffectSkillForm = ({ existingEffects = [], restField, name }) => {
           placeholder="Chọn hiệu ứng"
           onChange={handleEffectSelect}
         >
-          {existingEffects.map((effect) => (
+          {effectData.map((effect) => (
             <Option key={effect._id} value={effect._id}>
               <TagCustom color={effect.colorEffect}>
                 {effect.nameEffect}
@@ -63,7 +64,13 @@ const EffectSkillForm = ({ existingEffects = [], restField, name }) => {
         />
       )}
 
-      <ModalAddSkillForm />
+      <ModalAddSkillForm
+        showAddEffectModal={showAddEffectModal}
+        handleAddEffectModalCancel={handleAddEffectModalCancel}
+        handleAddEffectModalOk={handleAddEffectModalOk}
+        isModalAddEffectVisible={isModalAddEffectVisible}
+        formEffect={formEffect}
+      />
     </div>
   );
 };

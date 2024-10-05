@@ -1,14 +1,12 @@
 import { Form, message } from "antd";
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 
 import { createCharacterApi } from "../services/characterApi";
-import { getEffectApi } from "../services/effectApi";
 
 const useCharacterForm = () => {
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState([]);
   const [modalData, setModalData] = useState({ visible: false, index: null });
-  const [effectData, setEffectData] = useState([]);
 
   const onFinish = async (values) => {
     try {
@@ -52,20 +50,6 @@ const useCharacterForm = () => {
     setModalData({ visible: false, index: null });
   };
 
-  const fetchEffect = useCallback(async () => {
-    try {
-      const res = await getEffectApi();
-      if (res) {
-        setEffectData(res);
-      }
-    } catch (error) {
-      console.error("Error fetching effect:", error);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchEffect();
-  }, [fetchEffect]);
   return {
     onFinish,
     fileList,
@@ -75,7 +59,6 @@ const useCharacterForm = () => {
     setModalData,
     handleDeleteSkill,
     confirmDelete,
-    effectData,
   };
 };
 

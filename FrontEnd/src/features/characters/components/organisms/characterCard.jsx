@@ -10,7 +10,6 @@ import mageIcon from "../../../../assets/images/icon/mage-icon.png";
 import tankerIcon from "../../../../assets/images/icon/tanker-icon.png";
 import supporterIcon from "../../../../assets/images/icon/supporter-icon.png";
 import healerIcon from "../../../../assets/images/icon/healer-icon.png";
-
 import DiamondIcon from "../../../../components/atoms/diamond-icon";
 import CardText from "../../../../components/atoms/card-text";
 import styles from "../../styles/styles.module.css";

@@ -14,6 +14,13 @@ const CharacterSkillForm = ({
   handleDeleteSkill,
   confirmDelete,
   effectData,
+  handleEffectSelect,
+  selectedEffects,
+  showAddEffectModal,
+  handleAddEffectModalCancel,
+  handleAddEffectModalOk,
+  isModalAddEffectVisible,
+  formEffect,
 }) => {
   return (
     <Form.List name="skills" initialValue={[{}]}>
@@ -47,9 +54,16 @@ const CharacterSkillForm = ({
                 {/* Effects */}
 
                 <EffectSkillForm
-                  existingEffects={effectData}
+                  effectData={effectData}
                   restField={restField}
                   name={name}
+                  handleEffectSelect={handleEffectSelect}
+                  selectedEffects={selectedEffects}
+                  showAddEffectModal={showAddEffectModal}
+                  handleAddEffectModalCancel={handleAddEffectModalCancel}
+                  handleAddEffectModalOk={handleAddEffectModalOk}
+                  isModalAddEffectVisible={isModalAddEffectVisible}
+                  formEffect={formEffect}
                 />
               </Space>
               <Button

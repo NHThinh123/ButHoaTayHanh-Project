@@ -5,6 +5,7 @@ import CharacterSkillForm from "../organisms/character-skill-form";
 import CharacterImageForm from "../organisms/character-img-form";
 import BentoBox from "../../../../components/atoms/bento-box";
 import useCharacterForm from "../../hooks/useCharacterForm";
+import useEffectData from "../../hooks/useEffectData";
 
 const CharacterForm = () => {
   const {
@@ -15,8 +16,17 @@ const CharacterForm = () => {
     setModalData,
     handleDeleteSkill,
     confirmDelete,
-    effectData,
   } = useCharacterForm();
+  const {
+    effectData,
+    selectedEffects,
+    handleEffectSelect,
+    showAddEffectModal,
+    handleAddEffectModalCancel,
+    handleAddEffectModalOk,
+    isModalAddEffectVisible,
+    formEffect,
+  } = useEffectData();
   return (
     <Layout style={{ padding: 8, minHeight: "100vh" }}>
       <Form form={form} layout="vertical" onFinish={onFinish}>
@@ -37,6 +47,13 @@ const CharacterForm = () => {
               handleDeleteSkill={handleDeleteSkill}
               confirmDelete={confirmDelete}
               effectData={effectData}
+              selectedEffects={selectedEffects}
+              handleEffectSelect={handleEffectSelect}
+              showAddEffectModal={showAddEffectModal}
+              handleAddEffectModalCancel={handleAddEffectModalCancel}
+              handleAddEffectModalOk={handleAddEffectModalOk}
+              isModalAddEffectVisible={isModalAddEffectVisible}
+              formEffect={formEffect}
             />
           </Col>
         </Row>
