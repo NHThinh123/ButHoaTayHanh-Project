@@ -14,8 +14,7 @@ const CharacterSkillForm = ({
   handleDeleteSkill,
   confirmDelete,
   effectData,
-  handleEffectSelect,
-  selectedEffects,
+
   showAddEffectModal,
   handleAddEffectModalCancel,
   handleAddEffectModalOk,
@@ -57,8 +56,6 @@ const CharacterSkillForm = ({
                   effectData={effectData}
                   restField={restField}
                   name={name}
-                  handleEffectSelect={handleEffectSelect}
-                  selectedEffects={selectedEffects}
                   showAddEffectModal={showAddEffectModal}
                   handleAddEffectModalCancel={handleAddEffectModalCancel}
                   handleAddEffectModalOk={handleAddEffectModalOk}

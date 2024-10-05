@@ -2,6 +2,7 @@ import { Select, Form, List, Col, Typography } from "antd";
 import DefaultTitle from "../../../../components/atoms/default-title";
 import ModalAddSkillForm from "./modal-add-skill-form";
 import TagCustom from "../../../../components/atoms/tag-custom";
+import { useState } from "react";
 
 const { Option } = Select;
 
@@ -9,14 +10,21 @@ const EffectSkillForm = ({
   effectData,
   restField,
   name,
-  handleEffectSelect,
-  selectedEffects,
+
   showAddEffectModal,
   handleAddEffectModalCancel,
   handleAddEffectModalOk,
   isModalAddEffectVisible,
   formEffect,
 }) => {
+  const [selectedEffects, setSelectedEffects] = useState([]);
+
+  const handleEffectSelect = (dataEffectForm) => {
+    const selected = effectData.filter((effect) =>
+      dataEffectForm.includes(effect._id)
+    );
+    setSelectedEffects(selected);
+  };
   return (
     <div>
       <Form.Item

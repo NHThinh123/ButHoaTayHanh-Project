@@ -13,7 +13,7 @@ const useCharacterData = () => {
   });
 
   const fetchCharacters = useCallback(
-    async (page = 1, pageSize = 10) => {
+    async (page = 1, pageSize = 99) => {
       try {
         setLoading(true);
         const res = await getCharacterApi(filters, page, pageSize);

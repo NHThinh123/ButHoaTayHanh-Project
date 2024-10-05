@@ -5,15 +5,6 @@ import { Form, notification } from "antd";
 const useEffectData = () => {
   const [effectData, setEffectData] = useState([]);
 
-  const [selectedEffects, setSelectedEffects] = useState([]);
-
-  const handleEffectSelect = (dataEffectForm) => {
-    const selected = effectData.filter((effect) =>
-      dataEffectForm.includes(effect._id)
-    );
-    setSelectedEffects(selected);
-  };
-
   const fetchEffect = useCallback(async () => {
     try {
       const res = await getEffectApi();
@@ -71,8 +62,7 @@ const useEffectData = () => {
   return {
     effectData,
     formEffect,
-    selectedEffects,
-    handleEffectSelect,
+
     showAddEffectModal,
     handleAddEffectModalCancel,
     handleAddEffectModalOk,

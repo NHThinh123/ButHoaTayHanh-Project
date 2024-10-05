@@ -16,8 +16,8 @@ const useCharacterForm = () => {
         role: values.role,
         faction: values.faction,
         story: values.story,
-        pveScore: values.pveScore,
-        pvpScore: values.pvpScore,
+        PveScore: values.pveScore,
+        PvpScore: values.pvpScore,
         skills: values.skills,
       };
       if (fileList[0]) {
@@ -29,7 +29,7 @@ const useCharacterForm = () => {
       if (res) {
         message.success("Character created successfully");
         form.resetFields();
-
+        console.log(res);
         setFileList([]);
       }
     } catch (error) {

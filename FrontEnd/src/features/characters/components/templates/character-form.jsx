@@ -19,8 +19,7 @@ const CharacterForm = () => {
   } = useCharacterForm();
   const {
     effectData,
-    selectedEffects,
-    handleEffectSelect,
+
     showAddEffectModal,
     handleAddEffectModalCancel,
     handleAddEffectModalOk,
@@ -47,8 +46,6 @@ const CharacterForm = () => {
               handleDeleteSkill={handleDeleteSkill}
               confirmDelete={confirmDelete}
               effectData={effectData}
-              selectedEffects={selectedEffects}
-              handleEffectSelect={handleEffectSelect}
               showAddEffectModal={showAddEffectModal}
               handleAddEffectModalCancel={handleAddEffectModalCancel}
               handleAddEffectModalOk={handleAddEffectModalOk}
