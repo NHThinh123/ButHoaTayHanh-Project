@@ -14,7 +14,6 @@ const CharacterSkillForm = ({
   handleDeleteSkill,
   confirmDelete,
   effectData,
-
   showAddEffectModal,
   handleAddEffectModalCancel,
   handleAddEffectModalOk,

@@ -4,6 +4,7 @@ const TagCustom = ({ children, color, padding }) => {
   return (
     <Tag
       color={color}
+      bordered
       style={{
         fontSize: 16,
         minWidth: 50,

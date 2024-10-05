@@ -10,7 +10,6 @@ const EffectSkillForm = ({
   effectData,
   restField,
   name,
-
   showAddEffectModal,
   handleAddEffectModalCancel,
   handleAddEffectModalOk,
@@ -31,12 +30,6 @@ const EffectSkillForm = ({
         {...restField}
         name={[name, "effectSkill"]}
         label={<DefaultTitle>Hiệu ứng kỹ năng:</DefaultTitle>}
-        rules={[
-          {
-            required: true,
-            message: "Vui lòng nhập kỹ năng phụ hoặc xóa trường này.",
-          },
-        ]}
       >
         <Select
           style={{ width: "100%" }}
