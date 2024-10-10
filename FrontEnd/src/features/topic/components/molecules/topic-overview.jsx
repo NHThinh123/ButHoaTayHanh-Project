@@ -1,8 +1,9 @@
 import { Col, Image, Row } from "antd";
-import BentoBox from "../../../components/atoms/bento-box";
-import DefaultTitle from "../../../components/atoms/default-title";
-import DefaultText from "../../../components/atoms/default-text";
+
 import { CheckCircleOutlined } from "@ant-design/icons";
+import BentoBox from "../../../../components/atoms/bento-box";
+import DefaultTitle from "../../../../components/atoms/default-title";
+import DefaultText from "../../../../components/atoms/default-text";
 
 const TopicOverview = () => {
   return (

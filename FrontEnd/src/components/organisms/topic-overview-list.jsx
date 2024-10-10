@@ -1,8 +1,8 @@
-import { List, Segmented } from "antd";
+import { Button, List, Segmented } from "antd";
 import { useState } from "react";
 
 import BentoBox from "../atoms/bento-box";
-import TopicOverview from "../../features/topic/components/topic-overview";
+import TopicOverview from "../../features/topic/components/molecules/topic-overview";
 
 const TopicOverviewList = () => {
   const [value, setValue] = useState("Mới Nhất");
@@ -24,6 +24,11 @@ const TopicOverviewList = () => {
         <TopicOverview />
         <TopicOverview />
       </List>
+      <div style={{ padding: 8 }}>
+        <Button color="primary" variant="dashed" block>
+          Xem Thêm
+        </Button>
+      </div>
     </BentoBox>
   );
 };

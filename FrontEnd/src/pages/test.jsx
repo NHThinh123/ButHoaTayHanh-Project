@@ -1,23 +1,15 @@
-import { UploadOutlined } from "@ant-design/icons";
-import { Button, Form, Upload } from "antd";
+import { Col, Row } from "antd";
+import Topic from "../features/topic/components/molecules/topic";
 
 const App = () => {
   return (
-    <Form onFinish={(values) => console.log(values)}>
-      <Form.Item label="Upload file" name="image">
-        <Upload
-          onChange={(info) => {
-            console.log(info.file);
-          }}
-          beforeUpload={(file) => {
-            console.log("file is: ", file);
-            return false;
-          }}
-        >
-          <Button icon={<UploadOutlined />}>Chọn file</Button>
-        </Upload>
-      </Form.Item>
-    </Form>
+    <Row>
+      <Col span={6}></Col>
+      <Col span={12}>
+        <Topic></Topic>
+      </Col>
+      <Col span={6}></Col>
+    </Row>
   );
 };
 export default App;

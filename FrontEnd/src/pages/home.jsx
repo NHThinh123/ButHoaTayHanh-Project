@@ -1,11 +1,12 @@
 import { Col, Row } from "antd";
 import BannerList from "../features/home/components/banner-list";
-import GuideList from "../features/home/components/guide-list";
+
 import SidebarContent from "../features/home/components/sidebar-content";
 import useBannerData from "../features/home/hooks/useBannerData";
 
 import BentoBox from "../components/atoms/bento-box";
 import SpinLoading from "../components/atoms/spin-loading";
+import TopicList from "../features/topic/components/organisms/topic-list";
 
 const HomePage = () => {
   const { bannerData, loading } = useBannerData();
@@ -21,7 +22,7 @@ const HomePage = () => {
           </BentoBox>
         )}
 
-        <GuideList />
+        <TopicList></TopicList>
       </Col>
       <Col span={8} style={{ paddingTop: 8 }}>
         <SidebarContent />
