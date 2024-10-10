@@ -1,8 +1,6 @@
-import { Typography } from "antd";
-
 const DefaultTitle = ({ children, color, style }) => {
   return (
-    <Typography.Text
+    <h2
       style={{
         color: color || "#000",
         fontSize: 18,
@@ -15,7 +13,7 @@ const DefaultTitle = ({ children, color, style }) => {
       }}
     >
       {children}
-    </Typography.Text>
+    </h2>
   );
 };
 export default DefaultTitle;

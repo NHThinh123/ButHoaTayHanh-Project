@@ -1,4 +1,4 @@
-import Topic from "../../../components/organisms/topic";
+import TopicOverviewList from "../../../components/organisms/topic-overview-list";
 import Footer from "../../../components/templates/footer";
 
 const SidebarContent = () => {
@@ -12,7 +12,7 @@ const SidebarContent = () => {
         paddingBottom: 100,
       }}
     >
-      <Topic />
+      <TopicOverviewList />
       <Footer />
     </div>
   );

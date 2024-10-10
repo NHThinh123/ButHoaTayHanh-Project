@@ -15,9 +15,9 @@ const Footer = () => {
       <br />
       <p>
         Chúng tôi là một cộng đồng game thủ nhiệt huyết, luôn sẵn sàng chia sẻ
-        đam mê với mọi người.Chúng tôi mang đến những tựa game hay nhất thế giới
-        đến với game thủ Việt. Với đội ngũ dịch thuật chuyên nghiệp, chúng tôi
-        cam kết mang lại những trải nghiệm chơi game mượt mà và thú vị nhất.
+        đam mê với mọi người. Chúng tôi mang đến những tựa game hay nhất thế
+        giới đến với game thủ Việt. Với đội ngũ dịch thuật chuyên nghiệp, chúng
+        tôi cam kết mang lại những trải nghiệm chơi game mượt mà và thú vị nhất.
       </p>
       <br />
       <h2>Liên hệ</h2>
