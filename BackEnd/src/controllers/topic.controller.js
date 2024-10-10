@@ -11,14 +11,27 @@ const getTopics = async (req, res) => {
   return res.status(200).json(data);
 };
 const createTopic = async (req, res) => {
-  const { title, description, image, author, tags, category } = req.body;
+  const {
+    title,
+    description,
+    image,
+    author,
+    category,
+    status,
+    likes,
+    dislikes,
+    comments,
+  } = req.body;
   const data = await createTopicService(
     title,
     description,
     image,
     author,
-    tags,
-    category
+    category,
+    status,
+    likes,
+    dislikes,
+    comments
   );
   return res.status(200).json(data);
 };

@@ -2,17 +2,6 @@ const DiamondIcon = ({ children, colorBg, colorText }) => {
   return (
     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <radialGradient
-          id="backgroundGradient"
-          cx="50%"
-          cy="0%"
-          r="100%"
-          fx="50%"
-          fy="0%"
-        >
-          <stop offset="0%" stopColor={colorBg} />
-          <stop offset="100%" stopColor={colorText} />
-        </radialGradient>
         <filter id="shadow">
           <feDropShadow dx="2" dy="2" stdDeviation="2" floodOpacity="0.5" />
         </filter>
@@ -22,7 +11,7 @@ const DiamondIcon = ({ children, colorBg, colorText }) => {
       </defs>
       <polygon
         points="50,0 100,50 50,100 0,50"
-        fill="url(#backgroundGradient)"
+        fill={colorBg}
         filter="url(#shadow)"
       />
       <text

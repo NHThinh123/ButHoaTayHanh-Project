@@ -10,7 +10,7 @@ import BentoBox from "../atoms/bento-box";
 
 const Footer = () => {
   return (
-    <BentoBox style={{ width: "95%" }}>
+    <BentoBox padding={28} style={{ width: "95%" }}>
       <h2>Về chúng tôi </h2>
       <br />
       <p>

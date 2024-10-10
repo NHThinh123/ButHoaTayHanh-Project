@@ -9,8 +9,24 @@ const topicSchema = new mongoose.Schema({
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
   likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   dislikes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
-  tags: [{ type: String }],
-  category: String,
+  status: {
+    type: String,
+    required: true,
+    enum: ["public", "private", "deleted"],
+  },
+  category: {
+    type: String,
+    required: true,
+    enum: [
+      "Thảo luận",
+      "Chiến lược",
+      "Sự kiện",
+      "Bảo trì",
+      "Thông báo",
+      "Flex",
+      "Khác",
+    ],
+  },
 });
 const Topic = mongoose.model("Topic", topicSchema);
 

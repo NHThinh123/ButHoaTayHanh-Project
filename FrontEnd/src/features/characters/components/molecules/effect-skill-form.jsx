@@ -5,6 +5,9 @@ import TagCustom from "../../../../components/atoms/tag-custom";
 import { useState } from "react";
 
 const { Option } = Select;
+const capitalizeFirstLetter = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
 
 const EffectSkillForm = ({
   effectData,
@@ -40,7 +43,7 @@ const EffectSkillForm = ({
           {effectData.map((effect) => (
             <Option key={effect._id} value={effect._id}>
               <TagCustom color={effect.colorEffect}>
-                {effect.nameEffect}
+                {capitalizeFirstLetter(effect.nameEffect)}
               </TagCustom>
             </Option>
           ))}
@@ -55,7 +58,7 @@ const EffectSkillForm = ({
               <Col span={24}>
                 <Typography.Text style={{ fontSize: 16, width: "100%" }}>
                   <TagCustom color={item.colorEffect}>
-                    {`${item.nameEffect} :`}
+                    {`${capitalizeFirstLetter(item.nameEffect)} :`}
                   </TagCustom>
                   {item.descriptionEffect}
                 </Typography.Text>

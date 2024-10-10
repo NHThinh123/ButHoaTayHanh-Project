@@ -1,5 +1,7 @@
 import { PlusOutlined } from "@ant-design/icons";
-import { Button, ColorPicker, Form, Input, Modal } from "antd";
+import { Button, Col, ColorPicker, Form, Input, Modal, Typography } from "antd";
+import { useState } from "react";
+import TagCustom from "../../../../components/atoms/tag-custom";
 
 const ModalAddSkillForm = ({
   showAddEffectModal,
@@ -8,6 +10,13 @@ const ModalAddSkillForm = ({
   isModalAddEffectVisible,
   formEffect,
 }) => {
+  const [previewData, setPreviewData] = useState({});
+  const handleFormChange = (changedValues, allValues) => {
+    setPreviewData(allValues);
+  };
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
   return (
     <div>
       <Button
@@ -24,7 +33,11 @@ const ModalAddSkillForm = ({
         onOk={handleAddEffectModalOk}
         onCancel={handleAddEffectModalCancel}
       >
-        <Form form={formEffect} layout="vertical">
+        <Form
+          form={formEffect}
+          layout="vertical"
+          onValuesChange={handleFormChange}
+        >
           <Form.Item
             name="nameEffect"
             label="Tên hiệu ứng"
@@ -49,6 +62,18 @@ const ModalAddSkillForm = ({
             <ColorPicker defaultFormat="hex" />
           </Form.Item>
         </Form>
+        <div style={{ marginBottom: 16 }}>
+          {previewData.nameEffect && (
+            <Col span={24}>
+              <Typography.Text style={{ fontSize: 16, width: "100%" }}>
+                <TagCustom color={previewData.colorEffect.toHexString()}>
+                  {`${capitalizeFirstLetter(previewData.nameEffect)} :`}
+                </TagCustom>
+                {previewData.descriptionEffect}
+              </Typography.Text>
+            </Col>
+          )}
+        </div>
       </Modal>
     </div>
   );

@@ -28,45 +28,51 @@ const CharacterSkill = ({ skillData }) => {
       </div>
 
       <div style={{ margin: "12px 24px" }}>
-        <List
-          grid={{
-            gutter: 16,
-            column: 1,
-          }}
-          dataSource={skillData.subSkill}
-          renderItem={(item) => (
-            <List.Item>
-              <SkillDescription
-                skillData={`o ${item}`}
-                effectData={skillData.effectSkill}
-              />
-            </List.Item>
-          )}
-        />
+        {skillData.subSkill.length > 0 && (
+          <List
+            grid={{
+              gutter: 16,
+              column: 1,
+            }}
+            dataSource={skillData.subSkill}
+            renderItem={(item) => (
+              <List.Item>
+                <SkillDescription
+                  skillData={`o ${item}`}
+                  effectData={skillData.effectSkill}
+                />
+              </List.Item>
+            )}
+          />
+        )}
       </div>
 
       <div style={{ margin: "12px" }}>
-        <List
-          grid={{
-            gutter: 16,
-            column: 1,
-          }}
-          dataSource={skillData.effectSkill}
-          renderItem={(item) => (
-            <List.Item>
-              <Row>
-                <Col span={24}>
-                  <Space style={{ display: "flex", alignItems: "flex-start" }}>
-                    <TagCustom color={item.colorEffect} padding={5}>
-                      {`${item.nameEffect} :`}
-                    </TagCustom>
-                    <DefaultText>{item.descriptionEffect}</DefaultText>
-                  </Space>
-                </Col>
-              </Row>
-            </List.Item>
-          )}
-        />
+        {skillData.effectSkill.length > 0 && (
+          <List
+            grid={{
+              gutter: 16,
+              column: 1,
+            }}
+            dataSource={skillData.effectSkill}
+            renderItem={(item) => (
+              <List.Item>
+                <Row>
+                  <Col span={24}>
+                    <Space
+                      style={{ display: "flex", alignItems: "flex-start" }}
+                    >
+                      <TagCustom color={item.colorEffect} padding={5}>
+                        {`${item.nameEffect} :`}
+                      </TagCustom>
+                      <DefaultText>{item.descriptionEffect}</DefaultText>
+                    </Space>
+                  </Col>
+                </Row>
+              </List.Item>
+            )}
+          />
+        )}
       </div>
     </BentoBox>
   );

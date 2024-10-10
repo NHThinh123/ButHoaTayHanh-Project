@@ -17,7 +17,7 @@ const CharacterDetail = ({ characterInfoData }) => {
       </Row>
 
       <Row>
-        <Col>
+        <Col span={24}>
           <List
             grid={{
               gutter: 16,

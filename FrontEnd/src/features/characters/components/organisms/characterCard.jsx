@@ -30,9 +30,19 @@ const CharacterCard = ({ character }) => {
         <div className={styles.characterCardWrapper}>
           <Row style={{ padding: 5 }}>
             <Col span={6} style={{ padding: 5 }}>
-              <DiamondIcon colorBg={"#DD761C"} colorText={"#FFD700"}>
-                {character.rarity}
-              </DiamondIcon>
+              {character.rarity === "SSR" ? (
+                <DiamondIcon colorBg={"#E2924F"} colorText={"#F7D550"}>
+                  {character.rarity}
+                </DiamondIcon>
+              ) : character.rarity === "SR" ? (
+                <DiamondIcon colorBg={"#6F2E8A"} colorText={"#EEB4F1"}>
+                  {character.rarity}
+                </DiamondIcon>
+              ) : (
+                <DiamondIcon colorBg={"#45669F"} colorText={"#AFD9FC"}>
+                  {character.rarity}
+                </DiamondIcon>
+              )}
             </Col>
             <Col span={18}>
               <Row>

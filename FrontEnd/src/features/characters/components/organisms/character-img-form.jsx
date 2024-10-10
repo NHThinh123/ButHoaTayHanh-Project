@@ -84,7 +84,7 @@ const CharacterImageForm = ({ setFileList }) => {
             <img
               src={imageUrl}
               alt="uploaded"
-              style={{ width: "350px", height: "450px", objectFit: "cover" }}
+              style={{ width: "350px", height: "480px", objectFit: "cover" }}
             />
           ) : (
             <div

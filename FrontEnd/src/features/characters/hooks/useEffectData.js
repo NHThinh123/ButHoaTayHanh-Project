@@ -62,7 +62,6 @@ const useEffectData = () => {
   return {
     effectData,
     formEffect,
-
     showAddEffectModal,
     handleAddEffectModalCancel,
     handleAddEffectModalOk,

@@ -12,7 +12,7 @@ const CharacterList = ({ characterData }) => {
         md: 2,
         lg: 3,
         xl: 4,
-        xxl: 6,
+        xxl: 4,
       }}
       dataSource={characterData}
       renderItem={(item) => (
