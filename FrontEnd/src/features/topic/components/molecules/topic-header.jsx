@@ -3,7 +3,7 @@ import DefaultTitle from "../../../../components/atoms/default-title";
 import DefaultText from "../../../../components/atoms/default-text";
 import { EllipsisOutlined } from "@ant-design/icons";
 
-const TopicHeader = () => {
+const TopicHeader = ({ author, uploadAt }) => {
   return (
     <Row>
       <Col span={22}>
@@ -15,15 +15,15 @@ const TopicHeader = () => {
               color: "#f56a00",
             }}
           >
-            {"KAFF".charAt(0).toUpperCase() ?? "U"}
+            {author?.userName?.charAt(0).toUpperCase() ?? "U"}
           </Avatar>
           <Flex vertical>
-            <DefaultTitle>KAFF Gaming</DefaultTitle>
-            <DefaultText>20/10/2020</DefaultText>
+            <DefaultTitle>{author?.userName}</DefaultTitle>
+            <DefaultText style={{ fontSize: 14 }}>{uploadAt}</DefaultText>
           </Flex>
         </Flex>
       </Col>
-      <Col span={2}>
+      <Col span={2} style={{ textAlign: "right" }}>
         <EllipsisOutlined style={{ fontSize: 24 }} />
       </Col>
     </Row>

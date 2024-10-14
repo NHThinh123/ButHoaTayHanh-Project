@@ -18,11 +18,11 @@ const HomePage = () => {
           <SpinLoading />
         ) : (
           <BentoBox>
-            <BannerList bannerData={bannerData} />
+            <BannerList bannerData={bannerData?.slice(0, 5)} />
           </BentoBox>
         )}
 
-        <TopicList></TopicList>
+        <TopicList />
       </Col>
       <Col span={8} style={{ paddingTop: 8 }}>
         <SidebarContent />

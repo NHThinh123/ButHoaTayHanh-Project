@@ -6,14 +6,14 @@ import {
 import { Col, Flex, Row } from "antd";
 import DefaultTitle from "../../../../components/atoms/default-title";
 
-const TopicFooter = () => {
+const TopicFooter = ({ topicData }) => {
   return (
     <Row style={{ marginTop: 24 }}>
       <Col span={8}>
         <Flex justify="center" align="center" gap="small">
           <LikeOutlined style={{ fontSize: 24 }} />
           <DefaultTitle style={{ fontSize: 18, fontWeight: 400 }}>
-            12
+            {topicData.likes.length}
           </DefaultTitle>
         </Flex>
       </Col>
@@ -22,7 +22,7 @@ const TopicFooter = () => {
         <Flex justify="center" align="center" gap="small">
           <DislikeOutlined style={{ fontSize: 24 }} />
           <DefaultTitle style={{ fontSize: 18, fontWeight: 400 }}>
-            12
+            {topicData.dislikes.length}
           </DefaultTitle>
         </Flex>
       </Col>
@@ -30,7 +30,7 @@ const TopicFooter = () => {
         <Flex justify="center" align="center" gap="small">
           <CommentOutlined style={{ fontSize: 24 }} />
           <DefaultTitle style={{ fontSize: 18, fontWeight: 400 }}>
-            12
+            {topicData.comments.length}
           </DefaultTitle>
         </Flex>
       </Col>

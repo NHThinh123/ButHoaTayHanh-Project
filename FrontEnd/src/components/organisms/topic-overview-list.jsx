@@ -15,8 +15,7 @@ const TopicOverviewList = () => {
         block
         size="large"
         style={{
-          padding: 0,
-          marginBottom: 12,
+          margin: "8px",
         }}
       />
       <List>
