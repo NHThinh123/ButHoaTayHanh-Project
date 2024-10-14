@@ -1,39 +1,37 @@
 const Topic = require("../models/topic.model");
 
-const getTopicsService = async () => {
+const getTopicsService = async (query) => {
+  const { sort, limit, page = 1, search } = query;
+  const filter = {};
+  if (search) filter.name = { $regex: search, $options: "i" };
+
+  const sortOption = {};
+  if (sort) {
+    const [field, order] = sort.split(":");
+    sortOption[field] = order === "desc" ? -1 : 1;
+  }
+
   try {
-    let result = await Topic.find().populate("author", "-password");
-    return result;
+    let result = await Topic.find(filter)
+      .sort(sortOption)
+      .limit(Number(limit))
+      .skip((Number(page) - 1) * Number(limit))
+      .populate("author", "-password");
+
+    const total = await Topic.countDocuments(filter);
+    return {
+      result,
+      totalPages: Math.ceil(total / Number(limit)),
+      currentPage: Number(page),
+    };
   } catch (error) {
     console.error(error);
     return null;
   }
 };
-const createTopicService = async (
-  title,
-  description,
-  image,
-  author,
-  category,
-  status,
-  likes,
-  dislikes,
-  comments,
-  content
-) => {
+const createTopicService = async (topicData) => {
   try {
-    let result = await Topic.create({
-      title,
-      description,
-      image,
-      author,
-      category,
-      status,
-      likes,
-      dislikes,
-      comments,
-      content,
-    });
+    let result = await Topic.create(topicData);
     return result;
   } catch (error) {
     console.error(error);

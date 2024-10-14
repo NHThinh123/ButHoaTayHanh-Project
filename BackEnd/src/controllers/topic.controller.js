@@ -7,34 +7,11 @@ const {
 } = require("../services/topic.service");
 
 const getTopics = async (req, res) => {
-  const data = await getTopicsService();
+  const data = await getTopicsService(req.query);
   return res.status(200).json(data);
 };
 const createTopic = async (req, res) => {
-  const {
-    title,
-    description,
-    image,
-    author,
-    category,
-    status,
-    likes,
-    dislikes,
-    comments,
-    content,
-  } = req.body;
-  const data = await createTopicService(
-    title,
-    description,
-    image,
-    author,
-    category,
-    status,
-    likes,
-    dislikes,
-    comments,
-    content
-  );
+  const data = await createTopicService(req.body);
   return res.status(200).json(data);
 };
 const getTopicById = async (req, res) => {

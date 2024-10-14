@@ -9,7 +9,7 @@ const useBannerData = () => {
         const res = await getTopicApi();
 
         if (res && !res?.message) {
-          setBannerData(res);
+          setBannerData(res.result);
           //  console.log(bannerData);
         }
       } catch (error) {
