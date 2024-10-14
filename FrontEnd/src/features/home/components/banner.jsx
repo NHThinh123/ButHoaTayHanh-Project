@@ -33,14 +33,14 @@ const Banner = (props) => {
           bottom: 0,
           backgroundColor: "rgba(0,0,0,0.5)",
           color: "white",
-          padding: "10px",
+          padding: "12px",
         }}
       >
         <h2
           style={{
             fontSize: 18,
             color: "white",
-            width: "90%",
+            width: "100%",
             overflow: "hidden",
             textOverflow: "ellipsis",
           }}
@@ -52,7 +52,7 @@ const Banner = (props) => {
           style={{
             fontSize: 14,
             overflow: "hidden",
-            width: "80%",
+            width: "95%",
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
           }}

@@ -21,6 +21,7 @@ const createTopic = async (req, res) => {
     likes,
     dislikes,
     comments,
+    content,
   } = req.body;
   const data = await createTopicService(
     title,
@@ -31,7 +32,8 @@ const createTopic = async (req, res) => {
     status,
     likes,
     dislikes,
-    comments
+    comments,
+    content
   );
   return res.status(200).json(data);
 };

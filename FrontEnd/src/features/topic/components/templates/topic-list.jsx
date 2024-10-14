@@ -1,5 +1,5 @@
 import { List } from "antd";
-import Topic from "../molecules/topic";
+import Topic from "../organisms/topic";
 
 const TopicList = () => {
   return (

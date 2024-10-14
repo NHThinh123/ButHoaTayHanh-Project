@@ -18,7 +18,8 @@ const createTopicService = async (
   status,
   likes,
   dislikes,
-  comments
+  comments,
+  content
 ) => {
   try {
     let result = await Topic.create({
@@ -31,6 +32,7 @@ const createTopicService = async (
       likes,
       dislikes,
       comments,
+      content,
     });
     return result;
   } catch (error) {

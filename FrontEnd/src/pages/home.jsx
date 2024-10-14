@@ -6,7 +6,7 @@ import useBannerData from "../features/home/hooks/useBannerData";
 
 import BentoBox from "../components/atoms/bento-box";
 import SpinLoading from "../components/atoms/spin-loading";
-import TopicList from "../features/topic/components/organisms/topic-list";
+import TopicList from "../features/topic/components/templates/topic-list";
 
 const HomePage = () => {
   const { bannerData, loading } = useBannerData();
