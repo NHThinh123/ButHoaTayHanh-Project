@@ -19,3 +19,14 @@ const DefaultLayout = ({ children }) => {
 };
 
 export default DefaultLayout;
+{
+  /* <div
+style={{
+  position: "fixed",
+  scrollbarWidth: "none",
+  height: "100vh",
+  paddingBottom: 100,
+  overflow: "auto",
+}}
+> */
+}

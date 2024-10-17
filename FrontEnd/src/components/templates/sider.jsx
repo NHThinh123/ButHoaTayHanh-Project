@@ -9,7 +9,6 @@ import { Menu } from "antd";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/auth.context";
-
 const Sider = () => {
   const navigate = useNavigate();
   const { auth, setAuth } = useContext(AuthContext);
@@ -142,23 +141,30 @@ const Sider = () => {
     console.log("click ", e);
   };
   return (
-    <Menu
-      onClick={onClick}
-      defaultSelectedKeys={["home"]}
-      defaultOpenKeys={["sub2"]}
-      mode="inline"
-      items={items}
+    <div
       style={{
-        width: "25%",
-        overflow: "auto",
-        height: "100vh",
-        position: "fixed",
-        insetInlineStart: 0,
-
         scrollbarWidth: "none",
+        height: "100vh",
         paddingBottom: 100,
+        overflow: "auto",
       }}
-    />
+    >
+      <Menu
+        onClick={onClick}
+        defaultSelectedKeys={["home"]}
+        defaultOpenKeys={["sub2"]}
+        mode="inline"
+        items={items}
+        style={{
+          width: "25%",
+          overflow: "auto",
+          position: "fixed",
+          insetInlineStart: 0,
+          scrollbarWidth: "none",
+          paddingBottom: 100,
+        }}
+      />
+    </div>
   );
 };
 export default Sider;
