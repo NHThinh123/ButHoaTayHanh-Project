@@ -64,6 +64,7 @@ const loginService = async (email, password) => {
       const isValidPassword = await bcrypt.compare(password, user.password);
       if (isValidPassword) {
         const payload = {
+          id: user.id,
           email: user.email,
           role: user.role,
           username: user.username,
@@ -75,6 +76,7 @@ const loginService = async (email, password) => {
           EC: 0,
           access_token,
           user: {
+            id: user.id,
             email: user.email,
             role: user.role,
             username: user.username,

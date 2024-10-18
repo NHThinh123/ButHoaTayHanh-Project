@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   CommentOutlined,
   DislikeOutlined,
@@ -6,50 +5,24 @@ import {
   DislikeFilled,
   LikeFilled,
 } from "@ant-design/icons";
-import { Col, Flex, Row, message } from "antd";
+import { Col, Flex, Row } from "antd";
 import DefaultTitle from "../../../../components/atoms/default-title";
+import useLikeTopic from "../../hooks/useLikeTopic";
 
-const TopicFooter = ({ topicData, onLike, onDislike, onComment }) => {
-  const [isLiked, setIsLiked] = useState(false);
-  const [isDisliked, setIsDisliked] = useState(false);
-  const [likes, setLikes] = useState(topicData.likes.length);
-  const [dislikes, setDislikes] = useState(topicData.dislikes.length);
-  const [comments, setComments] = useState(topicData.comments.length);
+const TopicFooter = ({ topicData }) => {
+  const { likes, dislikes, handleInteraction, userId } = useLikeTopic({
+    initialData: topicData,
+  });
 
-  const handleLike = async () => {
-    try {
-      if (isDisliked) {
-        setIsDisliked(false);
-        setDislikes(dislikes - 1);
-      }
-      setIsLiked(!isLiked);
-      const newLikes = isLiked ? likes - 1 : likes + 1;
-      setLikes(newLikes);
-      await onLike(topicData.id, newLikes);
-    } catch (error) {
-      message.error("Failed to update like");
-    }
+  const isLiked = likes.includes(userId);
+  const isDisliked = dislikes.includes(userId);
+
+  const handleLike = () => {
+    handleInteraction("like", topicData._id);
   };
 
-  const handleDislike = async () => {
-    try {
-      if (isLiked) {
-        setIsLiked(false);
-        setLikes(likes - 1);
-      }
-      setIsDisliked(!isDisliked);
-      const newDislikes = isDisliked ? dislikes - 1 : dislikes + 1;
-      setDislikes(newDislikes);
-      await onDislike(topicData.id, newDislikes);
-    } catch (error) {
-      message.error("Failed to update dislike");
-    }
-  };
-
-  const handleComment = () => {
-    // Implement comment functionality
-    // This could open a modal or navigate to a comment section
-    onComment(topicData.id);
+  const handleDislike = () => {
+    handleInteraction("dislike", topicData._id);
   };
 
   return (
@@ -68,7 +41,7 @@ const TopicFooter = ({ topicData, onLike, onDislike, onComment }) => {
             <LikeOutlined style={{ fontSize: 24 }} />
           )}
           <DefaultTitle style={{ fontSize: 18, fontWeight: 400 }}>
-            {likes}
+            {likes.length}
           </DefaultTitle>
         </Flex>
       </Col>
@@ -87,7 +60,7 @@ const TopicFooter = ({ topicData, onLike, onDislike, onComment }) => {
             <DislikeOutlined style={{ fontSize: 24 }} />
           )}
           <DefaultTitle style={{ fontSize: 18, fontWeight: 400 }}>
-            {dislikes}
+            {dislikes.length}
           </DefaultTitle>
         </Flex>
       </Col>
@@ -97,12 +70,11 @@ const TopicFooter = ({ topicData, onLike, onDislike, onComment }) => {
           justify="center"
           align="center"
           gap="small"
-          onClick={handleComment}
           style={{ cursor: "pointer" }}
         >
           <CommentOutlined style={{ fontSize: 24 }} />
           <DefaultTitle style={{ fontSize: 18, fontWeight: 400 }}>
-            {comments}
+            {topicData.comments?.length || 0}
           </DefaultTitle>
         </Flex>
       </Col>

@@ -1,10 +1,6 @@
 import { Avatar, Flex } from "antd";
-import { useContext } from "react";
-import { AuthContext } from "../../contexts/auth.context";
 
-const UserInfo = () => {
-  const { auth } = useContext(AuthContext);
-
+const UserInfo = ({ auth }) => {
   return (
     <Flex
       gap="middle"

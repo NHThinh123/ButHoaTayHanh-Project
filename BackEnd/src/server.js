@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 
 configViewEngine(app);
 app.all("*", authentication);
-app.use(rateLimitCustom);
+// app.use(rateLimitCustom);
 app.use("/api/character/", characterRoutes);
 app.use("/api/user/", userRoutes);
 app.use("/api/topic/", topicRoutes);

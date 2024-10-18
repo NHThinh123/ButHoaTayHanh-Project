@@ -17,6 +17,7 @@ function App() {
         setAuth({
           isAuthentication: true,
           user: {
+            id: res.id,
             email: res.email,
             role: res.name,
             username: res.username,

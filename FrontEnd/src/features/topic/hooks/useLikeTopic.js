@@ -1,103 +1,104 @@
 import { message } from "antd";
-import axios from "axios";
 import { debounce } from "lodash";
-import { useCallback, useState } from "react";
+import { useCallback, useContext, useState } from "react";
+import { updateTopicApi } from "../services/topicApi";
+import { AuthContext } from "../../../contexts/auth.context";
 
 const useLikeTopic = ({ initialData }) => {
+  const { auth } = useContext(AuthContext);
   const [likes, setLikes] = useState(initialData.likes || []);
   const [dislikes, setDislikes] = useState(initialData.dislikes || []);
-  const [userInteraction, setUserInteraction] = useState({
-    liked: false,
-    disliked: false,
-  });
+  const userId = auth?.user?.id;
 
   // Debounced API calls
   const debouncedApiCall = useCallback(
-    debounce(async (action, topicId, data) => {
+    debounce(async (action, topicId, newLikes, newDislikes) => {
       try {
-        const response = await axios.patch(
-          `/api/topics/${topicId}/interaction`,
-          {
-            action,
-            ...data,
-          }
-        );
+        const res = await updateTopicApi(topicId, {
+          likes: newLikes,
+          dislikes: newDislikes,
+        });
 
         // Update state with server response
-        if (response.data.success) {
-          setLikes(response.data.likes);
-          setDislikes(response.data.dislikes);
+        if (res) {
+          setLikes(res.likes);
+          setDislikes(res.dislikes);
         }
       } catch (error) {
-        // Lỗi sẽ khôi phuc lại trạng thái ban đầu
+        console.log(error);
+        // Khôi phục trạng thái khi có lỗi
         if (action === "like") {
-          setLikes((prev) => prev.filter((id) => id !== data.userId));
-          setUserInteraction((prev) => ({ ...prev, liked: false }));
+          setLikes((prev) => prev.filter((id) => id !== userId));
         } else {
-          setDislikes((prev) => prev.filter((id) => id !== data.userId));
-          setUserInteraction((prev) => ({ ...prev, disliked: false }));
+          setDislikes((prev) => prev.filter((id) => id !== userId));
         }
         message.error("Không thể cập nhật. Vui lòng thử lại.");
       }
     }, 1000),
-    []
+    [userId]
   );
 
-  const handleInteraction = async (action, topicId, userId) => {
+  const handleInteraction = async (action, topicId) => {
     if (!userId) {
       message.warning("Vui lòng đăng nhập để thực hiện tương tác!");
       return;
     }
 
+    const isLiked = likes.includes(userId);
+    const isDisliked = dislikes.includes(userId);
+
     if (action === "like") {
-      // Optimistic update
-      if (!userInteraction.liked) {
-        setLikes((prev) => [...prev, userId]);
-        if (userInteraction.disliked) {
-          setDislikes((prev) => prev.filter((id) => id !== userId));
-          setUserInteraction({ liked: true, disliked: false });
-        } else {
-          setUserInteraction((prev) => ({ ...prev, liked: true }));
+      let newLikes = [...likes];
+      let newDislikes = [...dislikes];
+
+      if (!isLiked) {
+        // Thêm like mới
+        newLikes = [...likes, userId];
+        // Nếu đang dislike thì bỏ dislike
+        if (isDisliked) {
+          newDislikes = dislikes.filter((id) => id !== userId);
         }
       } else {
-        setLikes((prev) => prev.filter((id) => id !== userId));
-        setUserInteraction((prev) => ({ ...prev, liked: false }));
+        // Bỏ like
+        newLikes = likes.filter((id) => id !== userId);
       }
 
-      // Queue API call
-      debouncedApiCall("like", topicId, {
-        userId,
-        liked: !userInteraction.liked,
-        disliked: false,
-      });
+      // Cập nhật UI ngay lập tức (optimistic update)
+      setLikes(newLikes);
+      setDislikes(newDislikes);
+
+      // Gọi API với mảng likes/dislikes mới
+      debouncedApiCall("like", topicId, newLikes, newDislikes);
     } else if (action === "dislike") {
-      if (!userInteraction.disliked) {
-        setDislikes((prev) => [...prev, userId]);
-        if (userInteraction.liked) {
-          setLikes((prev) => prev.filter((id) => id !== userId));
-          setUserInteraction({ liked: false, disliked: true });
-        } else {
-          setUserInteraction((prev) => ({ ...prev, disliked: true }));
+      let newLikes = [...likes];
+      let newDislikes = [...dislikes];
+
+      if (!isDisliked) {
+        // Thêm dislike mới
+        newDislikes = [...dislikes, userId];
+        // Nếu đang like thì bỏ like
+        if (isLiked) {
+          newLikes = likes.filter((id) => id !== userId);
         }
       } else {
-        setDislikes((prev) => prev.filter((id) => id !== userId));
-        setUserInteraction((prev) => ({ ...prev, disliked: false }));
+        // Bỏ dislike
+        newDislikes = dislikes.filter((id) => id !== userId);
       }
 
-      // Queue API call
-      debouncedApiCall("dislike", topicId, {
-        userId,
-        liked: false,
-        disliked: !userInteraction.disliked,
-      });
+      // Cập nhật UI ngay lập tức (optimistic update)
+      setLikes(newLikes);
+      setDislikes(newDislikes);
+
+      // Gọi API với mảng likes/dislikes mới
+      debouncedApiCall("dislike", topicId, newLikes, newDislikes);
     }
   };
 
   return {
     likes,
     dislikes,
-    userInteraction,
     handleInteraction,
+    userId,
   };
 };
 

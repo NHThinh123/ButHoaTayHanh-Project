@@ -59,7 +59,7 @@ const Header = () => {
                 <Button href="/register">Đăng Ký</Button>
               </>
             ) : (
-              <UserInfo />
+              <UserInfo auth={auth} />
             )}
           </Flex>
         </Col>
