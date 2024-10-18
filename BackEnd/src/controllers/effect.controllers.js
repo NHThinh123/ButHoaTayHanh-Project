@@ -15,19 +15,16 @@ const createEffect = async (req, res) => {
   return res.status(200).json(data);
 };
 const getEffectById = async (req, res) => {
-  const { id } = req.params.id;
-  const data = await getEffectByIdService(id);
+  const data = await getEffectByIdService(req.params.id);
   return res.status(200).json(data);
 };
 const updateEffect = async (req, res) => {
-  const { id } = req.params.id;
   const updateData = req.body;
-  const data = await updateEffectService(id, updateData);
+  const data = await updateEffectService(req.params.id, updateData);
   return res.status(200).json(data);
 };
 const deleteEffect = async (req, res) => {
-  const { id } = req.params.id;
-  const data = await deleteEffectService(id);
+  const data = await deleteEffectService(req.params.id);
   return res.status(200).json(data);
 };
 

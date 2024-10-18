@@ -156,7 +156,8 @@ const Sider = () => {
         mode="inline"
         items={items}
         style={{
-          width: "25%",
+          width: "16%",
+          height: "100vh",
           overflow: "auto",
           position: "fixed",
           insetInlineStart: 0,

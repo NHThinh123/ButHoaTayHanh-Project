@@ -11,6 +11,8 @@ const connection = require("./config/database");
 const cors = require("cors");
 const delay = require("./middleware/delay");
 const authentication = require("./middleware/authentication");
+const rateLimitCustom = require("./middleware/rateLimit");
+
 const app = express();
 const port = process.env.PORT || 8888;
 
@@ -21,6 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 
 configViewEngine(app);
 app.all("*", authentication);
+app.use(rateLimitCustom);
 app.use("/api/character/", characterRoutes);
 app.use("/api/user/", userRoutes);
 app.use("/api/topic/", topicRoutes);

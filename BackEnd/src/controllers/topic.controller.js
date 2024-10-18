@@ -15,19 +15,16 @@ const createTopic = async (req, res) => {
   return res.status(200).json(data);
 };
 const getTopicById = async (req, res) => {
-  const { id } = req.params.id;
-  const data = await getTopicByIdService(id);
+  const data = await getTopicByIdService(req.params.id);
   return res.status(200).json(data);
 };
 const updateTopic = async (req, res) => {
-  const { id } = req.params.id;
   const updateData = req.body;
-  const data = await updateTopicService(id, updateData);
+  const data = await updateTopicService(req.params.id, updateData);
   return res.status(200).json(data);
 };
 const deleteTopic = async (req, res) => {
-  const { id } = req.params.id;
-  const data = await deleteTopicService(id);
+  const data = await deleteTopicService(req.params.id);
   return res.status(200).json(data);
 };
 

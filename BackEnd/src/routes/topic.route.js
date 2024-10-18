@@ -11,14 +11,13 @@ const {
 // Admin routes
 
 // Protected routes
+router.get("/", getTopics);
+router.get("/:id", getTopicById);
 
 router.put("/:id", updateTopic);
 router.delete("/:id", deleteTopic);
 router.post("/", createTopic);
 
 // Public routes
-
-router.get("/:id", getTopicById);
-router.get("/", getTopics);
 
 module.exports = router;

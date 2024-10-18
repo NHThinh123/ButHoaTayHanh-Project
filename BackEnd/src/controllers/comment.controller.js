@@ -21,14 +21,12 @@ const getCommentById = async (req, res) => {
   return res.status(200).json(data);
 };
 const updateComment = async (req, res) => {
-  const { id } = req.params.id;
   const updateData = req.body;
-  const data = await updateCommentService(id, updateData);
+  const data = await updateCommentService(req.params.id, updateData);
   return res.status(200).json(data);
 };
 const deleteComment = async (req, res) => {
-  const { id } = req.params.id;
-  const data = await deleteCommentService(id);
+  const data = await deleteCommentService(req.params.id);
   return res.status(200).json(data);
 };
 

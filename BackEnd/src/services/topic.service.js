@@ -42,7 +42,7 @@ const getTopicByIdService = async (id) => {
   try {
     let result = await Topic.findById(id)
       .populate("author")
-      .populate("comment");
+      .populate("comments");
     return result;
   } catch (error) {
     console.error(error);

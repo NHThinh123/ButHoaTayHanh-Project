@@ -7,10 +7,10 @@ const DefaultLayout = ({ children }) => {
     <Layout>
       <Header />
       <Row style={{ marginTop: "80px" }}>
-        <Col span={6}>
+        <Col span={4}>
           <Sider />
         </Col>
-        <Col span={18}>
+        <Col span={20}>
           <div style={{ flex: 1 }}>{children}</div>
         </Col>
       </Row>
@@ -19,14 +19,3 @@ const DefaultLayout = ({ children }) => {
 };
 
 export default DefaultLayout;
-{
-  /* <div
-style={{
-  position: "fixed",
-  scrollbarWidth: "none",
-  height: "100vh",
-  paddingBottom: 100,
-  overflow: "auto",
-}}
-> */
-}

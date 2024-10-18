@@ -21,14 +21,12 @@ const getUsers = async (req, res) => {
   return res.status(200).json(data);
 };
 const getUserById = async (req, res) => {
-  const { id } = req.params.id;
-  const data = await getUserByIdService(id);
+  const data = await getUserByIdService(req.params.id);
   return res.status(200).json(data);
 };
 const updateUser = async (req, res) => {
-  const { id } = req.params.id;
   const updateData = req.body;
-  const data = await updateUserService(id, updateData);
+  const data = await updateUserService(req.params.id, updateData);
   return res.status(200).json(data);
 };
 const getAccount = async (req, res) => {

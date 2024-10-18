@@ -11,4 +11,9 @@ const getTopicApi = (filters, page, pageSize) => {
   });
 };
 
-export { getTopicApi };
+const updateTopicApi = (topicId, dataUpdate) => {
+  const URL_API = `api/topic/${topicId}`;
+  return axios.put(URL_API, dataUpdate);
+};
+
+export { getTopicApi, updateTopicApi };
