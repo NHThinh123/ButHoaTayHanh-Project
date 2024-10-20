@@ -1,6 +1,7 @@
 const Comment = require("../models/comment.model");
 
-const getCommentsService = async () => {
+const getCommentsService = async (query) => {
+  const { topicId, sort, limit, page, search } = query;
   try {
     let result = await Comment.find().populate("author");
     return result;

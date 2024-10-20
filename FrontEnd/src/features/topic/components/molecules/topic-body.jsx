@@ -14,7 +14,7 @@ const TopicBody = ({ topicData }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1);
+    }, 100);
     return () => clearTimeout(timer);
   }, []);
   if (loading) return <SpinLoading />;
@@ -58,6 +58,7 @@ const TopicBody = ({ topicData }) => {
           >
             {topicData.image.map((img, index) => (
               <Image
+                loading="lazy"
                 key={index}
                 preview={false}
                 src={img}

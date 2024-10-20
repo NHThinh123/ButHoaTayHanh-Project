@@ -7,7 +7,7 @@ const {
 } = require("../services/comment.service");
 
 const getComments = async (req, res) => {
-  const data = await getCommentsService();
+  const data = await getCommentsService(req.query);
   return res.status(200).json(data);
 };
 const createComment = async (req, res) => {
@@ -16,8 +16,7 @@ const createComment = async (req, res) => {
   return res.status(200).json(data);
 };
 const getCommentById = async (req, res) => {
-  const { id } = req.params.id;
-  const data = await getCommentByIdService(id);
+  const data = await getCommentByIdService(req.params.id);
   return res.status(200).json(data);
 };
 const updateComment = async (req, res) => {

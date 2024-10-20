@@ -1,11 +1,6 @@
-import { Col, Row } from "antd";
+import SkeletonCustom from "../components/atoms/skeletons/topic-overview-skeleton";
+
 const App = () => {
-  return (
-    <Row>
-      <Col span={6}></Col>
-      <Col span={12}></Col>
-      <Col span={6}></Col>
-    </Row>
-  );
+  return <SkeletonCustom />;
 };
 export default App;

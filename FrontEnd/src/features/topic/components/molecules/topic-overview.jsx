@@ -4,14 +4,20 @@ import { CheckCircleOutlined } from "@ant-design/icons";
 import BentoBox from "../../../../components/atoms/bento-box";
 import DefaultTitle from "../../../../components/atoms/default-title";
 import DefaultText from "../../../../components/atoms/default-text";
+import formatDate from "../../../../utils/formatDate";
 
-const TopicOverview = () => {
+import useTopicData from "../../hooks/useTopicData";
+import SkeletonCustom from "../../../../components/atoms/skeletons/topic-overview-skeleton";
+
+const TopicOverview = ({ data }) => {
+  const { loading } = useTopicData();
+  if (loading) return <SkeletonCustom />;
   return (
     <BentoBox padding={12}>
       <Row gutter={8}>
         <Col span={8} style={{ height: 100 }}>
           <Image
-            src="https://img.tapimg.net/market/images/c974466779e49a362e5a93661ecaab5f.jpg"
+            src={data?.image}
             height={100}
             style={{
               borderRadius: 8,
@@ -30,15 +36,14 @@ const TopicOverview = () => {
           }}
         >
           <DefaultTitle style={{ fontSize: 16, marginTop: -4 }}>
-            Thông báo bảo trì tất cả các máy chủ để nâng cấp hệ thống và thêm
-            các chức năng mới
+            {data.title}
           </DefaultTitle>
           <DefaultText style={{ fontSize: 12, fontWeight: 500 }}>
-            KAFF {""}
+            {`${data?.author?.userName} `}
             <CheckCircleOutlined />
           </DefaultText>
           <DefaultText style={{ fontSize: 12 }}>
-            149 lượt thích・2 tháng trước
+            {`${data.likes?.length} lượt thích・${formatDate(data?.uploadAt)}`}
           </DefaultText>
         </Col>
       </Row>

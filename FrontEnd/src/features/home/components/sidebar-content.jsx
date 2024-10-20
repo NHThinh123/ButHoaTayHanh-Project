@@ -1,5 +1,5 @@
-import TopicOverviewList from "../../../components/organisms/topic-overview-list";
 import Footer from "../../../components/templates/footer";
+import TopicOverviewList from "../../topic/components/templates/topic-overview-list";
 
 const SidebarContent = () => {
   return (
