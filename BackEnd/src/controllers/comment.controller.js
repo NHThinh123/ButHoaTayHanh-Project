@@ -11,8 +11,7 @@ const getComments = async (req, res) => {
   return res.status(200).json(data);
 };
 const createComment = async (req, res) => {
-  const { content, author, topic } = req.body;
-  const data = await createCommentService(content, author, topic);
+  const data = await createCommentService(req.body);
   return res.status(200).json(data);
 };
 const getCommentById = async (req, res) => {

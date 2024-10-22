@@ -13,6 +13,7 @@ const commentSchema = new mongoose.Schema({
       ref: "Comment",
     },
   ],
+  repliesWithUser: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
 
 const Comment = mongoose.model("Comment", commentSchema);

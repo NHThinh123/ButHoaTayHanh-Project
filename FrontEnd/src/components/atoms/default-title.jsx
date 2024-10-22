@@ -1,9 +1,9 @@
-const DefaultTitle = ({ children, color, style }) => {
+const DefaultTitle = ({ children, color, style, fontSize }) => {
   return (
     <h2
       style={{
         color: color || "#000",
-        fontSize: 18,
+        fontSize: fontSize || 18,
         display: "-webkit-box",
         WebkitLineClamp: 2,
         WebkitBoxOrient: "vertical",

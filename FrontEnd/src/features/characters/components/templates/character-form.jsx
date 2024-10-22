@@ -19,7 +19,6 @@ const CharacterForm = () => {
   } = useCharacterForm();
   const {
     effectData,
-
     showAddEffectModal,
     handleAddEffectModalCancel,
     handleAddEffectModalOk,
@@ -60,9 +59,7 @@ const CharacterForm = () => {
             style={{
               position: "fixed",
               bottom: 0,
-              width: "75%",
-
-              paddingRight: 16,
+              width: "82%",
             }}
           >
             <BentoBox>
