@@ -1,12 +1,11 @@
 import { Divider, List, Skeleton } from "antd";
 import Topic from "../organisms/topic";
-import useTopicData from "../../hooks/useTopicData";
+
 import InfiniteScroll from "react-infinite-scroll-component";
-const TopicList = () => {
-  const { topicData, loadMoreData, hasMore } = useTopicData();
+const TopicList = ({ data, loadMoreData, hasMore }) => {
   return (
     <InfiniteScroll
-      dataLength={topicData.length} // Số lượng item hiện tại
+      dataLength={data.length} // Số lượng item hiện tại
       next={loadMoreData} // Hàm gọi khi cuộn đến cuối
       hasMore={hasMore} // Xác định nếu còn dữ liệu
       loader={
@@ -24,7 +23,7 @@ const TopicList = () => {
       <List
         itemLayout="vertical"
         split={false}
-        dataSource={topicData}
+        dataSource={data}
         renderItem={(item) => (
           <List.Item>
             <Topic topicData={item}></Topic>

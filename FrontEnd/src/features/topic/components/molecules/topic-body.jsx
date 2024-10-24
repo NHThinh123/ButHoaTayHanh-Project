@@ -1,7 +1,6 @@
-import { Carousel, Col, Image, Row, Typography } from "antd";
+import { Col, Image, Row, Skeleton, Typography } from "antd";
 import DefaultTitle from "../../../../components/atoms/default-title";
 import { useEffect, useState } from "react";
-import SpinLoading from "../../../../components/atoms/spin-loading";
 
 const { Paragraph } = Typography;
 const TopicBody = ({ topicData }) => {
@@ -17,7 +16,16 @@ const TopicBody = ({ topicData }) => {
     }, 100);
     return () => clearTimeout(timer);
   }, []);
-  if (loading) return <SpinLoading />;
+  if (loading)
+    return (
+      <Skeleton
+        avatar
+        paragraph={{
+          rows: 1,
+        }}
+        active
+      />
+    );
   return (
     <>
       <Row>
@@ -44,33 +52,17 @@ const TopicBody = ({ topicData }) => {
       </Row>
       <Row>
         <Col span={24}>
-          <Carousel
-            arrows
-            autoplay
-            autoplaySpeed={5000}
+          <Image
+            loading="lazy"
+            preview={false}
+            src={topicData?.image[0]}
             style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              borderRadius: 10,
-              overflow: "hidden",
+              borderRadius: 8,
+              objectFit: "cover",
+              width: "100%",
+              minHeight: 420,
             }}
-          >
-            {topicData.image.map((img, index) => (
-              <Image
-                loading="lazy"
-                key={index}
-                preview={false}
-                src={img}
-                style={{
-                  borderRadius: 8,
-                  objectFit: "cover",
-                  width: "100%",
-                  minHeight: 420,
-                }}
-              ></Image>
-            ))}
-          </Carousel>
+          ></Image>
         </Col>
       </Row>
     </>

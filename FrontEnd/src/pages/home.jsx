@@ -1,31 +1,44 @@
-import { Col, Row } from "antd";
+import { Col, Row, Skeleton } from "antd";
 import BannerList from "../features/home/components/banner-list";
 
 import SidebarContent from "../features/home/components/sidebar-content";
-import useBannerData from "../features/home/hooks/useBannerData";
 
 import BentoBox from "../components/atoms/bento-box";
-import SpinLoading from "../components/atoms/spin-loading";
+
 import TopicList from "../features/topic/components/templates/topic-list";
+import useTopicData from "../features/topic/hooks/useTopicData";
 
 const HomePage = () => {
-  const { bannerData, loading } = useBannerData();
-
+  const { topicData, loading, loadMoreData, hasMore } = useTopicData();
+  const newTopic = topicData?.slice(0, 4);
   return (
     <Row>
       <Col span={16}>
         {loading ? (
-          <SpinLoading />
+          <Skeleton
+            avatar
+            paragraph={{
+              rows: 1,
+            }}
+            active
+            style={{
+              minHeight: "480px",
+            }}
+          />
         ) : (
           <BentoBox>
-            <BannerList bannerData={bannerData?.slice(0, 5)} />
+            <BannerList bannerData={newTopic} />
           </BentoBox>
         )}
 
-        <TopicList />
+        <TopicList
+          data={topicData}
+          loadMoreData={loadMoreData}
+          hasMore={hasMore}
+        />
       </Col>
       <Col span={8} style={{ paddingTop: 8 }}>
-        <SidebarContent />
+        <SidebarContent data={newTopic} />
       </Col>
     </Row>
   );
