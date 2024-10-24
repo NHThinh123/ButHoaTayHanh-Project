@@ -3,6 +3,7 @@ const DefaultTitle = ({ children, color, style, fontSize }) => {
     <h2
       style={{
         color: color || "#000",
+
         fontSize: fontSize || 18,
         display: "-webkit-box",
         WebkitLineClamp: 2,

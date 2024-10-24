@@ -6,58 +6,88 @@ import {
   CaretDownOutlined,
   CaretUpOutlined,
   CommentOutlined,
+  DislikeFilled,
   DislikeOutlined,
+  LikeFilled,
   LikeOutlined,
 } from "@ant-design/icons";
 import ReplyList from "./reply-list";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../../../contexts/auth.context";
 
 const Comment = ({ data }) => {
   const [showReplies, setShowReplies] = useState(false);
+  const { auth } = useContext(AuthContext);
+  const isLiked = data.likes.includes(auth.user.id);
+  const isDisliked = data.dislikes.includes(auth.user.id);
   return (
     <Row>
       <Col span={2} style={{ marginTop: 12 }}>
         <Avatar
-          src={
-            "https://yt3.ggpht.com/SxJooAauEAJgyz_9MqB21DvebRRXY5kPbVy4lB_95o3-8yGsMf1neXFEp0ujD-vdVykPPb4l=s88-c-k-c0x00ffffff-no-rj"
-          }
-        ></Avatar>
+          size={40}
+          style={{
+            backgroundColor: "#fde3cf",
+            color: "#f56a00",
+          }}
+        >
+          {data.author?.username?.charAt(0).toUpperCase() ?? "U"}
+        </Avatar>
       </Col>
       <Col span={22}>
-        <BentoBox padding={12}>
-          <DefaultTitle>KAFF Gaming</DefaultTitle>
-          <DefaultText>
-            We supply a series of design principles, practical patterns and high
-            quality design resources (Sketch and Axure), to help people create
-            their product prototypes beautifully and efficiently.
-          </DefaultText>
+        <BentoBox
+          padding={12}
+          style={{
+            paddingTop: 4,
+            display: "inline-block",
+            marginBottom: 0,
+          }}
+        >
+          <DefaultTitle>{data.author.username}</DefaultTitle>
+          <DefaultText style={{ paddingTop: 8 }}>{data.content}</DefaultText>
         </BentoBox>
         <div style={{ marginLeft: 12 }}>
           <Space style={{ margin: "4px 0px" }}>
-            <LikeOutlined /> 99 <DislikeOutlined /> 99
-            <p>
-              <CommentOutlined /> phản hồi
-            </p>
-          </Space>
-          <DefaultTitle fontSize={14}>
-            <Button
-              type="text"
-              onClick={() => {
-                setShowReplies(!showReplies);
-              }}
-              style={{ padding: 0, paddingRight: 4 }}
-            >
-              {showReplies ? (
-                <div style={{ color: "#1890FF" }}>
-                  <CaretUpOutlined /> 3 phản hồi
-                </div>
+            <Button type="text" style={{ padding: 2 }}>
+              {isLiked ? (
+                <LikeFilled style={{ fontSize: 24, color: "#1890ff" }} />
               ) : (
-                <div style={{ color: "#1890FF" }}>
-                  <CaretDownOutlined /> 3 phản hồi{" "}
-                </div>
+                <LikeOutlined />
               )}
+              {data.likes.length}
             </Button>
-          </DefaultTitle>
+            <Button type="text" style={{ padding: 2 }}>
+              {isDisliked ? (
+                <DislikeFilled style={{ fontSize: 24, color: "#ff4d4f" }} />
+              ) : (
+                <DislikeOutlined />
+              )}
+              {data.dislikes.length}
+            </Button>
+            <Button type="text" style={{ padding: 2 }}>
+              <CommentOutlined /> phản hồi
+            </Button>
+          </Space>
+          {data?.replies.length > 0 && (
+            <DefaultTitle fontSize={14}>
+              <Button
+                type="text"
+                onClick={() => {
+                  setShowReplies(!showReplies);
+                }}
+                style={{ padding: 0, paddingRight: 4 }}
+              >
+                {showReplies ? (
+                  <div style={{ color: "#1890FF" }}>
+                    <CaretUpOutlined /> 3 phản hồi
+                  </div>
+                ) : (
+                  <div style={{ color: "#1890FF" }}>
+                    <CaretDownOutlined /> 3 phản hồi{" "}
+                  </div>
+                )}
+              </Button>
+            </DefaultTitle>
+          )}
         </div>
         {showReplies && <ReplyList data={data} />}
       </Col>

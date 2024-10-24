@@ -15,7 +15,8 @@ const TopicFooter = ({ topicData }) => {
   const { likes, dislikes, handleInteraction, userId } = useLikeTopic({
     initialData: topicData,
   });
-  const { showModalComment, closeModel, openModal } = useCommentData();
+  const { showModalComment, closeModel, openModal, commentData } =
+    useCommentData();
   const isLiked = likes.includes(userId);
   const isDisliked = dislikes.includes(userId);
 
@@ -76,19 +77,20 @@ const TopicFooter = ({ topicData }) => {
           gap="small"
           style={{ cursor: "pointer" }}
         >
-          <Button type="text" onClick={openModal}>
+          <Button type="text" onClick={() => openModal(topicData._id)}>
             <CommentOutlined style={{ fontSize: 24 }} />
             <DefaultTitle style={{ fontSize: 18, fontWeight: 400 }}>
               {topicData.comments?.length || 0}
             </DefaultTitle>
           </Button>
         </Flex>
-        <ModalComment
-          showModalComment={showModalComment}
-          closeModal={closeModel}
-          topicId={topicData._id}
-        />
       </Col>
+      <ModalComment
+        showModalComment={showModalComment}
+        closeModal={closeModel}
+        topicId={topicData._id}
+        commentData={commentData}
+      />
     </Row>
   );
 };

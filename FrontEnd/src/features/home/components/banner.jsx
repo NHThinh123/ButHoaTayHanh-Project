@@ -17,6 +17,7 @@ const Banner = (props) => {
       }}
     >
       <Image
+        loading="lazy"
         src={imgUrl}
         preview={false}
         style={{

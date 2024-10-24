@@ -6,23 +6,14 @@ import useCommentData from "../../hooks/useCommentData";
 import ModalCommentFooter from "../molecules/modal-comment-footer";
 import CommentList from "../molecules/comment-list";
 
-const data = [
-  {
-    title: "Ant Design Title 1",
-  },
-  {
-    title: "Ant Design Title 2",
-  },
-  {
-    title: "Ant Design Title 3",
-  },
-  {
-    title: "Ant Design Title 4",
-  },
-];
-
-const ModalComment = ({ showModalComment, closeModal, topicId }) => {
+const ModalComment = ({
+  showModalComment,
+  closeModal,
+  topicId,
+  commentData,
+}) => {
   const { onFinishComment } = useCommentData();
+
   return (
     <Modal
       open={showModalComment}
@@ -33,9 +24,7 @@ const ModalComment = ({ showModalComment, closeModal, topicId }) => {
         <DefaultText
           style={{
             fontSize: 24,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
+            textAlign: "center",
             fontWeight: "600",
           }}
         >
@@ -49,7 +38,7 @@ const ModalComment = ({ showModalComment, closeModal, topicId }) => {
         />
       }
     >
-      <CommentList data={data} />
+      <CommentList data={commentData} />
     </Modal>
   );
 };

@@ -16,7 +16,7 @@ const getCommentsService = async (query) => {
       .sort(sortOption)
       .limit(Number(limit))
       .skip((Number(page) - 1) * Number(limit))
-      .populate("author");
+      .populate("author", "-password");
 
     const total = await Comment.countDocuments(filter);
 

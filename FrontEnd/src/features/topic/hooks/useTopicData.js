@@ -8,19 +8,20 @@ const useTopicData = () => {
   const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
   const [hasMore, setHasMore] = useState(true);
 
-  // const [filters, setFilters] = useState({
-  //   search: "",
-  //   faction: "",
-  //   role: "",
-  //   rarity: "",
-  //   sort: "",
-  // });
+  // eslint-disable-next-line no-unused-vars
+  const [filters, setFilters] = useState({
+    search: "",
+    faction: "",
+    role: "",
+    rarity: "",
+    sort: "",
+  });
   const loadMoreData = async () => {
     if (loading) return;
     setLoading(true);
 
     try {
-      const response = await getTopicApi({}, currentPage, 3); // Gọi API, lấy 3 topic mỗi lần
+      const response = await getTopicApi(filters, currentPage, 3); // Gọi API, lấy 3 topic mỗi lần
       if (response && response.result) {
         setTopicData((prevData) => [...prevData, ...response.result]); // Thêm data mới vào
         setHasMore(currentPage < response.totalPages); // Kiểm tra nếu còn dữ liệu để tải
