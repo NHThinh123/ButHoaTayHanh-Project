@@ -1,5 +1,6 @@
 const Topic = require("../models/topic.model");
 const User = require("../models/user.model");
+const Comment = require("../models/comment.model");
 const getTopicsService = async (query) => {
   const { sort, limit, page = 1, search } = query;
   const filter = {};
@@ -132,6 +133,20 @@ const dislikeTopicService = async (topicId, userId) => {
     return null;
   }
 };
+
+const commentTopicService = async (topicId, commentData) => {
+  try {
+    const topic = await Topic.findById(topicId);
+    if (!topic) return null;
+    let result = await Comment.create(commentData);
+    topic.comments.push(result._id);
+    await topic.save();
+    return result;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
 module.exports = {
   getTopicsService,
   createTopicService,
@@ -140,4 +155,5 @@ module.exports = {
   deleteTopicService,
   likeTopicService,
   dislikeTopicService,
+  commentTopicService,
 };

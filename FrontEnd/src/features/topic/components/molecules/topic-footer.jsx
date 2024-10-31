@@ -14,8 +14,14 @@ import useCommentData from "../../hooks/useCommentData";
 const TopicFooter = ({ topicData }) => {
   const { likes, dislikes, isLiked, isDisliked, handleLike, handleDislike } =
     useLikeTopic({ topic: topicData });
-  const { showModalComment, closeModel, openModal, commentData } =
-    useCommentData();
+  const {
+    showModalComment,
+    closeModel,
+    openModal,
+    commentData,
+    handleComment,
+    form,
+  } = useCommentData({ topic: topicData });
 
   return (
     <Row style={{ marginTop: 24 }}>
@@ -66,7 +72,7 @@ const TopicFooter = ({ topicData }) => {
           gap="small"
           style={{ cursor: "pointer" }}
         >
-          <Button type="text" onClick={() => openModal(topicData._id)}>
+          <Button type="text" onClick={openModal}>
             <CommentOutlined style={{ fontSize: 24 }} />
             <DefaultTitle style={{ fontSize: 18, fontWeight: 400 }}>
               {topicData.comments?.length || 0}
@@ -77,8 +83,9 @@ const TopicFooter = ({ topicData }) => {
       <ModalComment
         showModalComment={showModalComment}
         closeModal={closeModel}
-        topicId={topicData._id}
         commentData={commentData}
+        handleComment={handleComment}
+        form={form}
       />
     </Row>
   );

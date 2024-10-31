@@ -6,6 +6,7 @@ const {
   deleteTopicService,
   likeTopicService,
   dislikeTopicService,
+  commentTopicService,
 } = require("../services/topic.service");
 
 const getTopics = async (req, res) => {
@@ -37,6 +38,10 @@ const dislikeTopic = async (req, res) => {
   const data = await dislikeTopicService(req.params.id, req.user.id);
   return res.status(200).json(data);
 };
+const commentTopic = async (req, res) => {
+  const data = await commentTopicService(req.params.id, req.body);
+  return res.status(200).json(data);
+};
 module.exports = {
   getTopics,
   createTopic,
@@ -45,4 +50,5 @@ module.exports = {
   deleteTopic,
   likeTopic,
   dislikeTopic,
+  commentTopic,
 };

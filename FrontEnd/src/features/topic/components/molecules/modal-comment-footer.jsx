@@ -5,9 +5,8 @@ import { useEffect, useRef } from "react";
 
 const { TextArea } = Input;
 
-const ModalCommentFooter = ({ onFinishComment, topicId }) => {
+const ModalCommentFooter = ({ onFinishComment, form }) => {
   const textAreaRef = useRef(null);
-  const [form] = Form.useForm();
 
   useEffect(() => {
     // Tự động focus vào TextArea khi component được mount
@@ -39,7 +38,7 @@ const ModalCommentFooter = ({ onFinishComment, topicId }) => {
         <BentoBox padding={8}>
           <Form
             form={form}
-            onFinish={(values) => onFinishComment(values, topicId)}
+            onFinish={(values) => onFinishComment(values)}
             onValuesChange={handleValuesChange}
           >
             <Row>

@@ -2,18 +2,16 @@ import { Modal } from "antd";
 
 import DefaultText from "../../../../components/atoms/default-text";
 
-import useCommentData from "../../hooks/useCommentData";
 import ModalCommentFooter from "../molecules/modal-comment-footer";
 import CommentList from "../molecules/comment-list";
 
 const ModalComment = ({
   showModalComment,
   closeModal,
-  topicId,
   commentData,
+  handleComment,
+  form,
 }) => {
-  const { onFinishComment } = useCommentData();
-
   return (
     <Modal
       open={showModalComment}
@@ -32,10 +30,7 @@ const ModalComment = ({
         </DefaultText>
       }
       footer={
-        <ModalCommentFooter
-          onFinishComment={onFinishComment}
-          topicId={topicId}
-        />
+        <ModalCommentFooter onFinishComment={handleComment} form={form} />
       }
     >
       <CommentList data={commentData} />

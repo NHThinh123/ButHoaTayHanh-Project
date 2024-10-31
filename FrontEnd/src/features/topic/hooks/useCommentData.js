@@ -1,11 +1,14 @@
 import { useCallback, useContext, useState } from "react";
 import { AuthContext } from "../../../contexts/auth.context";
-import { createCommentApi, getCommentApi } from "../services/commentApi";
+import { getCommentApi } from "../services/commentApi";
+import { commentTopicApi } from "../services/topicApi";
+import { Form } from "antd";
 
-const useCommentData = () => {
+const useCommentData = ({ topic }) => {
   const [commentData, setCommentData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showModalComment, setShowModalComment] = useState(false);
+  const [form] = Form.useForm();
   const { auth } = useContext(AuthContext);
   // eslint-disable-next-line no-unused-vars
   const [filters, setFilters] = useState({
@@ -15,32 +18,39 @@ const useCommentData = () => {
     rarity: "",
     sort: "",
   });
+
   const closeModel = () => {
     setShowModalComment(false);
   };
-  const openModal = (topicId) => {
+  const openModal = () => {
     setShowModalComment(true);
-    fetchComment(topicId);
-    console.log(commentData);
+    fetchComment();
   };
-  const onFinishComment = async (values, topicId) => {
+  const handleComment = async (values) => {
     const data = {
       content: values.content,
       author: auth.user.id,
-      topic: topicId,
+      topic: topic._id,
       likes: [],
       dislikes: [],
       replies: [],
     };
-    const res = await createCommentApi(data);
+    const res = await commentTopicApi(topic._id, data);
 
-    console.log(res);
+    if (res) {
+      fetchComment();
+      form.resetFields();
+    }
   };
   const fetchComment = useCallback(
-    async (topicId, page = 1, pageSize = 10) => {
+    async (page = 1, pageSize = 10) => {
+      if (!topic) {
+        console.error("Topic is undefined");
+        return;
+      }
       try {
         setLoading(true);
-        const res = await getCommentApi(topicId, filters, page, pageSize);
+        const res = await getCommentApi(topic._id, filters, page, pageSize);
         if (res && !res.message) {
           setCommentData(res.result);
         }
@@ -50,16 +60,17 @@ const useCommentData = () => {
         setLoading(false);
       }
     },
-    [filters]
+    [filters, topic]
   );
 
   return {
     showModalComment,
     closeModel,
     openModal,
-    onFinishComment,
+    handleComment,
     loading,
     commentData,
+    form,
   };
 };
 

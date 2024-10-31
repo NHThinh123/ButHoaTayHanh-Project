@@ -1,4 +1,5 @@
 const Comment = require("../models/comment.model");
+const Topic = require("../models/topic.model");
 
 const getCommentsService = async (query) => {
   const { topicId, sort, limit, page = 1, search } = query;

@@ -23,5 +23,15 @@ const updateTopicApi = (topicId, dataUpdate) => {
   const URL_API = `api/topic/${topicId}`;
   return axios.put(URL_API, dataUpdate);
 };
+const commentTopicApi = (toppicId, data) => {
+  const URL_API = `api/topic/${toppicId}/comment`;
+  return axios.put(URL_API, data);
+};
 
-export { getTopicApi, likeTopicApi, dislikeTopicApi, updateTopicApi };
+export {
+  getTopicApi,
+  likeTopicApi,
+  dislikeTopicApi,
+  updateTopicApi,
+  commentTopicApi,
+};

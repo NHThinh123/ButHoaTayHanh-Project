@@ -1,10 +1,7 @@
 import { List } from "antd";
 import Comment from "./comment";
-import useCommentData from "../../hooks/useCommentData";
 
 const CommentList = ({ data }) => {
-  const { loading } = useCommentData();
-  if (loading) return <p>Loading</p>;
   return (
     <List
       dataSource={data}
@@ -17,7 +14,7 @@ const CommentList = ({ data }) => {
       itemLayout="vertical"
       renderItem={(item) => (
         <List.Item>
-          <Comment data={item} loading={loading} />
+          <Comment data={item} />
         </List.Item>
       )}
     />

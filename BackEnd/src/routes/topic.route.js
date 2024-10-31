@@ -8,6 +8,7 @@ const {
   deleteTopic,
   likeTopic,
   dislikeTopic,
+  commentTopic,
 } = require("../controllers/topic.controller");
 
 // Admin routes
@@ -21,6 +22,7 @@ router.delete("/:id", deleteTopic);
 router.post("/", createTopic);
 router.put("/:id/like", likeTopic);
 router.put("/:id/dislike", dislikeTopic);
+router.put("/:id/comment", commentTopic);
 
 // Public routes
 
