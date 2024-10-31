@@ -12,21 +12,10 @@ import ModalComment from "../organisms/modalComment";
 import useCommentData from "../../hooks/useCommentData";
 
 const TopicFooter = ({ topicData }) => {
-  const { likes, dislikes, handleInteraction, userId } = useLikeTopic({
-    initialData: topicData,
-  });
+  const { likes, dislikes, isLiked, isDisliked, handleLike, handleDislike } =
+    useLikeTopic({ topic: topicData });
   const { showModalComment, closeModel, openModal, commentData } =
     useCommentData();
-  const isLiked = likes.includes(userId);
-  const isDisliked = dislikes.includes(userId);
-
-  const handleLike = () => {
-    handleInteraction("like", topicData._id);
-  };
-
-  const handleDislike = () => {
-    handleInteraction("dislike", topicData._id);
-  };
 
   return (
     <Row style={{ marginTop: 24 }}>
@@ -44,7 +33,7 @@ const TopicFooter = ({ topicData }) => {
               <LikeOutlined style={{ fontSize: 24 }} />
             )}
             <DefaultTitle style={{ fontSize: 18, fontWeight: 400 }}>
-              {likes.length}
+              {likes}
             </DefaultTitle>
           </Button>
         </Flex>
@@ -64,7 +53,7 @@ const TopicFooter = ({ topicData }) => {
               <DislikeOutlined style={{ fontSize: 24 }} />
             )}
             <DefaultTitle style={{ fontSize: 18, fontWeight: 400 }}>
-              {dislikes.length}
+              {dislikes}
             </DefaultTitle>
           </Button>
         </Flex>

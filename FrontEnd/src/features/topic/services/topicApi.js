@@ -11,9 +11,17 @@ const getTopicApi = (filters, page, pageSize) => {
   });
 };
 
+const likeTopicApi = (topicId) => {
+  const URL_API = `api/topic/${topicId}/like`;
+  return axios.put(URL_API);
+};
+const dislikeTopicApi = (topicId) => {
+  const URL_API = `api/topic/${topicId}/dislike`;
+  return axios.put(URL_API);
+};
 const updateTopicApi = (topicId, dataUpdate) => {
   const URL_API = `api/topic/${topicId}`;
   return axios.put(URL_API, dataUpdate);
 };
 
-export { getTopicApi, updateTopicApi };
+export { getTopicApi, likeTopicApi, dislikeTopicApi, updateTopicApi };
