@@ -29,10 +29,10 @@ const CharacterForm = () => {
     <Layout style={{ padding: 8, minHeight: "100vh" }}>
       <Form form={form} layout="vertical" onFinish={onFinish}>
         <Row>
-          <Col span={8}>
+          <Col xs={24} sm={24} md={24} lg={10}>
             <CharacterImageForm setFileList={setFileList} />
           </Col>
-          <Col span={16}>
+          <Col xs={24} sm={24} md={24} lg={14}>
             <CharacterDescriptionForm />
           </Col>
         </Row>

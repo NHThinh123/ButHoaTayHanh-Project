@@ -12,7 +12,12 @@ const Character = () => {
   const { characterData, handleFilterChange } = useCharacterData();
   const { auth } = useContext(AuthContext);
   return (
-    <BentoBox padding={28}>
+    <BentoBox
+      padding={28}
+      style={{
+        minHeight: "100vh",
+      }}
+    >
       {auth?.user?.role !== "admin" ? (
         <Flex
           justify="space-between"

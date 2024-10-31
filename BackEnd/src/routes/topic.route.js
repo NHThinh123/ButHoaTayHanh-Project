@@ -6,6 +6,8 @@ const {
   getTopicById,
   updateTopic,
   deleteTopic,
+  likeTopic,
+  dislikeTopic,
 } = require("../controllers/topic.controller");
 
 // Admin routes
@@ -17,6 +19,8 @@ router.get("/:id", getTopicById);
 router.put("/:id", updateTopic);
 router.delete("/:id", deleteTopic);
 router.post("/", createTopic);
+router.put("/:id/like", likeTopic);
+router.put("/:id/dislike", dislikeTopic);
 
 // Public routes
 

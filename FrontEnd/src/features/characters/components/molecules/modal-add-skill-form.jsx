@@ -63,16 +63,18 @@ const ModalAddSkillForm = ({
           </Form.Item>
         </Form>
         <div style={{ marginBottom: 16 }}>
-          {previewData.nameEffect && (
-            <Col span={24}>
-              <Typography.Text style={{ fontSize: 16, width: "100%" }}>
-                <TagCustom color={previewData.colorEffect.toHexString()}>
-                  {`${capitalizeFirstLetter(previewData.nameEffect)} :`}
-                </TagCustom>
-                {previewData.descriptionEffect}
-              </Typography.Text>
-            </Col>
-          )}
+          {previewData.nameEffect &&
+            previewData.descriptionEffect &&
+            previewData.colorEffect && (
+              <Col span={24}>
+                <Typography.Text style={{ fontSize: 16, width: "100%" }}>
+                  <TagCustom color={previewData?.colorEffect?.toHexString()}>
+                    {`${capitalizeFirstLetter(previewData.nameEffect)} :`}
+                  </TagCustom>
+                  {previewData.descriptionEffect}
+                </Typography.Text>
+              </Col>
+            )}
         </div>
       </Modal>
     </div>

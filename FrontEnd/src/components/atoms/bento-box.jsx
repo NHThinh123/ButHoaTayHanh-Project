@@ -11,7 +11,7 @@ const BentoBox = ({
     style={{
       backgroundColor: "#fff" || backgroundColor,
       height: height,
-      minWidth: 200,
+      minWidth: 150,
       minHeight: minHeight,
       maxHeight: maxHeight,
       padding: padding,
