@@ -10,6 +10,7 @@ const useCommentData = ({ topic }) => {
   const [showModalComment, setShowModalComment] = useState(false);
   const [form] = Form.useForm();
   const { auth } = useContext(AuthContext);
+  const [commentCount, setCommentCount] = useState(topic.comments.length);
   // eslint-disable-next-line no-unused-vars
   const [filters, setFilters] = useState({
     search: "",
@@ -40,6 +41,7 @@ const useCommentData = ({ topic }) => {
     if (res) {
       fetchComment();
       form.resetFields();
+      setCommentCount(commentCount + 1);
     }
   };
   const fetchComment = useCallback(
@@ -71,6 +73,7 @@ const useCommentData = ({ topic }) => {
     loading,
     commentData,
     form,
+    commentCount,
   };
 };
 

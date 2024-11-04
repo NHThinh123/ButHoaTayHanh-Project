@@ -11,6 +11,7 @@ const ModalComment = ({
   commentData,
   handleComment,
   form,
+  commentCount,
 }) => {
   return (
     <Modal
@@ -26,7 +27,7 @@ const ModalComment = ({
             fontWeight: "600",
           }}
         >
-          69 Bình luận
+          {commentCount} Bình luận
         </DefaultText>
       }
       footer={

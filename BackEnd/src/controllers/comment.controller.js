@@ -4,6 +4,8 @@ const {
   getCommentByIdService,
   updateCommentService,
   deleteCommentService,
+  likeCommentService,
+  dislikeCommentService,
 } = require("../services/comment.service");
 
 const getComments = async (req, res) => {
@@ -28,10 +30,21 @@ const deleteComment = async (req, res) => {
   return res.status(200).json(data);
 };
 
+const likeComment = async (req, res) => {
+  const data = await likeCommentService(req.params.id, req.user.id);
+  return res.status(200).json(data);
+};
+const dislikeComment = async (req, res) => {
+  const data = await dislikeCommentService(req.params.id, req.user.id);
+  return res.status(200).json(data);
+};
+
 module.exports = {
   getComments,
   createComment,
   getCommentById,
   updateComment,
   deleteComment,
+  likeComment,
+  dislikeComment,
 };

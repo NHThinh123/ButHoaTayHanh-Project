@@ -12,14 +12,21 @@ import {
   LikeOutlined,
 } from "@ant-design/icons";
 import ReplyList from "./reply-list";
-import { useContext, useState } from "react";
-import { AuthContext } from "../../../../contexts/auth.context";
+
+import useLikeCommentData from "../../hooks/useLikeCommentData";
 
 const Comment = ({ data }) => {
-  const [showReplies, setShowReplies] = useState(false);
-  const { auth } = useContext(AuthContext);
-  const isLiked = data.likes.includes(auth.user.id);
-  const isDisliked = data.dislikes.includes(auth.user.id);
+  const {
+    handleLike,
+    handleDislike,
+    isDisliked,
+    isLiked,
+    likes,
+    dislikes,
+    showReplies,
+    setShowReplies,
+  } = useLikeCommentData({ comment: data });
+
   return (
     <Row>
       <Col span={2} style={{ marginTop: 12 }}>
@@ -47,21 +54,21 @@ const Comment = ({ data }) => {
         </BentoBox>
         <div style={{ marginLeft: 12 }}>
           <Space style={{ margin: "4px 0px" }}>
-            <Button type="text" style={{ padding: 2 }}>
+            <Button type="text" style={{ padding: 2 }} onClick={handleLike}>
               {isLiked ? (
-                <LikeFilled style={{ fontSize: 24, color: "#1890ff" }} />
+                <LikeFilled style={{ color: "#1890ff" }} />
               ) : (
                 <LikeOutlined />
               )}
-              {data.likes.length}
+              {likes}
             </Button>
-            <Button type="text" style={{ padding: 2 }}>
+            <Button type="text" style={{ padding: 2 }} onClick={handleDislike}>
               {isDisliked ? (
-                <DislikeFilled style={{ fontSize: 24, color: "#ff4d4f" }} />
+                <DislikeFilled style={{ color: "#ff4d4f" }} />
               ) : (
                 <DislikeOutlined />
               )}
-              {data.dislikes.length}
+              {dislikes}
             </Button>
             <Button type="text" style={{ padding: 2 }}>
               <CommentOutlined /> phản hồi

@@ -1,13 +1,14 @@
 import { Avatar, Button, Col, Form, Input, Row } from "antd";
 import BentoBox from "../../../../components/atoms/bento-box";
 import { SendOutlined } from "@ant-design/icons";
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
+import { AuthContext } from "../../../../contexts/auth.context";
 
 const { TextArea } = Input;
 
 const ModalCommentFooter = ({ onFinishComment, form }) => {
   const textAreaRef = useRef(null);
-
+  const { auth } = useContext(AuthContext);
   useEffect(() => {
     // Tự động focus vào TextArea khi component được mount
     if (textAreaRef.current) {
@@ -15,14 +16,11 @@ const ModalCommentFooter = ({ onFinishComment, form }) => {
     }
   }, []);
 
-  const handleValuesChange = (changedValues) => {
-    if (changedValues.content) {
-      const newContent = changedValues.content;
-      // Tự động viết hoa chữ cái đầu tiên
-      const capitalizedContent =
-        newContent.charAt(0).toUpperCase() + newContent.slice(1);
-      form.setFieldsValue({ content: capitalizedContent });
-    }
+  const handleSubmit = (values) => {
+    // Viết hoa chữ cái đầu tiên của bình luận khi gửi
+    const capitalizedContent =
+      values.content.charAt(0).toUpperCase() + values.content.slice(1);
+    onFinishComment({ ...values, content: capitalizedContent });
   };
 
   return (
@@ -36,17 +34,13 @@ const ModalCommentFooter = ({ onFinishComment, form }) => {
       </Col>
       <Col span={22}>
         <BentoBox padding={8}>
-          <Form
-            form={form}
-            onFinish={(values) => onFinishComment(values)}
-            onValuesChange={handleValuesChange}
-          >
+          <Form form={form} onFinish={handleSubmit}>
             <Row>
               <Col span={22}>
                 <Form.Item name="content" noStyle>
                   <TextArea
                     ref={textAreaRef}
-                    placeholder="Bình luận dưới tên KAFF Gaming"
+                    placeholder={`Bình luận dưới tên ${auth.user.username}`}
                     variant="borderless"
                     autoSize={{
                       minRows: 2,

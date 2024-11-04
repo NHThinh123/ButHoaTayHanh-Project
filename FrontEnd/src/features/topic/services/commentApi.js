@@ -15,5 +15,12 @@ const createCommentApi = (data) => {
   const URL_API = "api/comment";
   return axios.post(URL_API, data);
 };
-
-export { getCommentApi, createCommentApi };
+const likeCommentApi = (commentId) => {
+  const URL_API = `api/comment/${commentId}/like`;
+  return axios.put(URL_API);
+};
+const dislikeCommentApi = (commentId) => {
+  const URL_API = `api/comment/${commentId}/dislike`;
+  return axios.put(URL_API);
+};
+export { getCommentApi, createCommentApi, likeCommentApi, dislikeCommentApi };

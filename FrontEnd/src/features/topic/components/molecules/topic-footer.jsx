@@ -21,6 +21,7 @@ const TopicFooter = ({ topicData }) => {
     commentData,
     handleComment,
     form,
+    commentCount,
   } = useCommentData({ topic: topicData });
 
   return (
@@ -75,7 +76,7 @@ const TopicFooter = ({ topicData }) => {
           <Button type="text" onClick={openModal}>
             <CommentOutlined style={{ fontSize: 24 }} />
             <DefaultTitle style={{ fontSize: 18, fontWeight: 400 }}>
-              {topicData.comments?.length || 0}
+              {commentCount || 0}
             </DefaultTitle>
           </Button>
         </Flex>
@@ -86,6 +87,7 @@ const TopicFooter = ({ topicData }) => {
         commentData={commentData}
         handleComment={handleComment}
         form={form}
+        commentCount={commentCount}
       />
     </Row>
   );

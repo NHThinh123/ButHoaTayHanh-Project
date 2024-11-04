@@ -91,9 +91,10 @@ const likeTopicService = async (topicId, userId) => {
       user.likedTopic.push(topicId);
     }
     const updatedTopic = await topic.save();
-    const populatedTopic = await Topic.findById(updatedTopic._id)
-      .populate("author")
-      .populate("comments");
+    const populatedTopic = await Topic.findById(updatedTopic._id).populate(
+      "author",
+      "-password"
+    );
     return populatedTopic;
   } catch (error) {
     console.error(error);
@@ -124,9 +125,10 @@ const dislikeTopicService = async (topicId, userId) => {
     }
     const updatedTopic = await topic.save();
     await user.save();
-    const populatedTopic = await Topic.findById(updatedTopic._id)
-      .populate("author")
-      .populate("comments");
+    const populatedTopic = await Topic.findById(updatedTopic._id).populate(
+      "author",
+      "-password"
+    );
     return populatedTopic;
   } catch (error) {
     console.error(error);
