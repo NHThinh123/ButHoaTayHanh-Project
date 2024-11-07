@@ -34,10 +34,16 @@ const getCommentsService = async (query) => {
 };
 const createCommentService = async (data) => {
   try {
-    let result = await Comment.create(data);
+    // Tạo comment trước
+    let comment = await Comment.create(data);
+
+    // Sau đó mới populate author
+    let result = await comment.populate("author", "_id username email avatar");
+
     return result;
   } catch (error) {
     console.error(error);
+    throw error; // Nên ném lỗi ra để xử lý ở tầng trên
   }
 };
 const getCommentByIdService = async (id) => {

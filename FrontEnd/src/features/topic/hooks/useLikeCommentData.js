@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../contexts/auth.context";
 import { notification } from "antd";
 import { dislikeCommentApi, likeCommentApi } from "../services/commentApi";
@@ -110,7 +110,12 @@ const useLikeCommentData = ({ comment }) => {
       setLoading(false);
     }
   };
-
+  useEffect(() => {
+    setIsLiked(comment.likes.includes(user?.id));
+    setIsDisliked(comment.dislikes.includes(user?.id));
+    setLikes(comment.likes.length);
+    setDislikes(comment.dislikes.length);
+  }, [comment, user?.id]);
   return {
     handleLike,
     handleDislike,

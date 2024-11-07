@@ -22,6 +22,9 @@ const TopicFooter = ({ topicData }) => {
     handleComment,
     form,
     commentCount,
+    hasMore,
+    loadMore,
+    loading,
   } = useCommentData({ topic: topicData });
 
   return (
@@ -88,6 +91,9 @@ const TopicFooter = ({ topicData }) => {
         handleComment={handleComment}
         form={form}
         commentCount={commentCount}
+        hasMore={hasMore}
+        loadMore={loadMore}
+        loading={loading}
       />
     </Row>
   );

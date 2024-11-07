@@ -140,7 +140,8 @@ const commentTopicService = async (topicId, commentData) => {
   try {
     const topic = await Topic.findById(topicId);
     if (!topic) return null;
-    let result = await Comment.create(commentData);
+    let comment = await Comment.create(commentData);
+    let result = await comment.populate("author", "_id username email avatar");
     topic.comments.push(result._id);
     await topic.save();
     return result;

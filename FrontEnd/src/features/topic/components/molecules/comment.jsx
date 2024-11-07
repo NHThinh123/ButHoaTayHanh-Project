@@ -1,4 +1,5 @@
-import { Avatar, Button, Col, Row, Space } from "antd";
+import { useState, useRef } from "react";
+import { Avatar, Button, Col, Form, Row, Space } from "antd";
 import BentoBox from "../../../../components/atoms/bento-box";
 import DefaultTitle from "../../../../components/atoms/default-title";
 import DefaultText from "../../../../components/atoms/default-text";
@@ -10,10 +11,11 @@ import {
   DislikeOutlined,
   LikeFilled,
   LikeOutlined,
+  SendOutlined,
 } from "@ant-design/icons";
 import ReplyList from "./reply-list";
-
 import useLikeCommentData from "../../hooks/useLikeCommentData";
+import TextArea from "antd/es/input/TextArea";
 
 const Comment = ({ data }) => {
   const {
@@ -26,6 +28,16 @@ const Comment = ({ data }) => {
     showReplies,
     setShowReplies,
   } = useLikeCommentData({ comment: data });
+
+  const [showReplyForm, setShowReplyForm] = useState(false); // Trạng thái hiển thị form phản hồi
+  const textAreaRef = useRef(null); // Tạo ref cho TextArea
+
+  const handleReplyClick = () => {
+    setShowReplyForm(true); // Hiện form phản hồi
+    setTimeout(() => {
+      textAreaRef.current?.focus(); // Focus vào TextArea khi form hiện ra
+    }, 0);
+  };
 
   return (
     <Row>
@@ -70,10 +82,44 @@ const Comment = ({ data }) => {
               )}
               {dislikes}
             </Button>
-            <Button type="text" style={{ padding: 2 }}>
+            <Button
+              type="text"
+              style={{ padding: 2 }}
+              onClick={handleReplyClick}
+            >
               <CommentOutlined /> phản hồi
             </Button>
           </Space>
+
+          {showReplyForm && ( // Hiện form phản hồi nếu showReplyForm = true
+            <BentoBox style={{ margin: 0 }}>
+              <Form>
+                <Row>
+                  <Col span={22}>
+                    <Form.Item name="content" noStyle>
+                      <TextArea
+                        ref={textAreaRef} // Tham chiếu TextArea tới ref
+                        placeholder={`Bình luận dưới tên `}
+                        variant="borderless"
+                        autoSize={{
+                          minRows: 2,
+                          maxRows: 5,
+                        }}
+                      />
+                    </Form.Item>
+                  </Col>
+                  <Col span={2}>
+                    <Form.Item noStyle>
+                      <Button htmlType="submit" block type="text">
+                        <SendOutlined />
+                      </Button>
+                    </Form.Item>
+                  </Col>
+                </Row>
+              </Form>
+            </BentoBox>
+          )}
+
           {data?.replies.length > 0 && (
             <DefaultTitle fontSize={14}>
               <Button

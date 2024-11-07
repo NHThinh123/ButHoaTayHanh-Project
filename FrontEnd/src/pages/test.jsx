@@ -1,199 +1,133 @@
-import {
-  Avatar,
-  Button,
-  Col,
-  Form,
-  Input,
-  List,
-  Modal,
-  Row,
-  Space,
-} from "antd";
-import DefaultText from "../components/atoms/default-text";
-import DefaultTitle from "../components/atoms/default-title";
-import BentoBox from "../components/atoms/bento-box";
-import {
-  CaretDownOutlined,
-  CaretUpOutlined,
-  CommentOutlined,
-  DislikeOutlined,
-  LikeOutlined,
-  SendOutlined,
-} from "@ant-design/icons";
 import { useState } from "react";
-const data = [
-  {
-    title: "Ant Design Title 1",
-  },
-  {
-    title: "Ant Design Title 2",
-  },
-  {
-    title: "Ant Design Title 3",
-  },
-  {
-    title: "Ant Design Title 4",
-  },
-];
-const { TextArea } = Input;
-const App = () => {
-  const [showReplies, setShowReplies] = useState(false);
+import { Modal, List, Avatar, Skeleton, Button } from "antd";
+import InfiniteScroll from "react-infinite-scroll-component";
+
+// Helper function để tạo dữ liệu mẫu
+const generateItems = (startIndex, count) => {
+  return Array.from({ length: count }, (_, index) => ({
+    id: startIndex + index,
+    title: `Item ${startIndex + index}`,
+    description: `This is the description for item ${startIndex + index}`,
+    avatar: `https://xsgames.co/randomusers/avatar.php?g=pixel&key=${
+      startIndex + index
+    }`,
+  }));
+};
+
+const InfiniteScrollModal = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
+
+  // Load dữ liệu ban đầu khi mở modal
+  const loadInitialData = () => {
+    setLoading(true);
+    setTimeout(() => {
+      const initialData = generateItems(0, 20);
+      setData(initialData);
+      setLoading(false);
+    }, 1000);
+  };
+
+  const fetchMoreData = () => {
+    // Giả lập API call
+    setTimeout(() => {
+      const newData = generateItems(data.length, 20);
+      setData([...data, ...newData]);
+
+      // Dừng infinite scroll sau khi đạt 100 items
+      if (data.length >= 100) {
+        setHasMore(false);
+      }
+    }, 1500);
+  };
+
+  const showModal = () => {
+    setIsModalOpen(true);
+    loadInitialData();
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+    // Reset data khi đóng modal
+    setData([]);
+    setHasMore(true);
+  };
+
   return (
-    <div>
+    <>
+      <Button type="primary" onClick={showModal}>
+        Open Infinite Scroll Modal
+      </Button>
+
       <Modal
-        open={true}
-        centered
-        width={600}
-        title={
-          <DefaultText
+        title="Infinite Scroll Example"
+        open={isModalOpen}
+        onCancel={handleCancel}
+        width={800}
+        footer={null}
+      >
+        {loading ? (
+          // Hiển thị skeleton loading khi đang tải dữ liệu ban đầu
+          <div style={{ padding: "20px 0" }}>
+            <Skeleton active avatar paragraph={{ rows: 3 }} />
+            <Skeleton active avatar paragraph={{ rows: 3 }} />
+            <Skeleton active avatar paragraph={{ rows: 3 }} />
+          </div>
+        ) : (
+          <div
+            id="scrollableDiv"
             style={{
-              fontSize: 24,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              fontWeight: "600",
+              height: 400,
+              overflow: "auto",
+              padding: "0 16px",
             }}
           >
-            69 Bình luận
-          </DefaultText>
-        }
-        footer={
-          <Row>
-            <Col span={2} style={{ display: "flex", paddingTop: 12 }}>
-              <Avatar
-                src={
-                  "https://yt3.ggpht.com/SxJooAauEAJgyz_9MqB21DvebRRXY5kPbVy4lB_95o3-8yGsMf1neXFEp0ujD-vdVykPPb4l=s88-c-k-c0x00ffffff-no-rj"
-                }
-              ></Avatar>
-            </Col>
-            <Col span={22}>
-              <BentoBox padding={8}>
-                <Form>
-                  <Row>
-                    <Col span={22}>
-                      <Form.Item name="comment" noStyle>
-                        <TextArea
-                          placeholder="Bình luận dưới tên KAFF Gaming"
-                          variant="borderless"
-                          autoSize={{
-                            minRows: 2,
-                            maxRows: 5,
-                          }}
-                        />
-                      </Form.Item>
-                    </Col>
-                    <Col span={2}>
-                      <Form.Item noStyle>
-                        <Button htmlType="submit" block type="text">
-                          <SendOutlined />
-                        </Button>
-                      </Form.Item>
-                    </Col>
-                  </Row>
-                </Form>
-              </BentoBox>
-            </Col>
-          </Row>
-        }
-      >
-        <List
-          dataSource={data}
-          split={false}
-          style={{
-            overflow: "auto",
-            height: "60vh",
-            scrollbarWidth: "thin",
-          }}
-          renderItem={() => (
-            <List.Item>
-              <Row>
-                <Col span={2} style={{ marginTop: 12 }}>
-                  <Avatar
-                    src={
-                      "https://yt3.ggpht.com/SxJooAauEAJgyz_9MqB21DvebRRXY5kPbVy4lB_95o3-8yGsMf1neXFEp0ujD-vdVykPPb4l=s88-c-k-c0x00ffffff-no-rj"
-                    }
-                  ></Avatar>
-                </Col>
-                <Col span={22}>
-                  <BentoBox padding={12}>
-                    <DefaultTitle fontSize={14}>KAFF Gaming</DefaultTitle>
-                    <DefaultText fontSize={12}>
-                      We supply a series of design principles, practical
-                      patterns and high quality design resources (Sketch and
-                      Axure), to help people create their product prototypes
-                      beautifully and efficiently.
-                    </DefaultText>
-                  </BentoBox>
-                  <div style={{ marginLeft: 12 }}>
-                    <Space style={{ margin: "4px 0px" }}>
-                      <LikeOutlined /> 99 <DislikeOutlined /> 99
-                      <p>
-                        <CommentOutlined /> phản hồi
-                      </p>
-                    </Space>
-                    <DefaultTitle fontSize={14}>
-                      <Button
-                        type="text"
-                        onClick={() => {
-                          setShowReplies(!showReplies);
-                        }}
-                        style={{ padding: 0, paddingRight: 4 }}
-                      >
-                        {showReplies ? (
-                          <div style={{ color: "#1890FF" }}>
-                            <CaretUpOutlined /> 3 phản hồi
-                          </div>
-                        ) : (
-                          <div style={{ color: "#1890FF" }}>
-                            <CaretDownOutlined /> 3 phản hồi{" "}
-                          </div>
-                        )}
-                      </Button>
-                    </DefaultTitle>
-                  </div>
-                  {showReplies && (
-                    <List
-                      split={false}
-                      dataSource={data}
-                      renderItem={() => (
-                        <List.Item>
-                          <Row style={{ paddingLeft: "16px" }}>
-                            <Col span={2} style={{ marginTop: 12 }}>
-                              <Avatar
-                                src={
-                                  "https://yt3.ggpht.com/SxJooAauEAJgyz_9MqB21DvebRRXY5kPbVy4lB_95o3-8yGsMf1neXFEp0ujD-vdVykPPb4l=s88-c-k-c0x00ffffff-no-rj"
-                                }
-                              ></Avatar>
-                            </Col>
-                            <Col span={22}>
-                              <BentoBox
-                                padding={12}
-                                style={{ margin: "0px 8px" }}
-                              >
-                                <DefaultTitle fontSize={14}>
-                                  KAFF Gaming
-                                </DefaultTitle>
-                                <DefaultText fontSize={12}>
-                                  We supply a series of design principles,
-                                  practical patterns and high quality design
-                                  resources (Sketch and Axure), to help people
-                                  create their product prototypes beautifully
-                                  and efficiently.
-                                </DefaultText>
-                              </BentoBox>
-                            </Col>
-                          </Row>
-                        </List.Item>
-                      )}
+            <InfiniteScroll
+              dataLength={data.length}
+              next={fetchMoreData}
+              hasMore={hasMore}
+              loader={
+                <Skeleton
+                  avatar
+                  paragraph={{ rows: 1 }}
+                  active
+                  style={{ padding: "10px 0" }}
+                />
+              }
+              endMessage={
+                <div
+                  style={{
+                    textAlign: "center",
+                    padding: "10px 0",
+                    color: "#999",
+                  }}
+                >
+                  No more items to load.
+                </div>
+              }
+              scrollableTarget="scrollableDiv"
+            >
+              <List
+                dataSource={data}
+                renderItem={(item) => (
+                  <List.Item key={item.id}>
+                    <List.Item.Meta
+                      avatar={<Avatar src={item.avatar} />}
+                      title={<a href="#">{item.title}</a>}
+                      description={item.description}
                     />
-                  )}
-                </Col>
-              </Row>
-            </List.Item>
-          )}
-        />
+                    <div>Content</div>
+                  </List.Item>
+                )}
+              />
+            </InfiniteScroll>
+          </div>
+        )}
       </Modal>
-    </div>
+    </>
   );
 };
-export default App;
+
+export default InfiniteScrollModal;
