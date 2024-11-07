@@ -18,7 +18,11 @@ const getCommentsService = async (query) => {
       .sort(sortOption)
       .limit(Number(limit))
       .skip((Number(page) - 1) * Number(limit))
-      .populate("author", "-password");
+      .populate("author", "_id username email avatar")
+      .populate({
+        path: "replies", // Lấy thông tin của replies
+        populate: { path: "author", select: "_id username email avatar" }, // Lấy author trong từng reply
+      });
 
     const total = await Comment.countDocuments(filter);
 
@@ -126,6 +130,20 @@ const dislikeCommentService = async (commentId, userId) => {
     return null;
   }
 };
+
+const replyCommentService = async (commentId, replyData) => {
+  try {
+    const comment = await Comment.findById(commentId); //tìm comment muốn reply
+    let reply = await Comment.create(replyData); //tạo một reply comment
+    comment.replies.push(reply._id); //thêm reply này vòa danh sách replies của comment
+    await comment.save();
+    let result = await reply.populate("author", "_id username email");
+    return result;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
 module.exports = {
   getCommentsService,
   createCommentService,
@@ -134,4 +152,5 @@ module.exports = {
   deleteCommentService,
   likeCommentService,
   dislikeCommentService,
+  replyCommentService,
 };

@@ -7,6 +7,7 @@ const {
   deleteComment,
   likeComment,
   dislikeComment,
+  replyComment,
 } = require("../controllers/comment.controller");
 const router = express.Router();
 
@@ -20,7 +21,7 @@ router.post("/", createComment);
 router.put("/:id/like", likeComment);
 router.put("/:id/dislike", dislikeComment);
 // Public routes
-
+router.post("/:id/reply", replyComment);
 router.get("/:id", getCommentById);
 router.get("/", getComments);
 

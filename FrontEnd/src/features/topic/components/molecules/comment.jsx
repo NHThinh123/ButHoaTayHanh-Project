@@ -33,7 +33,7 @@ const Comment = ({ data }) => {
   const textAreaRef = useRef(null); // Tạo ref cho TextArea
 
   const handleReplyClick = () => {
-    setShowReplyForm(true); // Hiện form phản hồi
+    setShowReplyForm(!showReplyForm); // Hiện form phản hồi
     setTimeout(() => {
       textAreaRef.current?.focus(); // Focus vào TextArea khi form hiện ra
     }, 0);

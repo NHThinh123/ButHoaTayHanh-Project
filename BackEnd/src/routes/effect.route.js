@@ -6,7 +6,7 @@ const {
   getEffectById,
   updateEffect,
   deleteEffect,
-} = require("../controllers/effect.controllers");
+} = require("../controllers/effect.controller");
 
 // Admin routes
 

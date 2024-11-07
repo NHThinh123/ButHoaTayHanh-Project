@@ -6,6 +6,7 @@ const {
   deleteCommentService,
   likeCommentService,
   dislikeCommentService,
+  replyCommentService,
 } = require("../services/comment.service");
 
 const getComments = async (req, res) => {
@@ -38,7 +39,10 @@ const dislikeComment = async (req, res) => {
   const data = await dislikeCommentService(req.params.id, req.user.id);
   return res.status(200).json(data);
 };
-
+const replyComment = async (req, res) => {
+  const data = await replyCommentService(req.params.id, req.body);
+  return res.status(200).json(data);
+};
 module.exports = {
   getComments,
   createComment,
@@ -47,4 +51,5 @@ module.exports = {
   deleteComment,
   likeComment,
   dislikeComment,
+  replyComment,
 };
