@@ -1,5 +1,4 @@
-import { useState, useRef } from "react";
-import { Avatar, Button, Col, Form, Row, Space } from "antd";
+import { Avatar, Button, Col, Row, Space } from "antd";
 import BentoBox from "../../../../components/atoms/bento-box";
 import DefaultTitle from "../../../../components/atoms/default-title";
 import DefaultText from "../../../../components/atoms/default-text";
@@ -11,11 +10,12 @@ import {
   DislikeOutlined,
   LikeFilled,
   LikeOutlined,
-  SendOutlined,
 } from "@ant-design/icons";
 import ReplyList from "./reply-list";
 import useLikeCommentData from "../../hooks/useLikeCommentData";
-import TextArea from "antd/es/input/TextArea";
+import useReplyCommentData from "../../hooks/useReplyCommentData";
+
+import ReplyForm from "./replyForm";
 
 const Comment = ({ data }) => {
   const {
@@ -28,16 +28,16 @@ const Comment = ({ data }) => {
     showReplies,
     setShowReplies,
   } = useLikeCommentData({ comment: data });
-
-  const [showReplyForm, setShowReplyForm] = useState(false); // Trạng thái hiển thị form phản hồi
-  const textAreaRef = useRef(null); // Tạo ref cho TextArea
-
-  const handleReplyClick = () => {
-    setShowReplyForm(!showReplyForm); // Hiện form phản hồi
-    setTimeout(() => {
-      textAreaRef.current?.focus(); // Focus vào TextArea khi form hiện ra
-    }, 0);
-  };
+  const {
+    replyData,
+    handleReply,
+    form,
+    handleReplyClick,
+    textAreaRef,
+    showReplyForm,
+  } = useReplyCommentData({
+    comment: data,
+  });
 
   return (
     <Row>
@@ -61,8 +61,8 @@ const Comment = ({ data }) => {
             marginBottom: 0,
           }}
         >
-          <DefaultTitle>{data.author.username}</DefaultTitle>
-          <DefaultText style={{ paddingTop: 8 }}>{data.content}</DefaultText>
+          <DefaultTitle fontSize={14}>{data.author.username}</DefaultTitle>
+          <DefaultText style={{ paddingTop: 4 }}>{data.content}</DefaultText>
         </BentoBox>
         <div style={{ marginLeft: 12 }}>
           <Space style={{ margin: "4px 0px" }}>
@@ -92,35 +92,14 @@ const Comment = ({ data }) => {
           </Space>
 
           {showReplyForm && ( // Hiện form phản hồi nếu showReplyForm = true
-            <BentoBox style={{ margin: 0 }}>
-              <Form>
-                <Row>
-                  <Col span={22}>
-                    <Form.Item name="content" noStyle>
-                      <TextArea
-                        ref={textAreaRef} // Tham chiếu TextArea tới ref
-                        placeholder={`Bình luận dưới tên `}
-                        variant="borderless"
-                        autoSize={{
-                          minRows: 2,
-                          maxRows: 5,
-                        }}
-                      />
-                    </Form.Item>
-                  </Col>
-                  <Col span={2}>
-                    <Form.Item noStyle>
-                      <Button htmlType="submit" block type="text">
-                        <SendOutlined />
-                      </Button>
-                    </Form.Item>
-                  </Col>
-                </Row>
-              </Form>
-            </BentoBox>
+            <ReplyForm
+              form={form}
+              handleReply={handleReply}
+              textAreaRef={textAreaRef}
+            ></ReplyForm>
           )}
 
-          {data?.replies.length > 0 && (
+          {replyData.length > 0 && (
             <DefaultTitle fontSize={14}>
               <Button
                 type="text"
@@ -131,18 +110,18 @@ const Comment = ({ data }) => {
               >
                 {showReplies ? (
                   <div style={{ color: "#1890FF" }}>
-                    <CaretUpOutlined /> 3 phản hồi
+                    <CaretUpOutlined /> {replyData.length} phản hồi
                   </div>
                 ) : (
                   <div style={{ color: "#1890FF" }}>
-                    <CaretDownOutlined /> 3 phản hồi{" "}
+                    <CaretDownOutlined /> {replyData.length} phản hồi
                   </div>
                 )}
               </Button>
             </DefaultTitle>
           )}
         </div>
-        {showReplies && <ReplyList data={data} />}
+        {showReplies && <ReplyList data={replyData} />}
       </Col>
     </Row>
   );

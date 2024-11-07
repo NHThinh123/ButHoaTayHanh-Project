@@ -23,4 +23,14 @@ const dislikeCommentApi = (commentId) => {
   const URL_API = `api/comment/${commentId}/dislike`;
   return axios.put(URL_API);
 };
-export { getCommentApi, createCommentApi, likeCommentApi, dislikeCommentApi };
+const replyCommentApi = (commentId, replyData) => {
+  const URL_API = `api/comment/${commentId}/reply`;
+  return axios.post(URL_API, replyData);
+};
+export {
+  getCommentApi,
+  createCommentApi,
+  likeCommentApi,
+  dislikeCommentApi,
+  replyCommentApi,
+};

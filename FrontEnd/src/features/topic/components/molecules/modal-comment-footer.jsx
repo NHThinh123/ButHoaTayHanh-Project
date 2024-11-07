@@ -27,10 +27,14 @@ const ModalCommentFooter = ({ onFinishComment, form }) => {
     <Row>
       <Col span={2} style={{ display: "flex", paddingTop: 12 }}>
         <Avatar
-          src={
-            "https://yt3.ggpht.com/SxJooAauEAJgyz_9MqB21DvebRRXY5kPbVy4lB_95o3-8yGsMf1neXFEp0ujD-vdVykPPb4l=s88-c-k-c0x00ffffff-no-rj"
-          }
-        ></Avatar>
+          size={40}
+          style={{
+            backgroundColor: "#fde3cf",
+            color: "#f56a00",
+          }}
+        >
+          {auth.user?.username?.charAt(0).toUpperCase() ?? "U"}
+        </Avatar>
       </Col>
       <Col span={22}>
         <BentoBox padding={8}>
