@@ -59,6 +59,10 @@ const Sider = () => {
       icon: <CommentOutlined />,
       children: [
         {
+          key: "guide0",
+          label: <Link to={"/topic"}>Tất cả</Link>,
+        },
+        {
           key: "Guide1",
           label: "Bước chuẩn bị",
         },

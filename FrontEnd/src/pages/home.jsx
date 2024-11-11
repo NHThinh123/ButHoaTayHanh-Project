@@ -7,10 +7,17 @@ import BentoBox from "../components/atoms/bento-box";
 
 import TopicList from "../features/topic/components/templates/topic-list";
 import useTopicData from "../features/topic/hooks/useTopicData";
+import { useEffect } from "react";
 
 const HomePage = () => {
   const { topicData, loading, loadMoreData, hasMore } = useTopicData();
   const newTopic = topicData?.slice(0, 4);
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant", // hoặc "smooth" nếu muốn có hiệu ứng scroll
+    });
+  }, []);
   return (
     <Row>
       <Col span={16}>

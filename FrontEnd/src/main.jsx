@@ -14,6 +14,7 @@ import TestPage from "./pages/test.jsx";
 
 import CharacterEditPage from "./pages/characterEdit.jsx";
 import CharacterInfoPage from "./pages/characterInfo.jsx";
+import TopicPage from "./pages/topic.jsx";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,27 @@ const router = createBrowserRouter([
             path: ":id/edit",
             element: <CharacterEditPage />,
           },
+        ],
+      },
+      {
+        path: "topic",
+        children: [
+          {
+            index: true,
+            element: <TopicPage />,
+          },
+          // {
+          //   path: "create",
+          //   element: <CharacterEditPage />,
+          // },
+          // {
+          //   path: ":id",
+          //   element: <CharacterInfoPage />,
+          // },
+          // {
+          //   path: ":id/edit",
+          //   element: <CharacterEditPage />,
+          // },
         ],
       },
     ],

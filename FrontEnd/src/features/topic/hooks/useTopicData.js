@@ -21,21 +21,31 @@ const useTopicData = () => {
     setLoading(true);
 
     try {
-      const response = await getTopicApi(filters, currentPage, 4); // Gọi API, lấy 4 topic mỗi lần
+      const response = await getTopicApi(filters, currentPage, 4);
       if (response && response.result) {
-        setTopicData((prevData) => [...prevData, ...response.result]); // Thêm data mới vào
-        setHasMore(currentPage < response.totalPages); // Kiểm tra nếu còn dữ liệu để tải
-        setCurrentPage((prevPage) => prevPage + 1); // Tăng trang hiện tại lên
+        // Nếu là trang đầu tiên, thay thế hoàn toàn dữ liệu
+        if (currentPage === 1) {
+          setTopicData(response.result);
+        } else {
+          // Nếu không phải trang đầu, thêm dữ liệu mới vào
+          setTopicData((prevData) => [...prevData, ...response.result]);
+        }
+        setHasMore(currentPage < response.totalPages);
+        setCurrentPage((prevPage) => prevPage + 1);
       }
     } catch (error) {
-      console.error("Error fetching characters:", error);
+      console.error("Error fetching topics:", error);
     } finally {
       setLoading(false);
     }
   };
-
+  const loadInitData = async () => {
+    setCurrentPage(1);
+    setTopicData([]);
+    await loadMoreData(); // Tải dữ liệu lần đầu
+  };
   useEffect(() => {
-    loadMoreData(); // Tải dữ liệu lần đầu
+    loadInitData();
   }, []);
 
   return { topicData, loading, loadMoreData, hasMore };
