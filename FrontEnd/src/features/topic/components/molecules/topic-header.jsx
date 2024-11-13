@@ -4,7 +4,7 @@ import DefaultText from "../../../../components/atoms/default-text";
 import { EllipsisOutlined } from "@ant-design/icons";
 import formatDate from "../../../../utils/formatDate";
 
-const TopicHeader = ({ author, uploadAt }) => {
+const TopicHeader = ({ author, uploadAt, category }) => {
   return (
     <Row>
       <Col span={22}>
@@ -22,6 +22,16 @@ const TopicHeader = ({ author, uploadAt }) => {
             <DefaultTitle>{author?.userName}</DefaultTitle>
             <DefaultText style={{ fontSize: 14 }}>
               {formatDate(uploadAt)}
+              <span
+                style={{
+                  color: "#4096FF",
+                  fontSize: 16,
+                  fontWeight: 700,
+                  marginLeft: 12,
+                }}
+              >
+                {category}
+              </span>
             </DefaultText>
           </Flex>
         </Flex>

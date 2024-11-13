@@ -7,7 +7,11 @@ import TopicFooter from "../molecules/topic-footer";
 const Topic = ({ topicData }) => {
   return (
     <BentoBox padding={28} style={{ margin: "0px 8px" }}>
-      <TopicHeader author={topicData.author} uploadAt={topicData.uploadAt} />
+      <TopicHeader
+        author={topicData.author}
+        uploadAt={topicData.uploadAt}
+        category={topicData.category}
+      />
       <TopicBody topicData={topicData} />
       <TopicFooter topicData={topicData} />
     </BentoBox>

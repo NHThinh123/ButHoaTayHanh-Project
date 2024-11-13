@@ -15,6 +15,7 @@ import TestPage from "./pages/test.jsx";
 import CharacterEditPage from "./pages/characterEdit.jsx";
 import CharacterInfoPage from "./pages/characterInfo.jsx";
 import TopicPage from "./pages/topic.jsx";
+import TopicCreatePage from "./pages/topicCreate.jsx";
 
 const router = createBrowserRouter([
   {
@@ -58,10 +59,10 @@ const router = createBrowserRouter([
             index: true,
             element: <TopicPage />,
           },
-          // {
-          //   path: "create",
-          //   element: <CharacterEditPage />,
-          // },
+          {
+            path: "create",
+            element: <TopicCreatePage />,
+          },
           // {
           //   path: ":id",
           //   element: <CharacterInfoPage />,

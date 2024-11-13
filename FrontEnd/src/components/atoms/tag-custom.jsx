@@ -1,6 +1,6 @@
 import { Tag } from "antd";
 
-const TagCustom = ({ children, color, padding }) => {
+const TagCustom = ({ children, color, padding, style }) => {
   return (
     <Tag
       color={color}
@@ -11,6 +11,7 @@ const TagCustom = ({ children, color, padding }) => {
         textAlign: "center",
         fontWeight: "700",
         padding: padding,
+        ...style,
       }}
     >
       {children}

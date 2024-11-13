@@ -8,13 +8,11 @@ const useTopicData = () => {
   const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
   const [hasMore, setHasMore] = useState(true);
 
-  // eslint-disable-next-line no-unused-vars
   const [filters, setFilters] = useState({
     search: "",
-    faction: "",
-    role: "",
-    rarity: "",
     sort: "",
+    category: "",
+    filterBy: "mostFeatured",
   });
   const loadMoreData = async () => {
     if (loading) return;
@@ -39,6 +37,13 @@ const useTopicData = () => {
       setLoading(false);
     }
   };
+
+  const handleFilterChange = (value, name) => {
+    setFilters((prevFilters) => ({ ...prevFilters, [name]: value }));
+    console.log(filters);
+    setCurrentPage(1);
+  };
+
   const loadInitData = async () => {
     setCurrentPage(1);
     setTopicData([]);
@@ -46,9 +51,16 @@ const useTopicData = () => {
   };
   useEffect(() => {
     loadInitData();
-  }, []);
+  }, [filters]);
 
-  return { topicData, loading, loadMoreData, hasMore };
+  return {
+    topicData,
+    loading,
+    loadMoreData,
+    hasMore,
+    handleFilterChange,
+    filters,
+  };
 };
 
 export default useTopicData;

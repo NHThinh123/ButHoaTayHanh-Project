@@ -2,26 +2,82 @@ const Topic = require("../models/topic.model");
 const User = require("../models/user.model");
 const Comment = require("../models/comment.model");
 const getTopicsService = async (query) => {
-  const { sort, limit, page = 1, search } = query;
+  const { sort, limit, page = 1, search, filterBy, category } = query;
   const filter = {};
-  if (search) filter.name = { $regex: search, $options: "i" };
-
+  if (search) {
+    filter.$or = [
+      { title: { $regex: search, $options: "i" } },
+      { description: { $regex: search, $options: "i" } },
+      { "content.title": { $regex: search, $options: "i" } },
+      { "content.description": { $regex: search, $options: "i" } },
+    ];
+  }
+  if (category) {
+    filter.category = category;
+  }
   const sortOption = {};
+
+  // Xác định tiêu chí lọc dựa trên filterBy
+  if (filterBy) {
+    switch (filterBy) {
+      case "newest":
+        sortOption.uploadAt = -1; // Sắp xếp theo ngày tải lên giảm dần
+        break;
+      case "mostPopular":
+        sortOption.popularityScore = -1; // Sắp xếp theo phổ biến nhất
+        break;
+      case "mostFeatured":
+        sortOption.featureScore = -1; // Sắp xếp theo nổi bật nhất
+        break;
+    }
+  }
+
+  // Sắp xếp tùy chỉnh nếu có trong tham số sort
   if (sort) {
     const [field, order] = sort.split(":");
     sortOption[field] = order === "desc" ? -1 : 1;
   }
 
   try {
-    let result = await Topic.find(filter)
-      .sort(sortOption)
-      .limit(Number(limit))
-      .skip((Number(page) - 1) * Number(limit))
-      .populate("author", "-password");
+    // Tính toán các chỉ số phổ biến và nổi bật dựa trên số comment, like, dislike
+    let topics = await Topic.aggregate([
+      {
+        $addFields: {
+          popularityScore: {
+            $subtract: [
+              { $add: [{ $size: "$comments" }, { $size: "$likes" }] },
+              { $size: "$dislikes" },
+            ],
+          },
+          featureScore: {
+            $cond: {
+              if: { $eq: [{ $size: "$dislikes" }, 0] },
+              then: { $add: [{ $size: "$comments" }, { $size: "$likes" }] },
+              else: {
+                $divide: [
+                  { $add: [{ $size: "$comments" }, { $size: "$likes" }] },
+                  { $size: "$dislikes" },
+                ],
+              },
+            },
+          },
+        },
+      },
+      { $match: filter },
+      { $sort: sortOption },
+      { $skip: (Number(page) - 1) * Number(limit) },
+      { $limit: Number(limit) },
+    ]);
+
+    // Populating the author field for each topic
+    topics = await Topic.populate(topics, {
+      path: "author",
+      select: "-password",
+    });
 
     const total = await Topic.countDocuments(filter);
     return {
-      result,
+      result: topics,
       totalPages: Math.ceil(total / Number(limit)),
       currentPage: Number(page),
     };
@@ -30,6 +86,7 @@ const getTopicsService = async (query) => {
     return null;
   }
 };
+
 const createTopicService = async (topicData) => {
   try {
     let result = await Topic.create(topicData);

@@ -34,7 +34,7 @@ const topicSchema = new mongoose.Schema(
         "Sự kiện",
         "Bảo trì",
         "Thông báo",
-        "Flex",
+        "Chia sẻ thành tích",
         "Khác",
       ],
     },
