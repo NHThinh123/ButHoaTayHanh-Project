@@ -2,7 +2,7 @@ import { Divider, List, Skeleton } from "antd";
 import Topic from "../organisms/topic";
 
 import InfiniteScroll from "react-infinite-scroll-component";
-const TopicList = ({ data, loadMoreData, hasMore }) => {
+const TopicList = ({ data, loadMoreData, hasMore, deleteTopic }) => {
   return (
     <InfiniteScroll
       dataLength={data.length} // Số lượng item hiện tại
@@ -26,7 +26,7 @@ const TopicList = ({ data, loadMoreData, hasMore }) => {
         dataSource={data}
         renderItem={(item) => (
           <List.Item>
-            <Topic topicData={item}></Topic>
+            <Topic topicData={item} deleteTopic={deleteTopic}></Topic>
           </List.Item>
         )}
       ></List>

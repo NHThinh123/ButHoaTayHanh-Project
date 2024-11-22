@@ -68,7 +68,7 @@ const Comment = ({ data }) => {
           <Space style={{ margin: "4px 0px" }}>
             <Button type="text" style={{ padding: 2 }} onClick={handleLike}>
               {isLiked ? (
-                <LikeFilled style={{ color: "#1890ff" }} />
+                <LikeFilled style={{ color: "#4335A7" }} />
               ) : (
                 <LikeOutlined />
               )}
@@ -109,11 +109,11 @@ const Comment = ({ data }) => {
                 style={{ padding: 0, paddingRight: 4 }}
               >
                 {showReplies ? (
-                  <div style={{ color: "#1890FF" }}>
+                  <div style={{ color: "#4335A7" }}>
                     <CaretUpOutlined /> {replyData.length} phản hồi
                   </div>
                 ) : (
-                  <div style={{ color: "#1890FF" }}>
+                  <div style={{ color: "#4335A7" }}>
                     <CaretDownOutlined /> {replyData.length} phản hồi
                   </div>
                 )}

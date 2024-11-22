@@ -14,7 +14,7 @@ const getTopics = async (req, res) => {
   return res.status(200).json(data);
 };
 const createTopic = async (req, res) => {
-  const data = await createTopicService(req.body);
+  const data = await createTopicService(req.body, req.file);
   return res.status(200).json(data);
 };
 const getTopicById = async (req, res) => {

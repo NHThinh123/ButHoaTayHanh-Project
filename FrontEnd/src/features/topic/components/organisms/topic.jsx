@@ -4,10 +4,12 @@ import TopicHeader from "../molecules/topic-header";
 import TopicBody from "../molecules/topic-body";
 import TopicFooter from "../molecules/topic-footer";
 
-const Topic = ({ topicData }) => {
+const Topic = ({ topicData, deleteTopic }) => {
   return (
     <BentoBox padding={28} style={{ margin: "0px 8px" }}>
       <TopicHeader
+        deleteTopic={deleteTopic}
+        topicData={topicData}
         author={topicData.author}
         uploadAt={topicData.uploadAt}
         category={topicData.category}

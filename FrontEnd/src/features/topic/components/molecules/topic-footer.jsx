@@ -38,7 +38,7 @@ const TopicFooter = ({ topicData }) => {
         >
           <Button type="text" onClick={handleLike}>
             {isLiked ? (
-              <LikeFilled style={{ fontSize: 24, color: "#1890ff" }} />
+              <LikeFilled style={{ fontSize: 24, color: "#4335A7" }} />
             ) : (
               <LikeOutlined style={{ fontSize: 24 }} />
             )}

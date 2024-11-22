@@ -1,50 +1,50 @@
 import { useState } from "react";
+import { Upload, message } from "antd";
+import { PlusOutlined, ReloadOutlined } from "@ant-design/icons";
 import BentoBox from "../../../../components/atoms/bento-box";
-import { Form, Upload, message } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+
+const { Dragger } = Upload;
 
 const CharacterImageForm = ({ setFileList }) => {
   const [imageUrl, setImageUrl] = useState(null);
 
-  const normFile = (e) => {
-    if (Array.isArray(e)) {
-      return e;
-    }
-    return e?.fileList;
-  };
-
   const beforeUpload = (file) => {
     const isImage = file.type.startsWith("image/");
     if (!isImage) {
-      message.error("You can only upload image files!");
+      message.error("Chỉ được tải lên tập tin hình ảnh!");
       return Upload.LIST_IGNORE;
     }
 
     const isLt10M = file.size / 1024 / 1024 < 10;
     if (!isLt10M) {
-      message.error("Image must be smaller than 10MB!");
+      message.error("Hình ảnh phải nhỏ hơn 10MB!");
       return Upload.LIST_IGNORE;
     }
 
     const isGt100K = file.size / 1024 > 100;
     if (!isGt100K) {
-      message.error("Image must be larger than 100KB!");
+      message.error("Hình ảnh phải lớn hơn 100KB!");
       return Upload.LIST_IGNORE;
     }
 
     return true;
   };
 
-  const handleChange = ({ fileList }) => {
-    if (fileList.length > 0 && fileList[0].originFileObj) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setImageUrl(e.target.result);
-      };
-      reader.readAsDataURL(fileList[0].originFileObj);
+  const handleChange = (info) => {
+    const { status } = info.file;
+    const fileList = [...info.fileList];
 
-      setFileList(fileList);
-    } else {
+    if (status === "done" || status === "uploading") {
+      if (fileList.length > 0 && fileList[0].originFileObj) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          setImageUrl(e.target.result);
+        };
+        reader.readAsDataURL(fileList[0].originFileObj);
+
+        setFileList(fileList);
+      }
+    } else if (status === "removed") {
       setImageUrl(null);
       setFileList([]);
     }
@@ -62,49 +62,70 @@ const CharacterImageForm = ({ setFileList }) => {
       }}
       backgroundColor="#fff"
     >
-      <Form.Item
-        name="image"
-        valuePropName="fileList"
-        getValueFromEvent={normFile}
-        rules={[
-          {
-            required: true,
-            message: "Vui lòng tải ảnh của nhân vật!!!",
-          },
-        ]}
+      <Dragger
+        name="file"
+        multiple={false}
+        maxCount={1}
+        beforeUpload={beforeUpload}
+        onChange={handleChange}
+        showUploadList={false}
+        accept="image/*"
+        style={{
+          width: "350px",
+          height: "480px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       >
-        <Upload
-          name="file"
-          showUploadList={false}
-          maxCount={1}
-          beforeUpload={beforeUpload}
-          onChange={handleChange}
-        >
-          {imageUrl ? (
+        {imageUrl ? (
+          <div style={{ position: "relative", width: "100%", height: "100%" }}>
             <img
               src={imageUrl}
-              alt="uploaded"
-              style={{ width: "350px", height: "480px", objectFit: "cover" }}
+              alt="Uploaded"
+              style={{
+                width: "350px",
+                height: "480px",
+                objectFit: "cover",
+              }}
             />
-          ) : (
             <div
               style={{
-                width: "320px",
-                height: "400px",
+                position: "absolute",
+                bottom: 10,
+                left: "50%",
+                transform: "translateX(-50%)",
+                backgroundColor: "red",
+                color: "white",
+                padding: "8px 16px",
+                borderRadius: "4px",
                 display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
                 alignItems: "center",
-                border: "2px dashed #d9d9d9",
-                marginTop: 24,
+                gap: "8px",
               }}
             >
-              <PlusOutlined style={{ fontSize: 50 }} />
-              <div style={{ marginTop: 8 }}>Tải ảnh lên</div>
+              <ReloadOutlined />
+              Thay đổi ảnh
             </div>
-          )}
-        </Upload>
-      </Form.Item>
+          </div>
+        ) : (
+          <div
+            style={{
+              width: "320px",
+              height: "400px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              border: "2px dashed #d9d9d9",
+              marginTop: 24,
+            }}
+          >
+            <PlusOutlined style={{ fontSize: 50 }} />
+            <div style={{ marginTop: 8 }}>Tải ảnh lên</div>
+          </div>
+        )}
+      </Dragger>
     </BentoBox>
   );
 };

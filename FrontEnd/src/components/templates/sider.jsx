@@ -55,12 +55,12 @@ const Sider = () => {
     },
     {
       key: "sub4",
-      label: "Hướng Dẫn",
+      label: "Bài viết",
       icon: <CommentOutlined />,
       children: [
         {
           key: "guide0",
-          label: <Link to={"/topic"}>Tất cả</Link>,
+          label: <Link to={"/topic"}>Quản lý bài viết</Link>,
         },
         {
           key: "Guide1",

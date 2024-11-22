@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const uploadCloud = require("../middleware/uploadTopicCloud");
 const {
   getTopics,
   createTopic,
@@ -19,7 +20,7 @@ router.get("/:id", getTopicById);
 
 router.put("/:id", updateTopic);
 router.delete("/:id", deleteTopic);
-router.post("/", createTopic);
+router.post("/", uploadCloud.single("image"), createTopic);
 router.put("/:id/like", likeTopic);
 router.put("/:id/dislike", dislikeTopic);
 router.put("/:id/comment", commentTopic);

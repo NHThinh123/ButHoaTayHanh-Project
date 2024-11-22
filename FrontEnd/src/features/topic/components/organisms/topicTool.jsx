@@ -103,7 +103,7 @@ const TopicTool = ({ handleFilterChange }) => {
             >
               {category.map((item) => (
                 <Radio.Button
-                  key={item}
+                  key={item.value}
                   value={item.value}
                   style={{ borderRadius: 0 }}
                 >

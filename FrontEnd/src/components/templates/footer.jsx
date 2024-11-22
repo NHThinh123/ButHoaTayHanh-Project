@@ -36,8 +36,8 @@ const Footer = () => {
       <h2>Liên kết</h2>
       <br />
       <Space>
-        <a href="https://www.facebook.com">
-          <FacebookOutlined /> Facebook
+        <a href="https://www.facebook.com" style={{ color: "#4335A7" }}>
+          <FacebookOutlined style={{ color: "#4335A7" }} /> Facebook
         </a>
       </Space>
       <br />

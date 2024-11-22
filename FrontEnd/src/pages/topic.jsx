@@ -6,8 +6,14 @@ import { useEffect } from "react";
 import TopicTool from "../features/topic/components/organisms/topicTool";
 
 const TopicPage = () => {
-  const { topicData, loadMoreData, hasMore, handleFilterChange, filters } =
-    useTopicData();
+  const {
+    topicData,
+    loadMoreData,
+    hasMore,
+    handleFilterChange,
+    filters,
+    deleteTopic,
+  } = useTopicData();
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -18,6 +24,7 @@ const TopicPage = () => {
     <Row>
       <Col span={16}>
         <TopicList
+          deleteTopic={deleteTopic}
           data={topicData}
           loadMoreData={loadMoreData}
           hasMore={hasMore}

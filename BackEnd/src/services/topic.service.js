@@ -87,11 +87,17 @@ const getTopicsService = async (query) => {
   }
 };
 
-const createTopicService = async (topicData) => {
+const createTopicService = async (topicData, fileData) => {
   try {
-    let result = await Topic.create(topicData);
+    const imageUrl = fileData?.path;
+    const updatedTopicData = {
+      ...topicData,
+      image: imageUrl,
+    };
+    let result = await Topic.create(updatedTopicData);
     return result;
   } catch (error) {
+    if (fileData) cloudinary.uploader.destroy(fileData.filename);
     console.error(error);
     return null;
   }

@@ -16,6 +16,7 @@ import CharacterEditPage from "./pages/characterEdit.jsx";
 import CharacterInfoPage from "./pages/characterInfo.jsx";
 import TopicPage from "./pages/topic.jsx";
 import TopicCreatePage from "./pages/topicCreate.jsx";
+import { ConfigProvider } from "antd";
 
 const router = createBrowserRouter([
   {
@@ -98,7 +99,15 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <AuthWrapper>
-    <RouterProvider router={router} />
-  </AuthWrapper>
+  <ConfigProvider
+    theme={{
+      token: {
+        colorPrimary: "#4335A7",
+      },
+    }}
+  >
+    <AuthWrapper>
+      <RouterProvider router={router} />
+    </AuthWrapper>
+  </ConfigProvider>
 );

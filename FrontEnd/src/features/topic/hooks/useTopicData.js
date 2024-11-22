@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { getTopicApi } from "../services/topicApi";
+import { deleteTopicApi, getTopicApi } from "../services/topicApi";
+import { message } from "antd";
 
 const useTopicData = () => {
   const [loading, setLoading] = useState(false);
@@ -49,6 +50,21 @@ const useTopicData = () => {
     setTopicData([]);
     await loadMoreData(); // Tải dữ liệu lần đầu
   };
+
+  const deleteTopic = async (id) => {
+    try {
+      const response = await deleteTopicApi(id);
+      if (response) {
+        console.log(response);
+        setTopicData((prevData) =>
+          prevData.filter((topic) => topic._id !== id)
+        );
+        message.success("Xóa bài viết thành công");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   useEffect(() => {
     loadInitData();
   }, [filters]);
@@ -60,6 +76,7 @@ const useTopicData = () => {
     hasMore,
     handleFilterChange,
     filters,
+    deleteTopic,
   };
 };
 

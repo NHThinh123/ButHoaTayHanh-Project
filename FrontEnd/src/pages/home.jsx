@@ -10,7 +10,8 @@ import useTopicData from "../features/topic/hooks/useTopicData";
 import { useEffect } from "react";
 
 const HomePage = () => {
-  const { topicData, loading, loadMoreData, hasMore } = useTopicData();
+  const { topicData, loading, loadMoreData, hasMore, deleteTopic } =
+    useTopicData();
   const newTopic = topicData?.slice(0, 4);
   useEffect(() => {
     window.scrollTo({
@@ -42,6 +43,7 @@ const HomePage = () => {
           data={topicData}
           loadMoreData={loadMoreData}
           hasMore={hasMore}
+          deleteTopic={deleteTopic}
         />
       </Col>
       <Col span={8} style={{ paddingTop: 8 }}>
