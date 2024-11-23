@@ -1,9 +1,11 @@
 const Topic = require("../models/topic.model");
 const User = require("../models/user.model");
 const Comment = require("../models/comment.model");
+const mongoose = require("mongoose");
 const getTopicsService = async (query) => {
-  const { sort, limit, page = 1, search, filterBy, category } = query;
+  const { sort, limit, page = 1, search, filterBy, category, author } = query; // Thêm author vào query
   const filter = {};
+
   if (search) {
     filter.$or = [
       { title: { $regex: search, $options: "i" } },
@@ -12,34 +14,37 @@ const getTopicsService = async (query) => {
       { "content.description": { $regex: search, $options: "i" } },
     ];
   }
+
   if (category) {
     filter.category = category;
   }
+
+  if (author) {
+    filter.author = new mongoose.Types.ObjectId(author);
+  }
+
   const sortOption = {};
 
-  // Xác định tiêu chí lọc dựa trên filterBy
   if (filterBy) {
     switch (filterBy) {
       case "newest":
-        sortOption.uploadAt = -1; // Sắp xếp theo ngày tải lên giảm dần
+        sortOption.uploadAt = -1;
         break;
       case "mostPopular":
-        sortOption.popularityScore = -1; // Sắp xếp theo phổ biến nhất
+        sortOption.popularityScore = -1;
         break;
       case "mostFeatured":
-        sortOption.featureScore = -1; // Sắp xếp theo nổi bật nhất
+        sortOption.featureScore = -1;
         break;
     }
   }
 
-  // Sắp xếp tùy chỉnh nếu có trong tham số sort
   if (sort) {
     const [field, order] = sort.split(":");
     sortOption[field] = order === "desc" ? -1 : 1;
   }
 
   try {
-    // Tính toán các chỉ số phổ biến và nổi bật dựa trên số comment, like, dislike
     let topics = await Topic.aggregate([
       {
         $addFields: {
@@ -69,7 +74,6 @@ const getTopicsService = async (query) => {
       { $limit: Number(limit) },
     ]);
 
-    // Populating the author field for each topic
     topics = await Topic.populate(topics, {
       path: "author",
       select: "-password",

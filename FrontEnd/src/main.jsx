@@ -11,12 +11,12 @@ import Character from "./pages/character.jsx";
 import PaymentPage from "./pages/payment.jsx";
 import ResultPage from "./pages/result.jsx";
 import TestPage from "./pages/test.jsx";
-
 import CharacterEditPage from "./pages/characterEdit.jsx";
 import CharacterInfoPage from "./pages/characterInfo.jsx";
 import TopicPage from "./pages/topic.jsx";
 import TopicCreatePage from "./pages/topicCreate.jsx";
 import { ConfigProvider } from "antd";
+import MyTopicPage from "./pages/myTopic.jsx";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +31,6 @@ const router = createBrowserRouter([
         path: "user",
         element: <UserPage />,
       },
-
       {
         path: "character",
         children: [
@@ -64,14 +63,10 @@ const router = createBrowserRouter([
             path: "create",
             element: <TopicCreatePage />,
           },
-          // {
-          //   path: ":id",
-          //   element: <CharacterInfoPage />,
-          // },
-          // {
-          //   path: ":id/edit",
-          //   element: <CharacterEditPage />,
-          // },
+          {
+            path: "me",
+            element: <MyTopicPage />,
+          },
         ],
       },
     ],
@@ -93,7 +88,7 @@ const router = createBrowserRouter([
     element: <ResultPage />,
   },
   {
-    path: "test",
+    path: "test/:id",
     element: <TestPage />,
   },
 ]);
@@ -103,6 +98,15 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     theme={{
       token: {
         colorPrimary: "#4335A7",
+      },
+      components: {
+        Tag: {
+          defaultBorderColor: "#000000",
+          borderColor: "#000000",
+          borderColorSplit: "#000000",
+          lineWidth: 1,
+          borderRadius: 2,
+        },
       },
     }}
   >

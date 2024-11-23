@@ -39,7 +39,7 @@ const TopicOverview = ({ data }) => {
             {data.title}
           </DefaultTitle>
           <DefaultText style={{ fontSize: 12, fontWeight: 500 }}>
-            {`${data?.author?.userName} `}
+            {`${data?.author?.username} `}
             <CheckCircleOutlined />
           </DefaultText>
           <DefaultText style={{ fontSize: 12 }}>

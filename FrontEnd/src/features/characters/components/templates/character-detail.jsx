@@ -4,7 +4,7 @@ import CharacterSkill from "../organisms/character-skill";
 import CharacterImg from "../atoms/character-img";
 import CharacterDescription from "../organisms/character-description";
 
-const CharacterDetail = ({ characterInfoData }) => {
+const CharacterDetail = ({ characterInfoData, deleteCharacter }) => {
   return (
     <Layout style={{ padding: 8 }}>
       <Row>
@@ -12,7 +12,10 @@ const CharacterDetail = ({ characterInfoData }) => {
           <CharacterImg img={characterInfoData.image} />
         </Col>
         <Col span={16}>
-          <CharacterDescription descriptionData={characterInfoData} />
+          <CharacterDescription
+            descriptionData={characterInfoData}
+            deleteCharacter={deleteCharacter}
+          />
         </Col>
       </Row>
 

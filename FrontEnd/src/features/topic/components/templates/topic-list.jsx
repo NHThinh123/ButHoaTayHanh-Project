@@ -2,6 +2,7 @@ import { Divider, List, Skeleton } from "antd";
 import Topic from "../organisms/topic";
 
 import InfiniteScroll from "react-infinite-scroll-component";
+
 const TopicList = ({ data, loadMoreData, hasMore, deleteTopic }) => {
   return (
     <InfiniteScroll

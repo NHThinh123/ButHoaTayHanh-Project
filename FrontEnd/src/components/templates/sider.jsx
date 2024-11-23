@@ -26,27 +26,11 @@ const Sider = () => {
       children: [
         {
           key: "allCharacter",
-          label: <Link to={"/character"}>All</Link>,
+          label: <Link to={"/character"}>Danh sách tướng</Link>,
         },
         {
-          key: "tien",
-          label: "Tiên giới",
-        },
-        {
-          key: "nhan",
-          label: "Nhân giới",
-        },
-        {
-          key: "yeu",
-          label: "Yêu giới",
-        },
-        {
-          key: "thanh",
-          label: "Thánh giới",
-        },
-        {
-          key: "ma",
-          label: "Ma Giới",
+          key: "createCharacter",
+          label: <Link to={"/character/create"}>Thêm tướng</Link>,
         },
       ],
     },
@@ -59,24 +43,16 @@ const Sider = () => {
       icon: <CommentOutlined />,
       children: [
         {
-          key: "guide0",
+          key: "allTopic",
           label: <Link to={"/topic"}>Quản lý bài viết</Link>,
         },
         {
-          key: "Guide1",
-          label: "Bước chuẩn bị",
+          key: "myTopic",
+          label: <Link to={"/topic/me"}>Bài viết của tôi</Link>,
         },
         {
-          key: "Guide2",
-          label: "Quản lý tài nguyên",
-        },
-        {
-          key: "Guide3",
-          label: "Bảy ngày tân thủ",
-        },
-        {
-          key: "Guide4",
-          label: "Đội hình đề cử",
+          key: "createTopic",
+          label: <Link to={"/topic/create"}>Thêm bài viết</Link>,
         },
       ],
     },
@@ -156,7 +132,7 @@ const Sider = () => {
       <Menu
         onClick={onClick}
         defaultSelectedKeys={["home"]}
-        defaultOpenKeys={["sub2"]}
+        defaultOpenKeys={["sub2", "sub4", "user"]}
         mode="inline"
         items={items}
         style={{

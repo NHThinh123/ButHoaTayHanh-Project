@@ -62,7 +62,7 @@ const CharacterSkill = ({ skillData }) => {
                     <Space
                       style={{ display: "flex", alignItems: "flex-start" }}
                     >
-                      <TagCustom color={item.colorEffect} padding={5}>
+                      <TagCustom color={item.colorEffect} padding={"2px 4px"}>
                         {`${item.nameEffect} :`}
                       </TagCustom>
                       <DefaultText>{item.descriptionEffect}</DefaultText>

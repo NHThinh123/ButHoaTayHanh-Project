@@ -27,7 +27,11 @@ const SkillDescription = ({ skillData, effectData }) => {
 
       if (matchingEffect) {
         return (
-          <TagCustom key={index} color={matchingEffect.colorEffect} padding={5}>
+          <TagCustom
+            key={index}
+            color={matchingEffect.colorEffect}
+            padding={"2px 4px"}
+          >
             {part}
           </TagCustom>
         );

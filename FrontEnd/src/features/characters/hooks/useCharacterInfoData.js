@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+
 import { getCharacterInfoApi } from "../services/characterApi";
 
-const useCharacterInfoData = () => {
+const useCharacterInfoData = (id) => {
   const [characterInfoData, setCharacterInfoData] = useState({});
   const [loading, setLoading] = useState(true);
-  const { id } = useParams();
+
   useEffect(() => {
     const fetchCharacterInfoData = async () => {
       try {

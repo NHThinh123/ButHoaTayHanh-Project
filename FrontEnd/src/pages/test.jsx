@@ -1,133 +1,111 @@
-import { useState } from "react";
-import { Modal, List, Avatar, Skeleton, Button } from "antd";
-import InfiniteScroll from "react-infinite-scroll-component";
+import { Button, Col, Form, Layout, Row, Spin } from "antd";
+import useCharacterForm from "../features/characters/hooks/useCharacterForm";
+import useEffectData from "../features/characters/hooks/useEffectData";
+import CharacterImageForm from "../features/characters/components/organisms/character-img-form";
+import CharacterDescriptionForm from "../features/characters/components/organisms/character-description-form";
+import CharacterSkillForm from "../features/characters/components/organisms/character-skill-form";
+import BentoBox from "../components/atoms/bento-box";
+import useCharacterInfoData from "../features/characters/hooks/useCharacterInfoData";
 
-// Helper function để tạo dữ liệu mẫu
-const generateItems = (startIndex, count) => {
-  return Array.from({ length: count }, (_, index) => ({
-    id: startIndex + index,
-    title: `Item ${startIndex + index}`,
-    description: `This is the description for item ${startIndex + index}`,
-    avatar: `https://xsgames.co/randomusers/avatar.php?g=pixel&key=${
-      startIndex + index
-    }`,
-  }));
-};
+const CharacterForm = () => {
+  const {
+    onFinish,
+    setFileList,
+    form,
+    modalData,
+    setModalData,
+    handleDeleteSkill,
+    confirmDelete,
+    isLoading,
+  } = useCharacterForm();
+  const {
+    effectData,
+    showAddEffectModal,
+    handleAddEffectModalCancel,
+    handleAddEffectModalOk,
+    isModalAddEffectVisible,
+    formEffect,
+  } = useEffectData();
 
-const InfiniteScrollModal = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
-  const [hasMore, setHasMore] = useState(true);
+  const { characterInfoData } = useCharacterInfoData();
 
-  // Load dữ liệu ban đầu khi mở modal
-  const loadInitialData = () => {
-    setLoading(true);
-    setTimeout(() => {
-      const initialData = generateItems(0, 20);
-      setData(initialData);
-      setLoading(false);
-    }, 1000);
-  };
-
-  const fetchMoreData = () => {
-    // Giả lập API call
-    setTimeout(() => {
-      const newData = generateItems(data.length, 20);
-      setData([...data, ...newData]);
-
-      // Dừng infinite scroll sau khi đạt 100 items
-      if (data.length >= 100) {
-        setHasMore(false);
-      }
-    }, 1500);
-  };
-
-  const showModal = () => {
-    setIsModalOpen(true);
-    loadInitialData();
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-    // Reset data khi đóng modal
-    setData([]);
-    setHasMore(true);
-  };
-
+  console.log("characterInfoData", characterInfoData);
   return (
-    <>
-      <Button type="primary" onClick={showModal}>
-        Open Infinite Scroll Modal
-      </Button>
+    <div style={{ position: "relative" }}>
+      {/* Spin hiển thị khi loading */}
+      {isLoading && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.2)",
+            zIndex: 1000,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Spin size="large" />
+        </div>
+      )}
 
-      <Modal
-        title="Infinite Scroll Example"
-        open={isModalOpen}
-        onCancel={handleCancel}
-        width={800}
-        footer={null}
-      >
-        {loading ? (
-          // Hiển thị skeleton loading khi đang tải dữ liệu ban đầu
-          <div style={{ padding: "20px 0" }}>
-            <Skeleton active avatar paragraph={{ rows: 3 }} />
-            <Skeleton active avatar paragraph={{ rows: 3 }} />
-            <Skeleton active avatar paragraph={{ rows: 3 }} />
-          </div>
-        ) : (
-          <div
-            id="scrollableDiv"
-            style={{
-              height: 400,
-              overflow: "auto",
-              padding: "0 16px",
-            }}
-          >
-            <InfiniteScroll
-              dataLength={data.length}
-              next={fetchMoreData}
-              hasMore={hasMore}
-              loader={
-                <Skeleton
-                  avatar
-                  paragraph={{ rows: 1 }}
-                  active
-                  style={{ padding: "10px 0" }}
-                />
-              }
-              endMessage={
-                <div
-                  style={{
-                    textAlign: "center",
-                    padding: "10px 0",
-                    color: "#999",
-                  }}
-                >
-                  No more items to load.
-                </div>
-              }
-              scrollableTarget="scrollableDiv"
-            >
-              <List
-                dataSource={data}
-                renderItem={(item) => (
-                  <List.Item key={item.id}>
-                    <List.Item.Meta
-                      avatar={<Avatar src={item.avatar} />}
-                      title={<a href="#">{item.title}</a>}
-                      description={item.description}
-                    />
-                    <div>Content</div>
-                  </List.Item>
-                )}
+      <Layout style={{ padding: 8, minHeight: "100vh" }}>
+        <Form
+          form={form}
+          layout="vertical"
+          onFinish={onFinish}
+          initialValues={characterInfoData}
+        >
+          <Row>
+            <Col xs={24} sm={24} md={24} lg={10}>
+              <CharacterImageForm setFileList={setFileList} />
+            </Col>
+            <Col xs={24} sm={24} md={24} lg={14}>
+              <CharacterDescriptionForm />
+            </Col>
+          </Row>
+
+          <Row>
+            <Col span={24} style={{ marginBottom: 40 }}>
+              <CharacterSkillForm
+                modalData={modalData}
+                setModalData={setModalData}
+                handleDeleteSkill={handleDeleteSkill}
+                confirmDelete={confirmDelete}
+                effectData={effectData}
+                showAddEffectModal={showAddEffectModal}
+                handleAddEffectModalCancel={handleAddEffectModalCancel}
+                handleAddEffectModalOk={handleAddEffectModalOk}
+                isModalAddEffectVisible={isModalAddEffectVisible}
+                formEffect={formEffect}
               />
-            </InfiniteScroll>
-          </div>
-        )}
-      </Modal>
-    </>
+            </Col>
+          </Row>
+          <Row>
+            <Col
+              span={24}
+              style={{
+                position: "fixed",
+                bottom: 0,
+                width: "82%",
+              }}
+            >
+              <BentoBox>
+                <Form.Item noStyle>
+                  <Button type="primary" htmlType="submit" block>
+                    Cập nhật
+                  </Button>
+                </Form.Item>
+              </BentoBox>
+            </Col>
+          </Row>
+        </Form>
+      </Layout>
+    </div>
   );
 };
 
-export default InfiniteScrollModal;
+export default CharacterForm;

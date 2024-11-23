@@ -72,7 +72,7 @@ const CharacterImageForm = ({ setFileList }) => {
         accept="image/*"
         style={{
           width: "350px",
-          height: "480px",
+          height: "450px",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -85,7 +85,7 @@ const CharacterImageForm = ({ setFileList }) => {
               alt="Uploaded"
               style={{
                 width: "350px",
-                height: "480px",
+                height: "450px",
                 objectFit: "cover",
               }}
             />
@@ -112,7 +112,7 @@ const CharacterImageForm = ({ setFileList }) => {
           <div
             style={{
               width: "320px",
-              height: "400px",
+              height: "350px",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",

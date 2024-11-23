@@ -20,4 +20,14 @@ const createCharacterApi = (data) => {
     headers: { "Content-Type": "multipart/form-data" },
   });
 };
-export { getCharacterApi, getCharacterInfoApi, createCharacterApi };
+
+const deleteCharacterApi = (id) => {
+  const URL_API = `api/character/${id}`;
+  return axios.delete(URL_API);
+};
+export {
+  getCharacterApi,
+  getCharacterInfoApi,
+  createCharacterApi,
+  deleteCharacterApi,
+};

@@ -18,7 +18,7 @@ const Character = () => {
         minHeight: "100vh",
       }}
     >
-      {auth?.user?.role !== "admin" ? (
+      {auth?.user?.role === "admin" ? (
         <Flex
           justify="space-between"
           align="center"

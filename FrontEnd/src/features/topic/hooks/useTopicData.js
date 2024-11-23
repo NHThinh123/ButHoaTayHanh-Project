@@ -1,19 +1,21 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { deleteTopicApi, getTopicApi } from "../services/topicApi";
 import { message } from "antd";
+import { AuthContext } from "../../../contexts/auth.context";
 
-const useTopicData = () => {
+const useTopicData = (isMyPost) => {
   const [loading, setLoading] = useState(false);
   const [topicData, setTopicData] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
   const [hasMore, setHasMore] = useState(true);
-
+  const { auth } = useContext(AuthContext);
   const [filters, setFilters] = useState({
     search: "",
     sort: "",
     category: "",
     filterBy: "mostFeatured",
+    author: isMyPost ? auth.user.id : "",
   });
   const loadMoreData = async () => {
     if (loading) return;

@@ -1,5 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
-import { getCharacterApi } from "../services/characterApi";
+import { deleteCharacterApi, getCharacterApi } from "../services/characterApi";
+import { message } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const useCharacterData = () => {
   const [characterData, setCharacterData] = useState([]);
@@ -11,6 +13,7 @@ const useCharacterData = () => {
     rarity: "",
     sort: "",
   });
+  const navigate = useNavigate();
 
   const fetchCharacters = useCallback(
     async (page = 1, pageSize = 20) => {
@@ -32,12 +35,32 @@ const useCharacterData = () => {
   const handleFilterChange = useCallback((value, name) => {
     setFilters((prevFilters) => ({ ...prevFilters, [name]: value }));
   }, []);
-
+  const deleteCharacter = async (id) => {
+    try {
+      const response = await deleteCharacterApi(id);
+      if (response) {
+        console.log(response);
+        setCharacterData((prevData) =>
+          prevData.filter((topic) => topic._id !== id)
+        );
+        message.success("Xóa bài viết thành công");
+        navigate("/character");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   useEffect(() => {
     fetchCharacters();
   }, [fetchCharacters]);
 
-  return { characterData, loading, handleFilterChange };
+  return {
+    characterData,
+    loading,
+    handleFilterChange,
+    filters,
+    deleteCharacter,
+  };
 };
 
 export default useCharacterData;
