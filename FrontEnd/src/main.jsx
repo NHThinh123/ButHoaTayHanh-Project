@@ -18,6 +18,7 @@ import TopicCreatePage from "./pages/topicCreate.jsx";
 import { ConfigProvider } from "antd";
 import MyTopicPage from "./pages/myTopic.jsx";
 import CharacterCreatePage from "./pages/characterCreate.jsx";
+import PrivateRoute from "./contexts/private-route.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,11 @@ const router = createBrowserRouter([
       },
       {
         path: "user",
-        element: <UserPage />,
+        element: (
+          <PrivateRoute>
+            <UserPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "character",
@@ -41,7 +46,11 @@ const router = createBrowserRouter([
           },
           {
             path: "create",
-            element: <CharacterCreatePage />,
+            element: (
+              <PrivateRoute>
+                <CharacterCreatePage />
+              </PrivateRoute>
+            ),
           },
           {
             path: ":id",
@@ -49,7 +58,11 @@ const router = createBrowserRouter([
           },
           {
             path: ":id/edit",
-            element: <CharacterEditPage />,
+            element: (
+              <PrivateRoute>
+                <CharacterEditPage />
+              </PrivateRoute>
+            ),
           },
         ],
       },
@@ -62,11 +75,19 @@ const router = createBrowserRouter([
           },
           {
             path: "create",
-            element: <TopicCreatePage />,
+            element: (
+              <PrivateRoute>
+                <TopicCreatePage />
+              </PrivateRoute>
+            ),
           },
           {
             path: "me",
-            element: <MyTopicPage />,
+            element: (
+              <PrivateRoute>
+                <MyTopicPage />
+              </PrivateRoute>
+            ),
           },
         ],
       },
