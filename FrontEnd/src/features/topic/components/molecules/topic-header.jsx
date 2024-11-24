@@ -7,12 +7,14 @@ import {
   Modal,
   Row,
   Typography,
+  message,
 } from "antd";
 import DefaultTitle from "../../../../components/atoms/default-title";
 import DefaultText from "../../../../components/atoms/default-text";
 import { EllipsisOutlined } from "@ant-design/icons";
 import formatDate from "../../../../utils/formatDate";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../../../contexts/auth.context";
 
 const TopicHeader = ({
   author,
@@ -22,9 +24,18 @@ const TopicHeader = ({
   deleteTopic,
 }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const { auth } = useContext(AuthContext);
 
+  // Hiển thị modal xác nhận xóa
   const showDeleteModal = () => {
-    setIsModalVisible(true);
+    if (
+      auth?.user.role === "admin" || // Kiểm tra nếu người dùng là admin
+      auth?.user.id === author?._id // Hoặc người dùng là tác giả bài viết
+    ) {
+      setIsModalVisible(true);
+    } else {
+      message.error("Bạn không có quyền xóa bài viết này.");
+    }
   };
 
   const handleCancel = () => {
@@ -32,8 +43,8 @@ const TopicHeader = ({
   };
 
   const handleDelete = () => {
-    deleteTopic(topicData._id);
-    setIsModalVisible(false);
+    deleteTopic(topicData._id); // Gọi hàm xóa bài viết
+    setIsModalVisible(false); // Đóng modal
   };
 
   const items = [
@@ -92,8 +103,8 @@ const TopicHeader = ({
       <Modal
         title="Xóa bài đăng này?"
         visible={isModalVisible}
-        onCancel={handleCancel} // Đóng modal khi nhấn nút "X" hoặc hủy
-        closable={true} // Hiển thị nút "X" ở góc phải trên
+        onCancel={handleCancel}
+        closable={true}
         footer={[
           <Button key="cancel" onClick={handleCancel}>
             Hủy

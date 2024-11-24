@@ -6,12 +6,32 @@ import {
   MenuOutlined,
 } from "@ant-design/icons";
 import { Menu } from "antd";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/auth.context";
+
+import LoginRequiredModal from "../atoms/login-modal-required";
+
 const Sider = () => {
   const navigate = useNavigate();
   const { auth, setAuth } = useContext(AuthContext);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [redirectPath, setRedirectPath] = useState("");
+
+  const showLoginModal = (path) => {
+    setRedirectPath(path);
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+    navigate("/login");
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
 
   const items = [
     {
@@ -30,7 +50,13 @@ const Sider = () => {
         },
         {
           key: "createCharacter",
-          label: <Link to={"/character/create"}>Thêm tướng</Link>,
+          label: auth.isAuthentication ? (
+            <Link to={"/character/create"}>Thêm tướng</Link>
+          ) : (
+            <span onClick={() => showLoginModal("/character/create")}>
+              Thêm tướng
+            </span>
+          ),
         },
       ],
     },
@@ -48,11 +74,23 @@ const Sider = () => {
         },
         {
           key: "myTopic",
-          label: <Link to={"/topic/me"}>Bài viết của tôi</Link>,
+          label: auth.isAuthentication ? (
+            <Link to={"/topic/me"}>Bài viết của tôi</Link>
+          ) : (
+            <span onClick={() => showLoginModal("/topic/me")}>
+              Bài viết của tôi
+            </span>
+          ),
         },
         {
           key: "createTopic",
-          label: <Link to={"/topic/create"}>Thêm bài viết</Link>,
+          label: auth.isAuthentication ? (
+            <Link to={"/topic/create"}>Thêm bài viết</Link>
+          ) : (
+            <span onClick={() => showLoginModal("/topic/create")}>
+              Thêm bài viết
+            </span>
+          ),
         },
       ],
     },
@@ -73,10 +111,14 @@ const Sider = () => {
           children: [
             ...(auth.isAuthentication
               ? [
-                  {
-                    key: "listUser",
-                    label: <Link to={"/user"}>Danh sách user</Link>,
-                  },
+                  ...(auth.user.role === "admin"
+                    ? [
+                        {
+                          key: "listUser",
+                          label: <Link to={"/user"}>Danh sách user</Link>,
+                        },
+                      ]
+                    : []),
                   {
                     key: "logout",
                     label: (
@@ -107,19 +149,17 @@ const Sider = () => {
                     key: "register",
                     label: <Link to={"/register"}>Đăng Ký</Link>,
                   },
-                  {
-                    key: "payment",
-                    label: <Link to={"/payment"}>Thanh toán</Link>,
-                  },
                 ]),
           ],
         },
       ],
     },
   ];
+
   const onClick = (e) => {
     console.log("click ", e);
   };
+
   return (
     <div
       style={{
@@ -145,7 +185,13 @@ const Sider = () => {
           paddingBottom: 100,
         }}
       />
+      <LoginRequiredModal
+        isVisible={isModalVisible}
+        handleOk={handleOk}
+        handleCancel={handleCancel}
+      />
     </div>
   );
 };
+
 export default Sider;
