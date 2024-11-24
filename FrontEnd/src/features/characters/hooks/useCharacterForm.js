@@ -1,6 +1,9 @@
 import { Form, message } from "antd";
 import { useState } from "react";
-import { createCharacterApi } from "../services/characterApi";
+import {
+  createCharacterApi,
+  updateCharacterApi,
+} from "../services/characterApi";
 import { useNavigate } from "react-router-dom";
 
 const useCharacterForm = () => {
@@ -19,8 +22,8 @@ const useCharacterForm = () => {
         role: values.role,
         faction: values.faction,
         story: values.story,
-        PveScore: values.pveScore,
-        PvpScore: values.pvpScore,
+        PveScore: values.PveScore,
+        PvpScore: values.PvpScore,
         skills: values.skills,
       };
 
@@ -38,7 +41,40 @@ const useCharacterForm = () => {
         navigate("/character");
       }
     } catch (error) {
-      message.error("Failed to create character");
+      message.error("Tạo nhân vật thất bại");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  const onChangeData = async (values, id) => {
+    setIsLoading(true);
+    try {
+      const data = {
+        name: values.name,
+        rarity: values.rarity,
+        role: values.role,
+        faction: values.faction,
+        story: values.story,
+        PveScore: values.PveScore,
+        PvpScore: values.PvpScore,
+        skills: values.skills,
+      };
+
+      if (fileList[0]) {
+        const imageFile = fileList[0].originFileObj;
+        data.image = imageFile;
+      }
+
+      const res = await updateCharacterApi(id, data);
+      console.log(res);
+      if (res) {
+        message.success("Chỉnh sửa nhân vật thành công");
+
+        setFileList([]);
+        navigate("/character");
+      }
+    } catch (error) {
+      message.error("Tạo nhân vật thất bại");
     } finally {
       setIsLoading(false);
     }
@@ -67,6 +103,7 @@ const useCharacterForm = () => {
     handleDeleteSkill,
     confirmDelete,
     isLoading,
+    onChangeData,
   };
 };
 

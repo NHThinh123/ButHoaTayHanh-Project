@@ -1,23 +1,6 @@
 const Character = require("../models/character.model");
 const cloudinary = require("../config/cloudinary");
 
-const createCharacterService = async (characterData, fileData) => {
-  try {
-    const imageUrl = fileData?.path;
-    const updatedCharacterData = {
-      ...characterData,
-      image: imageUrl,
-    };
-
-    let result = await Character.create(updatedCharacterData);
-    return result;
-  } catch (error) {
-    if (fileData) cloudinary.uploader.destroy(fileData.filename);
-    console.error(error);
-    return null;
-  }
-};
-
 const getAllCharactersService = async (query) => {
   const { role, rarity, faction, sort, limit = 10, page = 1, search } = query;
   const filter = {};
@@ -61,10 +44,49 @@ const getCharacterByIdService = async (id) => {
     return null;
   }
 };
-const updateCharacterService = async (id, updateData) => {
+const createCharacterService = async (characterData, fileData) => {
   try {
-    const result = await Character.findByIdAndUpdate(id, updateData, {
-      new: true,
+    const imageUrl = fileData?.path;
+    const updatedCharacterData = {
+      ...characterData,
+      image: imageUrl,
+    };
+
+    let result = await Character.create(updatedCharacterData);
+    return result;
+  } catch (error) {
+    if (fileData) cloudinary.uploader.destroy(fileData.filename);
+    console.error(error);
+    return null;
+  }
+};
+const updateCharacterService = async (id, updateData, fileData) => {
+  try {
+    let updatedCharacterData = { ...updateData };
+
+    // Lấy thông tin nhân vật hiện tại
+    const currentCharacter = await Character.findById(id);
+
+    // Nếu có file mới, xóa ảnh cũ trên Cloudinary
+    if (fileData) {
+      const imageUrl = fileData.path;
+
+      // Kiểm tra và xóa ảnh cũ
+      if (currentCharacter?.image) {
+        const publicId = currentCharacter.image
+          .split("/character-img/")[1] // Lấy phần sau "character-img/"
+          .split(".")[0]; // Loại bỏ phần đuôi file (ví dụ: .jpg)
+        await cloudinary.uploader.destroy(`character-img/${publicId}`);
+      }
+
+      updatedCharacterData = {
+        ...updateData,
+        image: imageUrl,
+      };
+    }
+
+    const result = await Character.findByIdAndUpdate(id, updatedCharacterData, {
+      new: true, // Trả về tài liệu đã cập nhật
       runValidators: true,
     }).populate({
       path: "skills",
@@ -73,6 +95,7 @@ const updateCharacterService = async (id, updateData) => {
         model: "Effect",
       },
     });
+
     return result;
   } catch (error) {
     console.error(error);
@@ -81,14 +104,26 @@ const updateCharacterService = async (id, updateData) => {
 };
 const deleteCharacterService = async (id) => {
   try {
+    // Lấy thông tin nhân vật trước khi xóa
+    const character = await Character.findById(id);
+
+    // Xóa ảnh trên Cloudinary
+    if (character?.image) {
+      const publicId = character.image
+        .split("/character-img/")[1] // Lấy phần sau "character-img/"
+        .split(".")[0]; // Loại bỏ phần đuôi file (ví dụ: .jpg)
+      await cloudinary.uploader.destroy(`character-img/${publicId}`);
+    }
+
+    // Xóa nhân vật trong cơ sở dữ liệu
     const result = await Character.findByIdAndDelete(id);
+
     return result;
   } catch (error) {
     console.error(error);
     return null;
   }
 };
-
 module.exports = {
   createCharacterService,
   getAllCharactersService,

@@ -17,6 +17,7 @@ import TopicPage from "./pages/topic.jsx";
 import TopicCreatePage from "./pages/topicCreate.jsx";
 import { ConfigProvider } from "antd";
 import MyTopicPage from "./pages/myTopic.jsx";
+import CharacterCreatePage from "./pages/characterCreate.jsx";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
           },
           {
             path: "create",
-            element: <CharacterEditPage />,
+            element: <CharacterCreatePage />,
           },
           {
             path: ":id",

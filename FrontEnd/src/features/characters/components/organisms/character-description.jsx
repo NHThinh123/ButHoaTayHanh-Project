@@ -33,14 +33,19 @@ const CharacterDescription = ({ descriptionData, deleteCharacter }) => {
           >
             {descriptionData.name}
             {auth?.user?.role === "admin" && (
-              <Button
-                color="danger"
-                variant="solid"
-                style={{ padding: "8px 26px" }}
-                onClick={() => deleteCharacter(descriptionData._id)}
-              >
-                Xóa
-              </Button>
+              <div>
+                <Button href={`/character/${descriptionData._id}/edit`}>
+                  Chỉnh sửa
+                </Button>
+                <Button
+                  color="danger"
+                  variant="solid"
+                  style={{ padding: "8px 26px" }}
+                  onClick={() => deleteCharacter(descriptionData._id)}
+                >
+                  Xóa
+                </Button>
+              </div>
             )}
           </Typography.Title>
 

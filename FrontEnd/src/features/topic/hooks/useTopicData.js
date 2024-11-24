@@ -9,6 +9,7 @@ const useTopicData = (isMyPost) => {
 
   const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
   const [hasMore, setHasMore] = useState(true);
+
   const { auth } = useContext(AuthContext);
   const [filters, setFilters] = useState({
     search: "",

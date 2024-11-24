@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Upload, message } from "antd";
 import { PlusOutlined, ReloadOutlined } from "@ant-design/icons";
 import BentoBox from "../../../../components/atoms/bento-box";
 
 const { Dragger } = Upload;
 
-const CharacterImageForm = ({ setFileList }) => {
+const CharacterImageForm = ({ setFileList, initialImage }) => {
   const [imageUrl, setImageUrl] = useState(null);
+
+  // Thêm useEffect để xử lý initialImage
+  useEffect(() => {
+    if (initialImage) {
+      setImageUrl(initialImage);
+    }
+  }, [initialImage]);
 
   const beforeUpload = (file) => {
     const isImage = file.type.startsWith("image/");

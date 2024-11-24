@@ -13,6 +13,6 @@ router.get("/", getAllCharacters);
 router.get("/:id", getCharacterById);
 
 router.post("/", uploadCloud.single("image"), createCharacter);
-router.put("/:id", updateCharacter);
+router.put("/:id", uploadCloud.single("image"), updateCharacter);
 router.delete("/:id", deleteCharacter);
 module.exports = router;

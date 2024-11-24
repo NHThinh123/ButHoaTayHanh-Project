@@ -6,10 +6,12 @@ import CharacterImageForm from "../organisms/character-img-form";
 import BentoBox from "../../../../components/atoms/bento-box";
 import useCharacterForm from "../../hooks/useCharacterForm";
 import useEffectData from "../../hooks/useEffectData";
+import { useEffect } from "react";
 
-const CharacterForm = () => {
+const CharacterForm = ({ mode, initialValues, id }) => {
   const {
     onFinish,
+    onChangeData,
     setFileList,
     form,
     modalData,
@@ -26,6 +28,13 @@ const CharacterForm = () => {
     isModalAddEffectVisible,
     formEffect,
   } = useEffectData();
+
+  useEffect(() => {
+    if (mode === "edit" && initialValues) {
+      form.setFieldsValue(initialValues);
+      console.log("Current form values:", form.getFieldsValue());
+    }
+  }, [initialValues, form]);
   return (
     <div style={{ position: "relative" }}>
       {/* Spin hiển thị khi loading */}
@@ -49,10 +58,23 @@ const CharacterForm = () => {
       )}
 
       <Layout style={{ padding: 8, minHeight: "100vh" }}>
-        <Form form={form} layout="vertical" onFinish={onFinish}>
+        <Form
+          form={form}
+          layout="vertical"
+          onFinish={
+            mode === "create"
+              ? onFinish
+              : (values) => {
+                  onChangeData(values, id);
+                }
+          }
+        >
           <Row>
             <Col xs={24} sm={24} md={24} lg={10}>
-              <CharacterImageForm setFileList={setFileList} />
+              <CharacterImageForm
+                setFileList={setFileList}
+                initialImage={initialValues?.image} // Truyền ảnh mặc định
+              />
             </Col>
             <Col xs={24} sm={24} md={24} lg={14}>
               <CharacterDescriptionForm />

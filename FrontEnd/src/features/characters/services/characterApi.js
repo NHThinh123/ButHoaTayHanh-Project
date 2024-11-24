@@ -25,9 +25,16 @@ const deleteCharacterApi = (id) => {
   const URL_API = `api/character/${id}`;
   return axios.delete(URL_API);
 };
+const updateCharacterApi = (id, data) => {
+  const URL_API = `api/character/${id}`;
+  return axios.put(URL_API, data, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+};
 export {
   getCharacterApi,
   getCharacterInfoApi,
   createCharacterApi,
   deleteCharacterApi,
+  updateCharacterApi,
 };

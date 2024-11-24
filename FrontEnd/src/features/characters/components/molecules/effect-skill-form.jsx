@@ -25,6 +25,7 @@ const EffectSkillForm = ({
     const selected = effectData.filter((effect) =>
       dataEffectForm.includes(effect._id)
     );
+    console.log("aaaaaaaaaa", dataEffectForm);
     setSelectedEffects(selected);
   };
   return (

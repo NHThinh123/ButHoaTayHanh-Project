@@ -20,7 +20,7 @@ const getCharacterById = async (req, res) => {
   return res.status(200).json(data);
 };
 const updateCharacter = async (req, res) => {
-  const data = await updateCharacterService(req.params.id, req.body);
+  const data = await updateCharacterService(req.params.id, req.body, req.file);
   return res.status(200).json(data);
 };
 const deleteCharacter = async (req, res) => {

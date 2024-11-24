@@ -73,7 +73,7 @@ const CharacterDescriptionForm = () => {
             Đánh giá sức mạnh:
           </DefaultTitle>
           <Form.Item
-            name="pvpScore"
+            name="PvpScore"
             label={<DefaultTitle>PVP: </DefaultTitle>}
             layout="horizontal"
             rules={[
@@ -86,7 +86,7 @@ const CharacterDescriptionForm = () => {
             <Rate allowHalf />
           </Form.Item>
           <Form.Item
-            name="pveScore"
+            name="PveScore"
             label={<DefaultTitle>PVE: </DefaultTitle>}
             layout="horizontal"
             rules={[
