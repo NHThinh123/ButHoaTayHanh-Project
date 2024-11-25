@@ -11,6 +11,7 @@ const authentication = (req, res, next) => {
     "/character",
     "/effect",
     "/character/:id", // Thêm dynamic route
+    "/topic/:id",
   ];
 
   // Hàm kiểm tra đường dẫn hiện tại với danh sách trắng

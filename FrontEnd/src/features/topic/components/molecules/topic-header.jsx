@@ -15,6 +15,7 @@ import { EllipsisOutlined } from "@ant-design/icons";
 import formatDate from "../../../../utils/formatDate";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../../contexts/auth.context";
+import { useNavigate } from "react-router-dom";
 
 const TopicHeader = ({
   author,
@@ -25,7 +26,7 @@ const TopicHeader = ({
 }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const { auth } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   // Hiển thị modal xác nhận xóa
   const showDeleteModal = () => {
     if (
@@ -35,6 +36,16 @@ const TopicHeader = ({
       setIsModalVisible(true);
     } else {
       message.error("Bạn không có quyền xóa bài viết này.");
+    }
+  };
+  const showEditModal = () => {
+    if (
+      auth?.user.role === "admin" || // Kiểm tra nếu người dùng là admin
+      auth?.user.id === author?._id // Hoặc người dùng là tác giả bài viết
+    ) {
+      navigate(`/topic/${topicData._id}/edit`);
+    } else {
+      message.error("Bạn không có quyền chỉnh sửa bài viết này.");
     }
   };
 
@@ -53,6 +64,14 @@ const TopicHeader = ({
       label: (
         <Button color="default" variant="text" onClick={showDeleteModal} block>
           Xóa
+        </Button>
+      ),
+    },
+    {
+      key: "2",
+      label: (
+        <Button color="default" variant="text" onClick={showEditModal} block>
+          Chỉnh sửa
         </Button>
       ),
     },

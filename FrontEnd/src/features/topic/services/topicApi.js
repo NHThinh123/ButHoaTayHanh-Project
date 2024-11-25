@@ -21,10 +21,12 @@ const dislikeTopicApi = (topicId) => {
 };
 const updateTopicApi = (topicId, dataUpdate) => {
   const URL_API = `api/topic/${topicId}`;
-  return axios.put(URL_API, dataUpdate);
+  return axios.put(URL_API, dataUpdate, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
 };
-const commentTopicApi = (toppicId, data) => {
-  const URL_API = `api/topic/${toppicId}/comment`;
+const commentTopicApi = (topicId, data) => {
+  const URL_API = `api/topic/${topicId}/comment`;
   return axios.put(URL_API, data);
 };
 const createTopicApi = (data) => {
@@ -37,6 +39,11 @@ const deleteTopicApi = (topicId) => {
   const URL_API = `api/topic/${topicId}`;
   return axios.delete(URL_API);
 };
+const getTopicInfoApi = (topicId) => {
+  const URL_API = `api/topic/${topicId}`;
+  return axios.get(URL_API);
+};
+
 export {
   getTopicApi,
   likeTopicApi,
@@ -45,4 +52,5 @@ export {
   commentTopicApi,
   createTopicApi,
   deleteTopicApi,
+  getTopicInfoApi,
 };

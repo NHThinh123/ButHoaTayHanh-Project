@@ -19,6 +19,7 @@ import { ConfigProvider } from "antd";
 import MyTopicPage from "./pages/myTopic.jsx";
 import CharacterCreatePage from "./pages/characterCreate.jsx";
 import PrivateRoute from "./contexts/private-route.jsx";
+import TopicEditPage from "./pages/topicEdit.jsx";
 
 const router = createBrowserRouter([
   {
@@ -86,6 +87,14 @@ const router = createBrowserRouter([
             element: (
               <PrivateRoute>
                 <MyTopicPage />
+              </PrivateRoute>
+            ),
+          },
+          {
+            path: ":id/edit",
+            element: (
+              <PrivateRoute>
+                <TopicEditPage />
               </PrivateRoute>
             ),
           },

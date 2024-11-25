@@ -22,8 +22,7 @@ const getTopicById = async (req, res) => {
   return res.status(200).json(data);
 };
 const updateTopic = async (req, res) => {
-  const updateData = req.body;
-  const data = await updateTopicService(req.params.id, updateData);
+  const data = await updateTopicService(req.params.id, req.body, req.file);
   return res.status(200).json(data);
 };
 const deleteTopic = async (req, res) => {

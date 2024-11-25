@@ -108,18 +108,33 @@ const createTopicService = async (topicData, fileData) => {
 };
 const getTopicByIdService = async (id) => {
   try {
-    let result = await Topic.findById(id)
-      .populate("author")
-      .populate("comments");
+    let result = await Topic.findById(id).populate("author", "-password");
+
     return result;
   } catch (error) {
     console.error(error);
     return null;
   }
 };
-const updateTopicService = async (id, updateData) => {
+const updateTopicService = async (id, updateData, fileData) => {
   try {
-    let result = await Topic.findByIdAndUpdate(id, updateData, { new: true });
+    let updatedTopicData = { ...updateData };
+    // Lấy thông tin nhân vật hiện tại
+    const currentTopic = await Topic.findById(id);
+    // Nếu có file mới, xóa ảnh cũ trên Cloudinary
+    if (fileData) {
+      const imageUrl = fileData.path;
+      updatedTopicData = {
+        ...updateData,
+        image: imageUrl,
+      };
+    }
+
+    const result = await Topic.findByIdAndUpdate(id, updatedTopicData, {
+      new: true, // Trả về tài liệu đã cập nhật
+      runValidators: true,
+    }).populate("author", "-password");
+
     return result;
   } catch (error) {
     console.error(error);

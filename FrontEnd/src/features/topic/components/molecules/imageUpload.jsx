@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Upload, message } from "antd";
 import { PlusOutlined, ReloadOutlined } from "@ant-design/icons";
 
 const { Dragger } = Upload;
 
-const ImageUpload = ({ setFileList }) => {
+const ImageUpload = ({ setFileList, initialImage }) => {
   const [imageUrl, setImageUrl] = useState(null);
-
+  // Thêm useEffect để xử lý initialImage
+  useEffect(() => {
+    if (initialImage) {
+      setImageUrl(initialImage);
+    }
+  }, [initialImage]);
   const beforeUpload = (file) => {
     const isImage = file.type.startsWith("image/");
     if (!isImage) {

@@ -18,7 +18,7 @@ const {
 router.get("/", getTopics);
 router.get("/:id", getTopicById);
 
-router.put("/:id", updateTopic);
+router.put("/:id", uploadCloud.single("image"), updateTopic);
 router.delete("/:id", deleteTopic);
 router.post("/", uploadCloud.single("image"), createTopic);
 router.put("/:id/like", likeTopic);
