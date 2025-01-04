@@ -11,7 +11,7 @@ const TopicOverviewList = ({ data }) => {
   return (
     <BentoBox style={{ marginTop: "0px" }}>
       <DefaultTitle style={{ fontSize: 24, margin: 16 }}>
-        Bài viết nổi bật
+        Bài đăng nổi bật
       </DefaultTitle>
       <List
         loading={loading}

@@ -43,6 +43,7 @@ const replyComment = async (req, res) => {
   const data = await replyCommentService(req.params.id, req.body);
   return res.status(200).json(data);
 };
+
 module.exports = {
   getComments,
   createComment,

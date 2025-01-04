@@ -8,5 +8,8 @@ const paymentApi = () => {
   const URL_API = "/api/user/payment";
   return axios.post(URL_API);
 };
-
-export { getUsersApi, paymentApi };
+const getChat = (message) => {
+  const URL_API = "/api/chat/response";
+  return axios.post(URL_API, { message });
+};
+export { getUsersApi, paymentApi, getChat };

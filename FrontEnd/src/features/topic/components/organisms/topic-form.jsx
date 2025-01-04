@@ -111,13 +111,13 @@ const TopicForm = ({ initialValues, mode, id }) => {
                 name="title"
                 label={
                   <DefaultTitle style={{ marginBottom: 8, fontSize: "18px" }}>
-                    Tiêu đề bài viết
+                    Tiêu đề bài đăng
                   </DefaultTitle>
                 }
                 rules={[
                   {
                     required: true,
-                    message: "Vui lòng nhập tiêu đề bài viết",
+                    message: "Vui lòng nhập tiêu đề bài đăng",
                   },
                   {
                     min: 5,
@@ -130,7 +130,7 @@ const TopicForm = ({ initialValues, mode, id }) => {
                 ]}
               >
                 <TextArea
-                  placeholder="Nhập tiêu đề bài viết"
+                  placeholder="Nhập nội dung bài đăng"
                   style={{ fontSize: "18px", fontWeight: "bold" }}
                   autoSize={{
                     minRows: 1,
@@ -143,13 +143,13 @@ const TopicForm = ({ initialValues, mode, id }) => {
                 name="description"
                 label={
                   <DefaultTitle style={{ marginBottom: 8 }}>
-                    Nội dung bài viết
+                    Nội dung bài đăng
                   </DefaultTitle>
                 }
                 rules={[
                   {
                     required: true,
-                    message: "Vui lòng nhập nội dung bài viết",
+                    message: "Vui lòng nhập nội dung bài đăng",
                   },
                   {
                     min: 20,
@@ -167,7 +167,7 @@ const TopicForm = ({ initialValues, mode, id }) => {
                     maxRows: 24,
                   }}
                   style={{ fontSize: "16px" }}
-                  placeholder="Nội dung bài viết"
+                  placeholder="Nội dung bài đăng"
                 />
               </Form.Item>
 
@@ -183,7 +183,7 @@ const TopicForm = ({ initialValues, mode, id }) => {
                 style={{ padding: 8 }}
                 block
               >
-                Đăng bài viết
+                Đăng bài
               </Button>
               <Button
                 variant="outlined"

@@ -6,6 +6,7 @@ const userRoutes = require("./routes/user.route");
 const topicRoutes = require("./routes/topic.route");
 const effectRoutes = require("./routes/effect.route");
 const commentRoutes = require("./routes/comment.route");
+const chatMessageRoutes = require("./routes/chatMessage.route");
 const connection = require("./config/database");
 
 const cors = require("cors");
@@ -29,7 +30,7 @@ app.use("/api/user/", userRoutes);
 app.use("/api/topic/", topicRoutes);
 app.use("/api/effect/", effectRoutes);
 app.use("/api/comment/", commentRoutes);
-
+app.use("/api/chat", chatMessageRoutes);
 (async () => {
   try {
     await connection();

@@ -34,7 +34,11 @@ const CharacterDescription = ({ descriptionData, deleteCharacter }) => {
             {descriptionData.name}
             {auth?.user?.role === "admin" && (
               <div>
-                <Button href={`/character/${descriptionData._id}/edit`}>
+                <Button
+                  href={`/character/${descriptionData._id}/edit`}
+                  type="primary"
+                  style={{ marginRight: 8, padding: "8px 26px" }}
+                >
                   Chỉnh sửa
                 </Button>
                 <Button

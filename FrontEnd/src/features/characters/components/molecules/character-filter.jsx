@@ -25,7 +25,7 @@ const CharacterFilter = ({ handleFilterChange }) => {
     >
       <Col xs={24} sm={24} md={12} lg={8}>
         <Search
-          placeholder="Tìm kiếm tướng"
+          placeholder="Tìm kiếm nhân vật"
           onChange={handleSearchChange}
           style={{ width: "100%" }}
         />

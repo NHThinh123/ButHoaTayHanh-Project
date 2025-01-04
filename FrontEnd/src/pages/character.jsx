@@ -30,16 +30,16 @@ const Character = () => {
               textAlign: "center",
             }}
           >
-            Danh sách tướng
+            Danh sách nhân vật
           </DefaultTitle>
           <Button size="large" type="primary" href="/character/create">
             <PlusOutlined />
-            Thêm tướng
+            Thêm nhân vật
           </Button>
         </Flex>
       ) : (
         <DefaultTitle style={{ marginBottom: "24px", fontSize: 36 }}>
-          Danh sách tướng
+          Danh sách nhân vật
         </DefaultTitle>
       )}
       <CharacterFilter handleFilterChange={handleFilterChange} />

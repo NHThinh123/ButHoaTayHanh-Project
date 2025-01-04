@@ -119,7 +119,7 @@ const router = createBrowserRouter([
     element: <ResultPage />,
   },
   {
-    path: "test/:id",
+    path: "test",
     element: <TestPage />,
   },
 ]);

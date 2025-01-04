@@ -3,6 +3,7 @@ import BentoBox from "../../../../components/atoms/bento-box";
 import { SendOutlined } from "@ant-design/icons";
 import { useContext, useEffect, useRef } from "react";
 import { AuthContext } from "../../../../contexts/auth.context";
+import { Link } from "react-router-dom";
 
 const { TextArea } = Input;
 
@@ -22,7 +23,16 @@ const ModalCommentFooter = ({ onFinishComment, form }) => {
       values.content.charAt(0).toUpperCase() + values.content.slice(1);
     onFinishComment({ ...values, content: capitalizedContent });
   };
-
+  if (!auth?.isAuthentication)
+    return (
+      <Row>
+        <Col span={24} style={{ paddingTop: 12 }}>
+          <p style={{ textAlign: "center" }}>
+            Vui lòng <Link to={"/login"}>đăng nhập</Link> để bình luận
+          </p>
+        </Col>
+      </Row>
+    );
   return (
     <Row>
       <Col span={2} style={{ display: "flex", paddingTop: 12 }}>

@@ -50,7 +50,7 @@ const TopicTool = ({ handleFilterChange }) => {
                   href="/topic/create"
                   block
                 >
-                  <PlusOutlined /> Tạo chủ đề mới
+                  <PlusOutlined /> Tạo bài đăng mới
                 </Button>
               </Col>
             </Row>
@@ -58,7 +58,7 @@ const TopicTool = ({ handleFilterChange }) => {
           <Col span={24}>
             <Search
               onChange={handleSearchChange}
-              placeholder="Tìm kiếm chủ đề thảo luận..."
+              placeholder="Tìm kiếm bài đăng..."
               allowClear
             />
           </Col>

@@ -41,20 +41,20 @@ const Sider = () => {
     },
     {
       key: "sub2",
-      label: "Thông Tin Tướng",
+      label: "Thông Tin nhân vật",
       icon: <TeamOutlined />,
       children: [
         {
           key: "allCharacter",
-          label: <Link to={"/character"}>Danh sách tướng</Link>,
+          label: <Link to={"/character"}>Danh sách nhân vật</Link>,
         },
         {
           key: "createCharacter",
           label: auth.isAuthentication ? (
-            <Link to={"/character/create"}>Thêm tướng</Link>
+            <Link to={"/character/create"}>Thêm nhân vật</Link>
           ) : (
             <span onClick={() => showLoginModal("/character/create")}>
-              Thêm tướng
+              Thêm nhân vật
             </span>
           ),
         },
@@ -65,30 +65,30 @@ const Sider = () => {
     },
     {
       key: "sub4",
-      label: "Bài viết",
+      label: "Bài đăng",
       icon: <CommentOutlined />,
       children: [
         {
           key: "allTopic",
-          label: <Link to={"/topic"}>Quản lý bài viết</Link>,
+          label: <Link to={"/topic"}>Danh sách bài đăng</Link>,
         },
         {
           key: "myTopic",
           label: auth.isAuthentication ? (
-            <Link to={"/topic/me"}>Bài viết của tôi</Link>
+            <Link to={"/topic/me"}>Bài đăng của tôi</Link>
           ) : (
             <span onClick={() => showLoginModal("/topic/me")}>
-              Bài viết của tôi
+              Bài đăng của tôi
             </span>
           ),
         },
         {
           key: "createTopic",
           label: auth.isAuthentication ? (
-            <Link to={"/topic/create"}>Thêm bài viết</Link>
+            <Link to={"/topic/create"}>Thêm bài đăng</Link>
           ) : (
             <span onClick={() => showLoginModal("/topic/create")}>
-              Thêm bài viết
+              Thêm bài đăng
             </span>
           ),
         },
@@ -102,7 +102,7 @@ const Sider = () => {
         {
           key: "setting",
           icon: <SettingOutlined />,
-          label: "Setting",
+          label: "Cài đặt",
         },
         {
           key: "user",
@@ -115,7 +115,7 @@ const Sider = () => {
                     ? [
                         {
                           key: "listUser",
-                          label: <Link to={"/user"}>Danh sách user</Link>,
+                          label: <Link to={"/user"}>Danh sách người dùng</Link>,
                         },
                       ]
                     : []),

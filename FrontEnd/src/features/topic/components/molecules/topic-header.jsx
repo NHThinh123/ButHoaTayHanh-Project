@@ -121,7 +121,7 @@ const TopicHeader = ({
       {/* Modal */}
       <Modal
         title="Xóa bài đăng này?"
-        visible={isModalVisible}
+        open={isModalVisible}
         onCancel={handleCancel}
         closable={true}
         footer={[
